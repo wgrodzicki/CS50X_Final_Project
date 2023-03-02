@@ -17,7 +17,7 @@ body {
     height: 1000px;
 }
 
-#player, #dragon, #layer-0, #layer-1, #layer-2, #layer-3, #layer-4, #layer-5, #layer-6, #layer-7, #layer-8, #layer-9, #layer-10 {
+#player, #dragon, #explosion, #layer-0, #layer-1, #layer-2, #layer-3, #layer-4, #layer-5, #layer-6, #layer-7, #layer-8, #layer-9, #layer-10 {
     display: none;
 }
 
