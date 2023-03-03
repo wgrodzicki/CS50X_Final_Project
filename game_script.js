@@ -28,7 +28,7 @@ window.addEventListener("load", function() {
         backgroundLayers[10] = document.getElementById("layer-10");
         const layers = [];
         // Variable to control general game speed
-        let gameSpeedMod = 1.5;
+        let gameSpeedMod = 2.5;
         // Game state trackers
         let gameOver = false;
         let score = 0;
@@ -59,8 +59,8 @@ window.addEventListener("load", function() {
             draw(context) {
                 // Draw the image twice, one next to the other
                 context.drawImage(this.image, this.x, this.y, this.width, this.height);
-                // Place the 2nd image immediately behind the 1st one, accounting for the layer's speed
-                context.drawImage(this.image, this.x + this.width - this.speed, this.y, this.width, this.height);
+                // Place the 2nd image immediately behind the 1st one
+                context.drawImage(this.image, this.x + this.width, this.y, this.width, this.height);
             }
             // Animates the layer
             update() {
@@ -118,6 +118,9 @@ window.addEventListener("load", function() {
                 this.y = this.gameHeight - (this.height + 120); // Put the player on the grass
                 // Get the sprite image from game.html
                 this.image = document.getElementById("player");
+                // Get the spell sound effect from game.html
+                this.spellSound = new Audio();
+                this.spellSound.src = "resources/player/spell.mp3";
                 // Properites to navigate through the sprite sheet
                 this.frameX = 0;
                 this.frameY = 0;
@@ -184,7 +187,7 @@ window.addEventListener("load", function() {
                             // Check if dragon's in range
                              if (dragonBottom > groundAttackTop && dragonTop < groundAttackBottom && (dragon.x < groundAttackRange && dragon.x > playerFront)) {
                                 // Kill the dragon, trigger explosion and increase score if so
-                                explosions.push(new Explosion(dragon.x, dragon.y));                                
+                                explosions.push(new Explosion(dragon.x, dragon.y));
                                 dragon.killed = true;
                                 score++;
                              }
@@ -214,10 +217,14 @@ window.addEventListener("load", function() {
                         if (attackGround == true) {
                             // Finish the attack if so
                             attackGround = false;
+                            // Stop the spell sound effect
+                            this.spellSound.pause();
                         }
                         if (attackJump == true) {
                             // Finish the attack if so
                             attackJump = false;
+                            // Stop the spell sound effect
+                            this.spellSound.pause();
                         }
                     }
                     else {
@@ -291,6 +298,8 @@ window.addEventListener("load", function() {
                     this.frameY = 1; // Switch to the row with jumping animation on the sprite sheet
                     // Check if the player is attacking while jumping
                     if (attackJump == true) {
+                        // Play the spell sound effect
+                        this.spellSound.play();
                         // Switch to attack character frames on the sprite sheet if so
                         this.maxFrame = 7;
                         this.frameY = 3;
@@ -303,6 +312,8 @@ window.addEventListener("load", function() {
                     this.frameY = 0;
                     // Check if the player is attacking on the ground
                     if (attackGround == true) {
+                        // Play the spell sound effect
+                        this.spellSound.play();
                         // Switch to attack character frames on the sprite sheet if so
                         this.maxFrame = 7;
                         this.frameY = 2;
@@ -404,6 +415,10 @@ window.addEventListener("load", function() {
                 this.y = y + 7;
                 // Get the sprite image from game.html
                 this.image = document.getElementById("explosion");
+                // Get the sound effect from game.html
+                this.sound = new Audio();
+                this.sound.src = "resources/explosion/explosion.mp3";
+                this.sound.volume = 0.3;
                 // Properites to navigate through the sprite sheet
                 this.frame = 0;
                 this.maxFrame = 4; // How many horizontal character frames there are on the sprite sheet
@@ -419,6 +434,8 @@ window.addEventListener("load", function() {
             }
             // Animates the explosion
             update(deltaTime) {
+                // Play the sound effect
+                this.sound.play();
                 // Check if current character frame should finish
                 if (this.frameTimer >= this.frameInterval) {
                     // Check if it's the last character frame (horizontally) on the sprite sheet
@@ -522,6 +539,10 @@ window.addEventListener("load", function() {
             player.update(userInput, deltaTime, dragons); // Animate player
             handleDragons(deltaTime); // Display and animate dragons
             triggerExplosions(deltaTime); // Display and animate explosions
+            // Stop potential spell sound effect if game over
+            if (gameOver == true) {
+                player.spellSound.pause();
+            }
             // Check if game over
             if (gameOver == false) {
                 // Keep playing otherwise
