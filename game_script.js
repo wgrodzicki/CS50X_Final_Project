@@ -32,13 +32,23 @@ window.addEventListener("load", function() {
         // Game state trackers
         let gameOver = false;
         let score = 0;
-        // Array for active dragons
-        let dragons = [];
+        let level = 0;
+
+        //!!
+        let displayLevelTimer = 0;
+        //!!
+        
         // Player attacks trackers
         let attackGround = false;
         let attackJump = false;
+        // Array for active dragons
+        let dragons = [];
         // Array for triggered explosions
         let explosions = [];
+        // Background music
+        let music = new Audio();
+        music.src = "resources/background/music.wav";
+        music.volume = 0.1;
 
         // Class for parallax background layers
         class Background {
@@ -118,9 +128,13 @@ window.addEventListener("load", function() {
                 this.y = this.gameHeight - (this.height + 120); // Put the player on the grass
                 // Get the sprite image from game.html
                 this.image = document.getElementById("player");
-                // Get the spell sound effect from game.html
+                // Get the spell sound effect
                 this.spellSound = new Audio();
                 this.spellSound.src = "resources/player/spell.mp3";
+                // Get the death sound effect
+                this.deathSound = new Audio();
+                this.deathSound.src = "resources/player/death.wav";
+                this.deathSound.volume = 0.5;
                 // Properites to navigate through the sprite sheet
                 this.frameX = 0;
                 this.frameY = 0;
@@ -138,11 +152,10 @@ window.addEventListener("load", function() {
             draw(context) {
 
                 // HIT BOXES
-                context.strokeStyle = "white";
-                context.beginPath();
-                context.arc(this.x + this.width / 2.5, this.y + this.height / 2, this.width / 4, 0, Math.PI * 2);
-                context.stroke();
-
+                // context.strokeStyle = "white";
+                // context.beginPath();
+                // context.rect(this.x + (this.width / 3.5), this.y + (this.height / 10), this.width - (this.width / 3.5) - (this.width / 2.1), this.height - (this.height / 10));
+                // context.stroke();
 
                 // Draw the image, using frameX and frameY to crop it / switch between character frames on the sprite sheet
                 context.drawImage(this.image, this.frameX * this.width, this.frameY * this.height, this.width, this.height, this.x, this.y, this.width, this.height);
@@ -151,59 +164,66 @@ window.addEventListener("load", function() {
             update(userInput, deltaTime, dragons) {
                 
                 // COLLISSION DETECTION
-                
-                // Player hit
+
                 // Iterate over all active dragons
                 dragons.forEach(dragon => {
-                    // Calculate the horizontal distance between centers of circles around actors
-                    const dx = (dragon.x + dragon.width / 2) - (this.x + this.width / 2.5);
-                    // Calculate the vertical distance between centers of circles around actors
-                    const dy = (dragon.y + dragon.height / 2) - (this.y + this.height / 2);
-                    // Calculate diagonal distance using Pithagoren theorem
-                    const distance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
-                    // Check if hit boxes (circles) overlap
-                    if (distance < (dragon.width / 3 + this.width / 4)) {
+                    // Dragon's hit box
+                    let dragonFront = dragon.x + (dragon.width / 8); // Dragon's hit box front
+                    let dragonRear = dragon.x + (dragon.width - (dragon.width /5)); // Dragon's hit box rear
+                    let dragonTop = dragon.y + (dragon.height / 2.5); // Dragon's hit box top
+                    let dragonBottom = dragon.y + (dragon.height - (this.height / 8)); // Dragon's hit box bottom
+                    // Player's hit box
+                    let playerFront = this.x + (this.width - (this.width / 2.1)); // Player's hit box front
+                    let playerRear = this.x + (this.width / 3.5); // Player's hit box rear
+                    let playerTop = this.y + (this.height / 10); // Player's hit box top
+                    let playerBottom = this.y + this.height; // Player's hit box bottom
+
+                    // Player hit
+                    if (dragonFront > playerFront ||
+                        dragonRear < playerRear ||
+                        dragonBottom < playerTop ||
+                        dragonTop > playerBottom
+                        ) {
+                        // No collission
+                    }
+                    else {
+                        // Collission otherwise
                         gameOver = true;
                     }
-                });
 
-                // Player ground attack
-                // Iterate over all active dragons
-                if (attackGround == true || attackJump == true){
-                    dragons.forEach(dragon => {
-                        
-                        let dragonTop = dragon.y; // Dragon's hit box top
-                        let dragonBottom = dragon.y + dragon.height; // Dragon's hit box bottom
-                        let playerFront = this.x + this.width / 2.5 + this.width / 4; // Player's hit box front
-                        let groundAttackTop = this.y + this.height / 4; // Top range of the ground attack
+                    // Player attack
+                    if (attackGround == true || attackJump == true) {
+                        let groundAttackTop = this.y + this.height / 8; // Top range of the ground attack
                         let groundAttackBottom = this.y + this.height / 2; // Bottom range of the ground attack
-                        let groundAttackRange = this.x + this.width / 2.5 + this.width / 2.5; // Horizontal range of the ground attack
+                        let groundAttackRange = this.x + 2 * (this.width / 2.5); // Horizontal range of the ground attack
                         let jumpAttackTop = this.y; // Top range of the jump attack
-                        let jumpAttackBottom = this.y + this.height / 2; // Bottom range of the jump attack
+                        let jumpAttackBottom = this.y + 0.75 * this.height; // Bottom range of the jump attack
                         let jumpAttackRange = this.x + this.width / 2.5 + this.width / 3.5; // Horizontal range of the ground attack
                         
                         // Check if player attacks from the ground
                         if (attackGround == true) {
                             // Check if dragon's in range
                              if (dragonBottom > groundAttackTop && dragonTop < groundAttackBottom && (dragon.x < groundAttackRange && dragon.x > playerFront)) {
-                                // Kill the dragon, trigger explosion and increase score if so
+                                // Kill the dragon and trigger explosion
                                 explosions.push(new Explosion(dragon.x, dragon.y));
                                 dragon.killed = true;
-                                score++;
                              }
                         }
                         // Check if player attacks while jumping
                         if (attackJump == true) {
                             // Check if dragon's in range
                             if (dragonBottom > jumpAttackTop && dragonTop < jumpAttackBottom && (dragon.x < jumpAttackRange && dragon.x > playerFront)) {
-                                // Kill the dragon, trigger explosion and increase score if so
+                                // Kill the dragon and trigger explosion
                                 explosions.push(new Explosion(dragon.x, dragon.y));
                                 dragon.killed = true;
-                                score++;
                             }
                         }
-                    });
-                }
+                        // Increase score if dragon killed
+                        if (dragon.killed == true) {
+                            score++;
+                        }
+                    }
+                });
 
                 // PLAYER ANIMATION
 
@@ -265,7 +285,7 @@ window.addEventListener("load", function() {
                 // Check if user pressed the up arrow key being on the ground
                 if (userInput.keys.indexOf("ArrowUp") != -1 && this.onGround() == true) {
                     // Jump if so
-                    this.jumpSpeed -= 32;
+                    this.jumpSpeed -= 30;
                 }
                 // Check if user pressed the spacebar key while jumping
                 if (userInput.keys.indexOf(" ") != -1 && this.onGround() == false) {
@@ -342,12 +362,18 @@ window.addEventListener("load", function() {
                 // Size and placement
                 this.gameWidth = gameWidth;
                 this.gameHeight = gameHeight;
-                this.width = 191;
-                this.height = 161;
+                this.width = 216;
+                this.height = 150;
                 this.x = this.gameWidth;
                 this.y = this.gameHeight - (this.height + 120) - (Math.random() * 300); // Randomize vertical position
                 // Get the sprite image from game.html
                 this.image = document.getElementById("dragon");
+                // Get the roar sound
+                this.roarSound = new Audio();
+                this.roarSound.src = "resources/enemies/roar.wav";
+                this.roarSound.volume = 0.3;
+                this.roarRandom = Math.random(); // Roar sound randomizer
+                this.roarPlayed = false; // Raor sound tracker
                 // Properites to navigate through the sprite sheet
                 this.frameX = 0;
                 this.frameY = 0;
@@ -356,7 +382,11 @@ window.addEventListener("load", function() {
                 this.frameInterval = 1000 / this.fps; // How long should a single character frame on the sprite sheet last
                 this.frameTimer = 0; // Counter to keep track of game frames (from 0 to frameInterval)
                 // Set dragon's horizontal speed
-                this.speed = Math.random() * 6 + 6; //Randomize speed
+                this.speed = Math.random() + 5; //Randomize speed
+                // Variables to control dragon's vertical movement
+                this.angle = Math.random() * 2; // Starting wave amplitude
+                this.angleSpeed = Math.random() * 0.2; // Allow for randomized wavy movement
+                this.amplitude = Math.random() * 5; // Amplitude magnifier
                 // Trackers for dragons to be deleted
                 this.markedForDeletion = false;
                 this.killed = false;
@@ -365,10 +395,10 @@ window.addEventListener("load", function() {
             draw(context) {
 
                 // HIT BOXES
-                context.strokeStyle = "white";
-                context.beginPath();
-                context.arc(this.x + this.width / 2, this.y + this.height / 2, this.width / 3, 0, Math.PI * 2);
-                context.stroke();
+                // context.strokeStyle = "white";
+                // context.beginPath();
+                // context.rect(this.x + (this.width / 8), this.y + (this.height / 2.5), this.width - (this.width / 8) - (this.width /5), this.height - (this.height / 2.5) - (this.height / 8));
+                // context.stroke();
 
                 // Draw the image, using frameX and frameY to crop it / switch between character frames on the sprite sheet
                 context.drawImage(this.image, this.frameX * this.width, this.frameY * this.height, this.width, this.height, this.x, this.y, this.width, this.height);
@@ -399,6 +429,47 @@ window.addEventListener("load", function() {
                 if (this.x < 0 - this.width) {
                     // Mark it for deletion if so
                     this.markedForDeletion = true;
+                }
+
+                // DIFFICULTY
+
+                // Level 1
+                if (score >= 10) {
+                    dragonInterval = 500;
+                    level = 1;
+                }
+                // Level 2
+                if (score >= 20) {
+                    this.speed = Math.random() * 5 + 5;
+                    level = 2;
+                }
+                // Level 3
+                if (score >= 30) {
+                    // Keep changing vertical position by an amplitude (down)
+                    this.y += this.amplitude * Math.sin(this.angle);
+                    this.angle += this.angleSpeed; // Make the movement wavy (up and down)
+                    level = 3;
+                }
+                // Level 4
+                if (score >= 40) {
+                    this.speed = Math.random() * 10 + 5;
+                    level = 4;
+                }
+                // Level 5
+                if (score >= 50) {
+                    this.amplitude *= 2.5;
+                    level = 5;
+                }
+
+                // Make sure the dragon doesn't fall through the ground
+                if (this.y >= this.gameHeight - (this.height + 120)) {
+                    this.y = this.gameHeight - (this.height + 120);
+                }
+
+                // Play dragon screams randomly
+                if (this.roarPlayed == false && (this.roarRandom < 0.1) && (this.x > this.gameWidth - (this.gameWidth / 3))) {
+                    this.roarSound.play();
+                    this.roarPlayed == true;
                 }
             }
         }
@@ -507,6 +578,61 @@ window.addEventListener("load", function() {
             });
         }
 
+        // Displays game status
+        function displayStatus(context) {
+            // Current score
+            context.textAlign = "center";
+
+            context.fillStyle = "black";
+            context.font = "40px Copperplate, Papyrus, fantasy";
+            context.fillText("Score: " + score, 100, 50);
+
+            context.fillStyle = "white";
+            context.font = "40px Copperplate, Papyrus, fantasy";
+            context.fillText("Score: " + score, 104, 54);
+
+            //!!
+            if (displayLevelTimer <= 50) {
+                switch (level) {
+                    case 0:
+                        break;
+                    case 1:
+                        context.fillStyle = "black";
+                        context.font = "50px Copperplate, Papyrus, fantasy";
+                        context.fillText("Level 1", canvas.width / 2, canvas.height / 2);
+    
+                        context.fillStyle = "white";
+                        context.font = "50px Copperplate, Papyrus, fantasy";
+                        context.fillText("Level 1", canvas.width / 2 + 4, canvas.height / 2 + 4);
+                        displayLevelTimer++;
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                }
+            }
+            // if (displayLevelTimer > 50) {
+            //     displayLevelTimer = 0;
+            // }
+            //!! 
+
+            // Game over message
+            if (gameOver == true) {
+                context.fillStyle = "black";
+                context.font = "50px Copperplate, Papyrus, fantasy";
+                context.fillText("GAME OVER", canvas.width / 2, canvas.height / 2);
+                
+                context.fillStyle = "white";
+                context.font = "50px Copperplate, Papyrus, fantasy";
+                context.fillText("GAME OVER", canvas.width / 2 + 4, canvas.height / 2 + 4);
+            }
+        }
+
         // Create new objects for all background layers and put them into a new array
         for (let i = 0; i < backgroundLayers.length; i++) {
             layers[i] = new Background(canvas.width, canvas.height, backgroundLayers[i], (i / 10 + gameSpeedMod));
@@ -520,7 +646,7 @@ window.addEventListener("load", function() {
         // Variable to time dragon spawning
         let dragonTimer = 0;
         // Variable to control dragon spawning frequency
-        let dragonInterval = 500;
+        let dragonInterval = 2500;
 
         // Animation loop
         function animate(timeStamp) {
@@ -539,14 +665,18 @@ window.addEventListener("load", function() {
             player.update(userInput, deltaTime, dragons); // Animate player
             handleDragons(deltaTime); // Display and animate dragons
             triggerExplosions(deltaTime); // Display and animate explosions
-            // Stop potential spell sound effect if game over
-            if (gameOver == true) {
-                player.spellSound.pause();
-            }
+            displayStatus(context); // Display game status
             // Check if game over
-            if (gameOver == false) {
-                // Keep playing otherwise
-                requestAnimationFrame(animate);
+            if (gameOver == true) {
+                document.getElementById("start").disabled = false; // Enable the start game button
+                music.pause(); // Stop the background music
+                player.spellSound.pause(); // Stop potential spell sound effect if game over
+                player.deathSound.play(); // Play the death sound if game over
+            }
+            else {
+                document.getElementById("start").disabled = true; // Disable the start game button
+                music.play(); // Play the background music
+                requestAnimationFrame(animate); // Keep playing
             }
         }
         animate(0); // Call the animation loop, passing a non-significant argument for the first time (no timeStamp yet)
