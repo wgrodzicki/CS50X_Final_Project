@@ -2,17 +2,30 @@
 // Wait until the page loads
 window.addEventListener("load", function() {
 
+    // Handle canvas
+    const canvas = document.getElementById("game-canvas");
+    const context = canvas.getContext("2d");
+    canvas.width = 1392;
+    canvas.height = 1000;
+    // Display game title
+    let title = document.getElementById("title");
+    context.drawImage(title, 0, 0, canvas.width, canvas.height);
+    context.textAlign = "center";
+    // Black & white for shade effect
+    context.fillStyle = "black";
+    context.font = "120px Luminari, Papyrus, fantasy";
+    context.fillText("The Eradicator", canvas.width / 2, canvas.height / 2);
+
+    context.fillStyle = "white";
+    context.font = "120px Luminari, Papyrus, fantasy";
+    context.fillText("The Eradicator", canvas.width / 2 + 5, canvas.height / 2 + 5);
+
     // Wait until the user clicks the start button
     const startButton = document.getElementById("start");
     startButton.addEventListener("click", function() {
         
         /** @type {HTMLCanvasElement} **/ // Suggests canvas methods
 
-        // Handle canvas
-        const canvas = document.getElementById("game-canvas");
-        const context = canvas.getContext("2d");
-        canvas.width = 1392;
-        canvas.height = 1000;
         // Put layers from game.html into an array
         const backgroundLayers = [];
         backgroundLayers[0] = document.getElementById("layer-0");
@@ -35,7 +48,11 @@ window.addEventListener("load", function() {
         let level = 0;
         // Variables to control the display of level messages
         let levelTimer = 100;
-        let levelTimerOut = false;
+        let levelOneDisplayed = false;
+        let levelTwoDisplayed = false;
+        let levelThreeDisplayed = false;
+        let levelFourDisplayed = false;
+        let levelFiveDisplayed = false;
         // Player attacks trackers
         let attackGround = false;
         let attackJump = false;
@@ -131,7 +148,7 @@ window.addEventListener("load", function() {
                 this.spellSound.src = "resources/player/spell.mp3";
                 // Get the death sound effect
                 this.deathSound = new Audio();
-                this.deathSound.src = "resources/player/death.wav";
+                this.deathSound.src = "resources/player/death.mp3";
                 this.deathSound.volume = 0.5;
                 // Properites to navigate through the sprite sheet
                 this.frameX = 0;
@@ -380,7 +397,7 @@ window.addEventListener("load", function() {
                 this.frameInterval = 1000 / this.fps; // How long should a single character frame on the sprite sheet last
                 this.frameTimer = 0; // Counter to keep track of game frames (from 0 to frameInterval)
                 // Set dragon's horizontal speed
-                this.speed = Math.random() * 5 + 5; //Randomize speed
+                this.speed = Math.random() + 5; //Randomize speed
                 // Variables to control dragon's vertical movement
                 this.angle = Math.random() * 2; // Starting wave amplitude
                 this.angleSpeed = Math.random() * 0.2; // Allow for randomized wavy movement
@@ -434,12 +451,12 @@ window.addEventListener("load", function() {
                 // Level 1
                 if (score >= 5) {
                     level = 1;
-                    dragonInterval = 500; // Increase dragon spawning frequency
+                    dragonInterval = 400; // Increase dragon spawning frequency
                 }
                 // Level 2
                 if (score >= 10) {
                     level = 2;
-                    this.speed = Math.random() * 5 + 7.5; // Increase speed
+                    this.speed = Math.random() * 5 + 5; // Increase speed
                 }
                 // Level 3
                 if (score >= 20) {
@@ -450,12 +467,12 @@ window.addEventListener("load", function() {
                 // Level 4
                 if (score >= 30) {
                     level = 4;
-                    this.speed = Math.random() * 5 + 10; // Increase speed
+                    this.speed = Math.random() * 5 + 7.5; // Increase speed
                 }
                 // Level 5
                 if (score >= 50) {
                     level = 5;
-                    this.speed = Math.random() * 5 + 12.5; // Increase speed
+                    this.speed = Math.random() * 5 + 10; // Increase speed
                     this.amplitude = Math.random() * 15; // Increase wavy movement amplitude
                 }
 
@@ -465,7 +482,7 @@ window.addEventListener("load", function() {
                 }
 
                 // Play dragon screams randomly
-                if (this.roarPlayed == false && (this.roarRandom < 0.1) && (this.x > this.gameWidth - (this.gameWidth / 3))) {
+                if (this.roarPlayed == false && (this.roarRandom < 0.2) && (this.x > this.gameWidth - (this.gameWidth / 3))) {
                     this.roarSound.play();
                     this.roarPlayed == true;
                 }
@@ -480,8 +497,8 @@ window.addEventListener("load", function() {
                 this.imageHeight = 88;
                 this.width = this.imageWidth * 2;
                 this.height = this.imageHeight * 2;
-                this.x = x;
-                this.y = y + 7;
+                this.x = x + 12;
+                this.y = y - 13;
                 // Get the sprite image from game.html
                 this.image = document.getElementById("explosion");
                 // Get the sound effect from game.html
@@ -582,12 +599,12 @@ window.addEventListener("load", function() {
             context.textAlign = "center";
             // Black & white for shade effect
             context.fillStyle = "black";
-            context.font = "40px Copperplate, Papyrus, fantasy";
-            context.fillText("Score: " + score, 100, 50);
+            context.font = "40px Luminari";
+            context.fillText("Score: " + score, 100, 60);
 
             context.fillStyle = "white";
-            context.font = "40px Copperplate, Papyrus, fantasy";
-            context.fillText("Score: " + score, 104, 54);
+            context.font = "40px Luminari";
+            context.fillText("Score: " + score, 104, 64);
 
             // Display level message according to current level
             if (levelTimer > 0 && gameOver == false) {
@@ -596,95 +613,95 @@ window.addEventListener("load", function() {
                         break;
                     case 1:
                         // Check if the timer is still ticking for this level
-                        if (levelTimerOut == false) {
+                        if (levelOneDisplayed == false) {
                             // Black & white for shade effect
                             context.fillStyle = "black";
-                            context.font = "50px Copperplate, Papyrus, fantasy";
+                            context.font = "70px Luminari, Papyrus, fantasy";
                             context.fillText("Level 1", canvas.width / 2, canvas.height / 2);
         
                             context.fillStyle = "white";
-                            context.font = "50px Copperplate, Papyrus, fantasy";
+                            context.font = "70px Luminari, Papyrus, fantasy";
                             context.fillText("Level 1", canvas.width / 2 + 4, canvas.height / 2 + 4);
                             levelTimer--; // Keep decreasing the timer
                             // Check if timer's out
                             if (levelTimer == 0) {
-                                levelTimerOut = true;
+                                levelOneDisplayed = true; // Mark level info as displayed
                                 levelTimer = 100; // Reset the timer
                             }
                         }                        
                         break;
                     case 2:
                         // Check if the timer is still ticking for this level
-                        if (levelTimerOut == false) {
+                        if (levelTwoDisplayed == false) {
                             // Black & white for shade effect
                             context.fillStyle = "black";
-                            context.font = "50px Copperplate, Papyrus, fantasy";
+                            context.font = "70px Luminari, Papyrus, fantasy";
                             context.fillText("Level 2", canvas.width / 2, canvas.height / 2);
         
                             context.fillStyle = "white";
-                            context.font = "50px Copperplate, Papyrus, fantasy";
+                            context.font = "70px Luminari, Papyrus, fantasy";
                             context.fillText("Level 2", canvas.width / 2 + 4, canvas.height / 2 + 4);
                             levelTimer--; // Keep decreasing the timer
                             // Check if timer's out
                             if (levelTimer == 0) {
-                                levelTimerOut = true;
+                                levelTwoDisplayed = true; // Mark level info as displayed
                                 levelTimer = 100; // Reset the timer
                             }
                         }                        
                         break;
                     case 3:
                         // Check if the timer is still ticking for this level
-                        if (levelTimerOut == false) {
+                        if (levelThreeDisplayed == false) {
                             // Black & white for shade effect
                             context.fillStyle = "black";
-                            context.font = "50px Copperplate, Papyrus, fantasy";
+                            context.font = "70px Luminari, Papyrus, fantasy";
                             context.fillText("Level 3", canvas.width / 2, canvas.height / 2);
         
                             context.fillStyle = "white";
-                            context.font = "50px Copperplate, Papyrus, fantasy";
+                            context.font = "70px Luminari, Papyrus, fantasy";
                             context.fillText("Level 3", canvas.width / 2 + 4, canvas.height / 2 + 4);
                             levelTimer--; // Keep decreasing the timer
                             // Check if timer's out
                             if (levelTimer == 0) {
-                                levelTimerOut = true;
+                                levelThreeDisplayed = true; // Mark level info as displayed
                                 levelTimer = 100; // Reset the timer
                             }
                         }                        
                         break;
                     case 4:
                         // Check if the timer is still ticking for this level
-                        if (levelTimerOut == false) {
+                        if (levelFourDisplayed == false) {
                             // Black & white for shade effect
                             context.fillStyle = "black";
-                            context.font = "50px Copperplate, Papyrus, fantasy";
+                            context.font = "70px Luminari, Papyrus, fantasy";
                             context.fillText("Level 4", canvas.width / 2, canvas.height / 2);
         
                             context.fillStyle = "white";
-                            context.font = "50px Copperplate, Papyrus, fantasy";
+                            context.font = "70px Luminari, Papyrus, fantasy";
                             context.fillText("Level 4", canvas.width / 2 + 4, canvas.height / 2 + 4);
                             levelTimer--; // Keep decreasing the timer
                             // Check if timer's out
                             if (levelTimer == 0) {
-                                levelTimerOut = true;
+                                levelFourDisplayed = true; // Mark level info as displayed
                                 levelTimer = 100; // Reset the timer
                             }
                         }                        
                         break;
                     case 5:
                         // Check if the timer is still ticking for this level
-                        if (levelTimerOut == false) {
+                        if (levelFiveDisplayed == false) {
                             // Black & white for shade effect
                             context.fillStyle = "black";
-                            context.font = "50px Copperplate, Papyrus, fantasy";
+                            context.font = "70px Luminari, Papyrus, fantasy";
                             context.fillText("Level 5", canvas.width / 2, canvas.height / 2);
         
                             context.fillStyle = "white";
-                            context.font = "50px Copperplate, Papyrus, fantasy";
+                            context.font = "70px Luminari, Papyrus, fantasy";
                             context.fillText("Level 5", canvas.width / 2 + 4, canvas.height / 2 + 4);
                             levelTimer--; // Keep decreasing the timer
                             // Check if timer's out
                             if (levelTimer == 0) {
-                                levelTimerOut = true;
+                                levelFiveDisplayed = true; // Mark level info as displayed
                                 levelTimer = 100; // Reset the timer
                             }
                         }                        
@@ -696,11 +713,11 @@ window.addEventListener("load", function() {
             if (gameOver == true) {
                 // Black & white for shade effect
                 context.fillStyle = "black";
-                context.font = "50px Copperplate, Papyrus, fantasy";
+                context.font = "80px Luminari, Papyrus, fantasy";
                 context.fillText("GAME OVER", canvas.width / 2, canvas.height / 2);
                 
                 context.fillStyle = "white";
-                context.font = "50px Copperplate, Papyrus, fantasy";
+                context.font = "80px Luminari, Papyrus, fantasy";
                 context.fillText("GAME OVER", canvas.width / 2 + 4, canvas.height / 2 + 4);
             }
         }
