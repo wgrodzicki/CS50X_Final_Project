@@ -2,6 +2,18 @@
 // Wait until the page loads
 window.addEventListener("load", function() {
 
+    //!!
+    let button = document.getElementById("button");
+    let buttonClicked = document.getElementById("button-clicked");
+    button.addEventListener("click", function() {
+        button.style.display = "none";
+        buttonClicked.style.display = "initial"
+        setTimeout(function() {
+            button.style.display = "initial";
+        }, 120);
+    });
+    //!! 
+
     // Handle canvas
     const canvas = document.getElementById("game-canvas");
     const context = canvas.getContext("2d");
