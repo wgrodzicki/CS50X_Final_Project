@@ -128,7 +128,7 @@ window.addEventListener("load", function() {
             // Dragon wings sound
             let dragonWingSound = new Audio();
             dragonWingSound.src = "resources/enemies/wings.wav";
-            dragonWingSound.volume = 0.3;
+            dragonWingSound.volume = 0.15;
 
             // Class for parallax background layers
             class Background {
@@ -225,6 +225,7 @@ window.addEventListener("load", function() {
                     // Get jump sound
                     this.jumpSound = new Audio();
                     this.jumpSound.src = "resources/player/jump.mp3";
+                    this.jumpSound.volume = 0.8;
                     // Properites to navigate through the sprite sheet
                     this.frameX = 0;
                     this.frameY = 0;
@@ -714,11 +715,11 @@ window.addEventListener("load", function() {
                 context.textAlign = "center";
                 // Black &...
                 context.fillStyle = "black";
-                context.font = "40px Luminari";
+                context.font = "40px Luminari, Papyrus, fantasy";
                 context.fillText("Score: " + score, 100, 60);
                 // ...& white for shade effect
                 context.fillStyle = "white";
-                context.font = "40px Luminari";
+                context.font = "40px Luminari, Papyrus, fantasy";
                 context.fillText("Score: " + score, 104, 64);
 
                 // Display level message according to current level
