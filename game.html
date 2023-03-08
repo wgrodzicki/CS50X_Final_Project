@@ -7,38 +7,66 @@
         <link rel="stylesheet" href="game_style.css">
     </head>
     <body>
-
-        <!-- !! -->
-        <img id="border" src="resources/menu/Border.png">
-
+        <!-- Border of the game window -->
+        <img id="border" src="resources/menu/Border.png" alt="game-window-border">
+        <!-- The following section divides the page into 2 columns to properly place the buttons around the game window -->
         <div class="row">
+            <!-- Left column for buttons -->
             <div class="column">
-                <div class="start-button-container">
+                <!-- "New game" button -->
+                <div id="start-button-container">
                     <img id="button-start" src="resources/menu/Button.png">
                     <img id="button-start-clicked" src="resources/menu/Button_clicked.png">
+                    <div id="start-button-text">New game</div>
                 </div>
-                <div class="button-container">
-                    <img id="button-score" src="resources/menu/Button_score.png">
-                    <img id="button-score-clicked" src="resources/menu/Button_score_clicked.png">
+                <!-- "Save score" button -->
+                <div id="score-button-container">
+                    <img id="button-score" src="resources/menu/Button.png">
+                    <img id="button-score-clicked" src="resources/menu/Button_clicked.png">
+                    <div id="score-button-text">Save score</div>
                 </div>
-                <div class="button-container">
-                    <img id="button-view" src="resources/menu/Button_view.png">
-                    <img id="button-view-clicked" src="resources/menu/Button_view_clicked.png">
+                <!-- "View scores" button -->
+                <div id="view-button-container">
+                    <img id="button-view" src="resources/menu/Button.png">
+                    <img id="button-view-clicked" src="resources/menu/Button_clicked.png">
+                    <div id="view-button-text">View scores</div>
                 </div>
-                <div class="button-container">
-                    <img id="button-logout" src="resources/menu/Button_logout.png">
-                    <img id="button-logout-clicked" src="resources/menu/Button_logout_clicked.png">
+                <!-- "Log out" button -->
+                <div id="logout-button-container">
+                    <img id="button-logout" src="resources/menu/Button.png">
+                    <img id="button-logout-clicked" src="resources/menu/Button_clicked.png">
+                    <div id="logout-button-text">Log out</div>
                 </div>
             </div>
+            <!-- Right column for buttons -->
             <div class="column">
-                <div class="instruction-button-container">
-                    <img id="button-instruction" src="resources/menu/Button_instruction.png">
-                    <img id="button-instruction-clicked" src="resources/menu/Button_instruction_clicked.png">
+                <!-- "Instructions" button -->
+                <div id="instruction-button-container">
+                    <img id="button-instruction" src="resources/menu/Button.png">
+                    <img id="button-instruction-clicked" src="resources/menu/Button_clicked.png">
+                    <div id="instruction-button-text">Instructions</div>
+                </div>
+                <div id="instruction-tablet-container">
+                    <img id="instruction-tablet" src="resources/menu/Instruction_tablet.png">
+                    <div id="instruction-tablet-text">
+                        Your beloved Forest has been infested by awful creatures from the North.
+                        You are the only one who can stand against the invadors.
+                        <br>
+                        <br>
+                        Embrace your destiny, become The Eradicator and defend your homeland!
+                        <br>
+                        <br>
+                        To control your character use:
+                        <ul>
+                            <li>left/right arrow keys to move</li>
+                            <li>up arrow key to jump</li>
+                            <li>spacebar to attack</li>
+                        </ul>
+                        Try to eradicate as many enemies as you can!
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- !! -->
-
         <!-- Container for canvas and other game elements -->
         <div id="game-container">
             <canvas id="game-canvas"></canvas>

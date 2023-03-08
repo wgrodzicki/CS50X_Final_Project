@@ -4,28 +4,54 @@ window.addEventListener("load", function() {
 
     /** @type {HTMLCanvasElement} **/ // Suggests canvas methods
 
-    //!!
+    // Put all button elements in an array
     let buttons = [];
-    buttons[0] = document.getElementById("button-score");
-    buttons[1] = document.getElementById("button-score-clicked");
-    buttons[2] = document.getElementById("button-view");
-    buttons[3] = document.getElementById("button-view-clicked");
-    buttons[4] = document.getElementById("button-logout");
-    buttons[5] = document.getElementById("button-logout-clicked");
-    buttons[6] = document.getElementById("button-instruction");
-    buttons[7] = document.getElementById("button-instruction-clicked");
-
-    for (let i = 0; i < buttons.length; i++) {
+    buttons[0] = document.getElementById("score-button-container");
+    buttons[1] = document.getElementById("button-score");
+    buttons[2] = document.getElementById("button-score-clicked");
+    buttons[3] = document.getElementById("score-button-text");
+    buttons[4] = document.getElementById("view-button-container");
+    buttons[5] = document.getElementById("button-view");
+    buttons[6] = document.getElementById("button-view-clicked");
+    buttons[7] = document.getElementById("view-button-text");
+    buttons[8] = document.getElementById("logout-button-container");
+    buttons[9] = document.getElementById("button-logout");
+    buttons[10] = document.getElementById("button-logout-clicked");
+    buttons[11] = document.getElementById("logout-button-text");
+    buttons[12] = document.getElementById("instruction-button-container");
+    buttons[13] = document.getElementById("button-instruction");
+    buttons[14] = document.getElementById("button-instruction-clicked");
+    buttons[15] = document.getElementById("instruction-button-text");
+    // Variable to control the display of the instruction
+    let instructionDisplayed = false;
+    // Iterate over the buttons[] array and check if clicked by the user
+    for (let i = 0; i < buttons.length; i += 4) {
         buttons[i].addEventListener("click", function() {
-            buttons[i].style.display = "none";
-            buttons[i + 1].style.display = "initial"
+            buttons[i + 1].style.display = "none"; // Hide the "unclicked" button image
+            buttons[i + 2].style.display = "initial"; // Display the "clicked" button image
+            buttons[i + 3].style.top = "45%"; // Move the text slightly
+            // Check if it's the instruction button
+            if (i == 12) {
+                // Display/hide the instruction tablet if so
+                if (instructionDisplayed == false) {
+                    document.getElementById("instruction-tablet").style.display = "initial";
+                    document.getElementById("instruction-tablet-text").style.display = "initial";
+                    instructionDisplayed = true;
+                }
+                else if (instructionDisplayed == true) {
+                    document.getElementById("instruction-tablet").style.display = "none";
+                    document.getElementById("instruction-tablet-text").style.display = "none";
+                    instructionDisplayed = false;
+                }
+            }
+            // After 120 ms
             setTimeout(function() {
-                buttons[i].style.display = "initial";
-                buttons[i + 1].style.display = "none";
+                buttons[i + 1].style.display = "initial"; // Display the "unclicked" button image
+                buttons[i + 2].style.display = "none"; // Hide the "clicked" button image
+                buttons[i + 3].style.top = "50%"; // Move the text to the initial position
             }, 120);
         });
     };
-    //!!
 
     // Handle canvas
     const canvas = document.getElementById("game-canvas");
@@ -48,15 +74,18 @@ window.addEventListener("load", function() {
     let gameStarted = false;
     
     // Check if user clicks the starting button
+    let buttonStartContainer = document.getElementById("start-button-container");
     let buttonStart = document.getElementById("button-start"); // Starting button not clicked
     let buttonStartClicked = document.getElementById("button-start-clicked"); // Starting button clicked
-    buttonStart.addEventListener("click", function() {
+    let buttonStartText = document.getElementById("start-button-text");
+    buttonStartContainer.addEventListener("click", function() {
         
         // Check if game started
         if (gameStarted == false) {
             // Animate button
             buttonStart.style.display = "none";
-            buttonStartClicked.style.display = "initial"
+            buttonStartClicked.style.display = "initial";
+            buttonStartText.style.top = "45%";
             gameStarted = true; // Lock the button until game over
             // Put layers from game.html into an array
             const backgroundLayers = [];
@@ -96,6 +125,10 @@ window.addEventListener("load", function() {
             let music = new Audio();
             music.src = "resources/background/music.wav";
             music.volume = 0.1;
+            // Dragon wings sound
+            let dragonWingSound = new Audio();
+            dragonWingSound.src = "resources/enemies/wings.wav";
+            dragonWingSound.volume = 0.3;
 
             // Class for parallax background layers
             class Background {
@@ -182,12 +215,16 @@ window.addEventListener("load", function() {
                     this.deathSound = new Audio();
                     this.deathSound.src = "resources/player/death.mp3";
                     this.deathSound.volume = 0.5;
-
-                    //!!
-                    // this.stepSound = new Audio();
-                    // this.stepSound.src = "resources/player/steps.ogg";
-                    //!!
-
+                    // Get step sounds
+                    this.stepSound = new Audio();
+                    this.stepSound.src = "resources/player/steps.wav";
+                    this.stepSoundFast = new Audio();
+                    this.stepSoundFast.src = "resources/player/steps_fast.wav";
+                    this.stepSoundSlow = new Audio();
+                    this.stepSoundSlow.src = "resources/player/steps_slow.wav";
+                    // Get jump sound
+                    this.jumpSound = new Audio();
+                    this.jumpSound.src = "resources/player/jump.mp3";
                     // Properites to navigate through the sprite sheet
                     this.frameX = 0;
                     this.frameY = 0;
@@ -339,6 +376,8 @@ window.addEventListener("load", function() {
                     if (userInput.keys.indexOf("ArrowUp") != -1 && this.onGround() == true) {
                         // Jump if so
                         this.jumpSpeed -= 30;
+                        // Play jump sound
+                        this.jumpSound.play();
                     }
                     // Check if user pressed the spacebar key while jumping
                     if (userInput.keys.indexOf(" ") != -1 && this.onGround() == false) {
@@ -366,11 +405,10 @@ window.addEventListener("load", function() {
                     this.y += this.jumpSpeed;
                     // Make sure player comes back to the ground if jumping
                     if (this.onGround() == false) {
-
-                        // //!!
-                        // this.stepSound.pause();
-                        // //!!
-
+                        // Stop playing step sounds
+                        this.stepSound.pause();
+                        this.stepSoundFast.pause();
+                        this.stepSoundSlow.pause();
                         this.jumpSpeed += this.gravity; // Keep pulling the player back down
                         this.maxFrame = 5; // Set the number of character frames for jumping on the sprite sheer
                         this.frameY = 1; // Switch to the row with jumping animation on the sprite sheet
@@ -389,19 +427,37 @@ window.addEventListener("load", function() {
                         this.maxFrame = 7;
                         this.frameY = 0;
 
-                        // //!!
-                        // if (this.onGround() == true) {
-                        //     this.stepSound.play();
-                        // }
-                        // //!!
+                        // Chceck if player's on the ground
+                        if (this.onGround() == true) {
+                            // Play default step sounds
+                            this.stepSound.play();
+                            // Play fast step sounds and stop all others if moving to the right
+                            if (userInput.keys.indexOf("ArrowRight") != -1) {
+                                this.stepSound.pause();
+                                this.stepSoundSlow.pause();
+                                this.stepSoundFast.play();
+                            }
+                            else if (userInput.keys.indexOf("ArrowRight") == -1) {
+                                this.stepSoundFast.pause();
+                            }
+                            // Play slow step sounds and stop all others if moving to the left
+                            if (userInput.keys.indexOf("ArrowLeft") != -1) {
+                                this.stepSound.pause();
+                                this.stepSoundFast.pause();
+                                this.stepSoundSlow.play();
+                            }
+                            else if (userInput.keys.indexOf("ArrowRight") == -1) {
+                                this.stepSoundSlow.pause();
+                            }
+                        }
 
                         // Check if the player is attacking on the ground
                         if (attackGround == true) {
 
-                            // //!!
-                            // this.stepSound.pause();
-                            // //!!
-
+                            // Stop playing step sounds
+                            this.stepSound.pause();
+                            this.stepSoundFast.pause();
+                            this.stepSoundSlow.pause();
                             // Play the spell sound effect
                             this.spellSound.play();
                             // Switch to attack character frames on the sprite sheet if so
@@ -646,6 +702,10 @@ window.addEventListener("load", function() {
                         return null;
                     }
                 });
+                // Play dragon wings sound if any dragons are on the screen
+                if (dragons.length != 0) {
+                    dragonWingSound.play();
+                }
             }
 
             // Displays game status
@@ -813,17 +873,19 @@ window.addEventListener("load", function() {
                 // Check if game over
                 if (gameOver == true) {
                     music.pause(); // Stop the background music
-                     
-                    // //!!
-                    // player.stepSound.pause();
-                    // //!!
-
+                    dragonWingSound.pause(); // Stop dragon wings sound
+                    // Stop playing player sounds
+                    player.stepSound.pause();
+                    player.stepSoundFast.pause();
+                    player.stepSoundSlow.pause();
+                    player.jumpSound.pause();
                     player.spellSound.pause(); // Stop potential spell sound effect if game over
                     player.deathSound.play(); // Play the death sound if game over
                     // Unlock starting button
                     gameStarted = false;
                     buttonStart.style.display = "initial";
                     buttonStartClicked.style.display = "none";
+                    buttonStartText.style.top = "50%";
                 }
                 else {
                     music.play(); // Play the background music

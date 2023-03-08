@@ -5,6 +5,7 @@ body {
     background-size: cover;
 }
 
+/* The following section divides the page into 2 columns to properly place the buttons around the game window */
 .row {
     display: flex;
 }
@@ -13,6 +14,7 @@ body {
     flex: 50%;
 }
 
+/* Game window border */
 #border {
     position: absolute;
     width: 1432px;
@@ -22,6 +24,7 @@ body {
     left: 50%;
 }
 
+/* Game window itself */
 #game-container {
     position: absolute;
     width: 1392px;
@@ -41,27 +44,38 @@ body {
     display: none;
 }
 
-.start-button-container {
+/* Button containers */
+#start-button-container { /* "New game" container */
     position: relative;
     margin-top: 24%;
     margin-left: 8%;
     width: 400px;
+    text-align: center;
 }
 
-.button-container {
+#score-button-container, #view-button-container, #logout-button-container {
     position: relative;
     margin-top: 8%;
     margin-left: 8%;
     width: 400px;
+    text-align: center
 }
 
-.instruction-button-container {
+#instruction-button-container {
     position: relative;
-    margin-top: 24%;
+    margin-top: 14%;
     margin-left: 62%;
     width: 400px;
+    text-align: center
 }
 
+#start-button-container:hover, #score-button-container:hover,
+#view-button-container:hover, #logout-button-container:hover,
+#instruction-button-container:hover {
+    cursor: pointer;
+}
+
+/* Button images */
 #button-start, #button-score, #button-view, #button-logout, #button-instruction {
     width: 100%;
     height: auto;
@@ -71,4 +85,51 @@ body {
     width: 100%;
     height: auto;
     display: none;
+}
+
+/* Button text */
+#start-button-text, #score-button-text, #view-button-text, #logout-button-text, #instruction-button-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Luminari, Papyrus, fantasy;
+    font-size: 35px;
+    color: white;
+}
+
+#instruction-tablet-container {
+    position: relative;
+    margin-top: 2%;
+    margin-left: 56.5%;
+    width: 550px;
+    text-align: justify;
+}
+
+#instruction-tablet {
+    width: 100%;
+    height: auto;
+    display: none;
+    animation-name: animate;
+    animation-duration: 0.4s;
+}
+
+#instruction-tablet-text {
+    position: absolute;
+    top: 50%;
+    left: 34%;
+    width: 430px;
+    transform: translate(-30%, -50%);
+    font-family: Luminari, Papyrus, fantasy;
+    font-size: 29px;
+    font-stretch: expanded;
+    color: white;
+    display: none;
+    animation-name: animate;
+    animation-duration: 2.0s;
+}
+
+@keyframes animate {
+    from {opacity: 0}
+    to {opacity: 1}
 }
