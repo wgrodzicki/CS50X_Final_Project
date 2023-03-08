@@ -123,7 +123,7 @@ window.addEventListener("load", function() {
             let explosions = [];
             // Background music
             let music = new Audio();
-            music.src = "resources/background/music.wav";
+            music.src = "resources/background/music.mp3";
             music.volume = 0.1;
             // Dragon wings sound
             let dragonWingSound = new Audio();
