@@ -2,39 +2,39 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=0.5">
         <title>Game</title>
-        <link rel="stylesheet" href="game_style.css">
+        <link rel="stylesheet" href="/game/static/game_style.css">
     </head>
     <body>
         <!-- Border of the game window -->
-        <img id="border" src="resources/menu/Border.png" alt="game-window-border">
+        <img id="border" src="/game/static/menu/Border.png" alt="game-window-border">
         <!-- The following section divides the page into 2 columns to properly place the buttons around the game window -->
         <div class="row">
             <!-- Left column for buttons -->
             <div class="column">
                 <!-- "New game" button -->
                 <div id="start-button-container">
-                    <img id="button-start" src="resources/menu/Button.png">
-                    <img id="button-start-clicked" src="resources/menu/Button_clicked.png">
+                    <img id="button-start" src="/game/static/menu/Button.png">
+                    <img id="button-start-clicked" src="/game/static/menu/Button_clicked.png">
                     <div id="start-button-text">New game</div>
                 </div>
                 <!-- "Save score" button -->
                 <div id="score-button-container">
-                    <img id="button-score" src="resources/menu/Button.png">
-                    <img id="button-score-clicked" src="resources/menu/Button_clicked.png">
+                    <img id="button-score" src="/game/static/menu/Button.png">
+                    <img id="button-score-clicked" src="/game/static/menu/Button_clicked.png">
                     <div id="score-button-text">Save score</div>
                 </div>
                 <!-- "View scores" button -->
                 <div id="view-button-container">
-                    <img id="button-view" src="resources/menu/Button.png">
-                    <img id="button-view-clicked" src="resources/menu/Button_clicked.png">
+                    <img id="button-view" src="/game/static/menu/Button.png">
+                    <img id="button-view-clicked" src="/game/static/menu/Button_clicked.png">
                     <div id="view-button-text">View scores</div>
                 </div>
                 <!-- "Log out" button -->
                 <div id="logout-button-container">
-                    <img id="button-logout" src="resources/menu/Button.png">
-                    <img id="button-logout-clicked" src="resources/menu/Button_clicked.png">
+                    <img id="button-logout" src="/game/static/menu/Button.png">
+                    <img id="button-logout-clicked" src="/game/static/menu/Button_clicked.png">
                     <div id="logout-button-text">Log out</div>
                 </div>
             </div>
@@ -42,12 +42,12 @@
             <div class="column">
                 <!-- "Instructions" button -->
                 <div id="instruction-button-container">
-                    <img id="button-instruction" src="resources/menu/Button.png">
-                    <img id="button-instruction-clicked" src="resources/menu/Button_clicked.png">
+                    <img id="button-instruction" src="/game/static/menu/Button.png">
+                    <img id="button-instruction-clicked" src="/game/static/menu/Button_clicked.png">
                     <div id="instruction-button-text">Instructions</div>
                 </div>
                 <div id="instruction-tablet-container">
-                    <img id="instruction-tablet" src="resources/menu/Instruction_tablet.png">
+                    <img id="instruction-tablet" src="/game/static/menu/Instruction_tablet.png">
                     <div id="instruction-tablet-text">
                         Your beloved Forest has been infested by awful creatures from the North.
                         You are the only one who can stand against the invadors.
@@ -71,30 +71,30 @@
         <div id="game-container">
             <canvas id="game-canvas"></canvas>
             <!-- Title screen -->
-            <img id="title" src="resources/background/Title.png">
+            <img id="title" src="/game/static/background/Title.png">
             <!-- Background layers -->
-            <img id="layer-0" src="resources/background/Layer_0010_1.png">
-            <img id="layer-1" src="resources/background/Layer_0009_2.png">
-            <img id="layer-2" src="resources/background/Layer_0008_3.png">
-            <img id="layer-3" src="resources/background/Layer_0007_Lights.png">
-            <img id="layer-4" src="resources/background/Layer_0006_4.png">
-            <img id="layer-5" src="resources/background/Layer_0005_5.png">
-            <img id="layer-6" src="resources/background/Layer_0004_Lights.png">
-            <img id="layer-7" src="resources/background/Layer_0003_6.png">
-            <img id="layer-8" src="resources/background/Layer_0002_7.png">
-            <img id="layer-9" src="resources/background/Layer_0001_8.png">
-            <img id="layer-10" src="resources/background/Layer_0000_9.png">
+            <img id="layer-0" src="/game/static/background/Layer_0010_1.png">
+            <img id="layer-1" src="/game/static/background/Layer_0009_2.png">
+            <img id="layer-2" src="/game/static/background/Layer_0008_3.png">
+            <img id="layer-3" src="/game/static/background/Layer_0007_Lights.png">
+            <img id="layer-4" src="/game/static/background/Layer_0006_4.png">
+            <img id="layer-5" src="/game/static/background/Layer_0005_5.png">
+            <img id="layer-6" src="/game/static/background/Layer_0004_Lights.png">
+            <img id="layer-7" src="/game/static/background/Layer_0003_6.png">
+            <img id="layer-8" src="/game/static/background/Layer_0002_7.png">
+            <img id="layer-9" src="/game/static/background/Layer_0001_8.png">
+            <img id="layer-10" src="/game/static/background/Layer_0000_9.png">
             <!-- Player sprite -->
-            <img id="player" src="resources/player/wizard.png">
+            <img id="player" src="/game/static/player/wizard.png">
             <!-- Enemy sprite -->
-            <img id="dragon" src="resources/enemies/dragon.png">
+            <img id="dragon" src="/game/static/enemies/dragon.png">
             <!-- Explosion sprite -->
-            <img id="explosion" src="resources/explosion/explosion.png">
+            <img id="explosion" src="/game/static/explosion/explosion.png">
             <!-- Form to store player's score -->
             
 
             <!-- Game code -->
-            <script src="game_script.js"></script>
+            <script src="/game/scripts/game_script.js"></script>
         </div>
     </body>
 </html>

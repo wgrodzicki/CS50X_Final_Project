@@ -1,5 +1,5 @@
 body {
-    background-image: url("resources/menu/Background.png");
+    background-image: url("/game/static/menu/Background.png");
     background-image: no-repeat;
     background-attachment: fixed;
     background-size: cover;
