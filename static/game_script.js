@@ -70,6 +70,9 @@ window.addEventListener("load", function() {
     context.fillStyle = "white";
     context.font = "120px Luminari, Papyrus, fantasy";
     context.fillText("The Eradicator", canvas.width / 2 + 3, canvas.height / 2 + 3);
+    // Display game border
+    let border = document.getElementById("border");
+    context.drawImage(border, 0, 0, canvas.width, canvas.height);
     // Variable to control game starting
     let gameStarted = false;
     
@@ -204,7 +207,7 @@ window.addEventListener("load", function() {
                     this.gameHeight = gameHeight;
                     this.width = 256;
                     this.height = 128;
-                    this.x = -60; // Put the player as close to the right border as possible
+                    this.x = -40; // Put the player as close to the right border as possible
                     this.y = this.gameHeight - (this.height + 120); // Put the player on the grass
                     // Get the sprite image from game.html
                     this.image = document.getElementById("player");
@@ -393,11 +396,11 @@ window.addEventListener("load", function() {
                         this.x += this.speed;
                     }
                     // Make sure player doesn't go beyond canvas borders horizontally
-                    if (this.x < -60) { // Left border
-                        this.x = -60;
+                    if (this.x < -40) { // Left border
+                        this.x = -40;
                     }
-                    else if (this.x > this.gameWidth - this.width + 120) { // Right border
-                        this.x = this.gameWidth - this.width + 120;
+                    else if (this.x > this.gameWidth - this.width + 100) { // Right border
+                        this.x = this.gameWidth - this.width + 100;
                     }
                     
                     // VERTICAL MOVEMENT
@@ -716,11 +719,11 @@ window.addEventListener("load", function() {
                 // Black &...
                 context.fillStyle = "black";
                 context.font = "40px Luminari, Papyrus, fantasy";
-                context.fillText("Score: " + score, 100, 60);
+                context.fillText("Score: " + score, 110, 70);
                 // ...& white for shade effect
                 context.fillStyle = "white";
                 context.font = "40px Luminari, Papyrus, fantasy";
-                context.fillText("Score: " + score, 104, 64);
+                context.fillText("Score: " + score, 114, 74);
 
                 // Display level message according to current level
                 if (levelTimer > 0 && gameOver == false) {
@@ -892,6 +895,8 @@ window.addEventListener("load", function() {
                     music.play(); // Play the background music
                     requestAnimationFrame(animate); // Keep playing
                 }
+                // Draw the game window border
+                context.drawImage(border, 0, 0, canvas.width, canvas.height);                              
             }
             animate(0); // Call the animation loop, passing a non-significant argument for the first time (no timeStamp yet)
         }

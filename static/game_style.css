@@ -5,68 +5,58 @@ body {
     background-size: cover;
 }
 
-/* The following section divides the page into 2 columns to properly place the buttons around the game window */
+
 .row {
-    display: flex;
+    border: 1px black solid;
 }
 
-.column {
-    flex: 50%;
+.container-fluid {
+    margin-top: 5%;
+    border: 1px black solid;
 }
 
-/* Game window border */
-#border {
-    position: absolute;
-    width: 1432px;
-    height: 1044px;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
+.col-3 {
+    border: 1px black solid;
 }
 
-/* Game window itself */
-#game-container {
-    position: absolute;
-    width: 1392px;
-    height: 1000px;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
+.col-6 {
+    border: 1px black solid;
 }
 
-#game-canvas {
-    position: relative;
-    width: 1392px;
-    height: 1000px;
-}
-
-#title, #player, #dragon, #explosion, #layer-0, #layer-1, #layer-2, #layer-3, #layer-4, #layer-5, #layer-6, #layer-7, #layer-8, #layer-9, #layer-10 {
+#title, #border, #player, #dragon, #explosion, #layer-0, #layer-1, #layer-2, #layer-3, #layer-4, #layer-5, #layer-6, #layer-7, #layer-8, #layer-9, #layer-10 {
     display: none;
 }
 
 /* Button containers */
 #start-button-container { /* "New game" container */
     position: relative;
-    margin-top: 24%;
-    margin-left: 8%;
-    width: 400px;
+    width: 70%;
+    margin-top: 8%;
+    margin-bottom: 8%;
     text-align: center;
+    padding-left: 0%;
+    padding-right: 0%;
+    border: 1px black solid;
 }
 
 #score-button-container, #view-button-container, #logout-button-container {
     position: relative;
+    width: 70%;
     margin-top: 8%;
-    margin-left: 8%;
-    width: 400px;
-    text-align: center
+    margin-bottom: 8%;
+    text-align: center;
+    padding-left: 0%;
+    padding-right: 0%;
+    border: 1px black solid;
 }
 
 #instruction-button-container {
     position: relative;
-    margin-top: 14%;
-    margin-left: 62%;
-    width: 400px;
-    text-align: center
+    text-align: center;
+    width: 70%;
+    padding-left: 0%;
+    padding-right: 0%;
+    border: 1px black solid;
 }
 
 #start-button-container:hover, #score-button-container:hover,
@@ -78,35 +68,32 @@ body {
 /* Button images */
 #button-start, #button-score, #button-view, #button-logout, #button-instruction {
     width: 100%;
-    height: auto;
 }
 
 #button-start-clicked, #button-score-clicked, #button-view-clicked, #button-logout-clicked, #button-instruction-clicked {
     width: 100%;
-    height: auto;
     display: none;
 }
 
 /* Button text */
 #start-button-text, #score-button-text, #view-button-text, #logout-button-text, #instruction-button-text {
     position: absolute;
+    transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
     font-family: Luminari, Papyrus, fantasy;
-    font-size: 35px;
+    font-size: 1.1vw;
     color: white;
+    border: 1px black solid;
 }
 
 #instruction-tablet-container {
     position: relative;
-    margin-top: 2%;
-    margin-left: 56.5%;
-    width: 550px;
     text-align: justify;
 }
 
 #instruction-tablet {
+    position: relative;
     width: 100%;
     height: auto;
     display: none;
@@ -117,12 +104,10 @@ body {
 #instruction-tablet-text {
     position: absolute;
     top: 50%;
-    left: 34%;
-    width: 430px;
+    left: 38%;
     transform: translate(-30%, -50%);
     font-family: Luminari, Papyrus, fantasy;
-    font-size: 29px;
-    font-stretch: expanded;
+    font-size: 1.05vw;
     color: white;
     display: none;
     animation-name: animate;
