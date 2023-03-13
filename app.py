@@ -17,10 +17,14 @@ Session(app)
 # Configure SQL database
 db = SQL("sqlite:///game.db")
 
-@app.route("/register", methods=["GET", "POST"])
+@app.route("/")
+# @app.route("/register", methods=["GET", "POST"])
 def register():
     """Register user"""
-
     
 
-    return render_template("register.html")
+
+
+    if not session:
+        return render_template("index.html")
+        # return render_template("register.html")

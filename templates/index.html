@@ -4,120 +4,118 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Game</title>
+        <link href="/static/eradicator.ico" rel="icon">
         <!-- Get Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-        <link rel="stylesheet" href="/game/static/game_style.css">
+        <link rel="stylesheet" href="/static/game_style.css">
     </head>
     <body>
-
-        <div class="container-fluid">
-            
+        <!-- Main container -->
+        <div id="index-container" class="container-fluid">
             <div class="row justify-content-center align-items-center">
-                
+                <!-- Left side buttons -->
                 <div class="col-3">
-                    <div class="row justify-content-center">
-                        <div id="start-button-container">
-                            <img id="button-start" src="/game/static/menu/Button.png">
-                            <img id="button-start-clicked" src="/game/static/menu/Button_clicked.png">
+                    <!-- "New game" button -->
+                    <div class="row justify-content-center align-items-center">
+                        <div id="start-button-container" class="d-flex align-items-center">
+                            <img id="button-start" src="/static/menu/Button.png">
+                            <img id="button-start-clicked" src="/static/menu/Button_clicked.png">
                             <div id="start-button-text">New game</div>
                         </div>
                     </div>
                     <!-- "Save score" button -->
                     <div class="row justify-content-center">
-                        <div id="score-button-container">
-                            <img id="button-score" src="/game/static/menu/Button.png">
-                            <img id="button-score-clicked" src="/game/static/menu/Button_clicked.png">
+                        <div id="score-button-container" class="d-flex align-items-center">
+                            <img id="button-score" src="/static/menu/Button.png">
+                            <img id="button-score-clicked" src="/static/menu/Button_clicked.png">
                             <div id="score-button-text">Save score</div>
                         </div>
                     </div>
                     <!-- "View scores" button -->
                     <div class="row justify-content-center">
-                        <div id="view-button-container">
-                            <img id="button-view" src="/game/static/menu/Button.png">
-                            <img id="button-view-clicked" src="/game/static/menu/Button_clicked.png">
+                        <div id="view-button-container" class="d-flex align-items-center">
+                            <img id="button-view" src="/static/menu/Button.png">
+                            <img id="button-view-clicked" src="/static/menu/Button_clicked.png">
                             <div id="view-button-text">View scores</div>
                         </div>
                     </div>
                     <!-- "Log out" button -->
                     <div class="row justify-content-center">
-                        <div id="logout-button-container">
-                            <img id="button-logout" src="/game/static/menu/Button.png">
-                            <img id="button-logout-clicked" src="/game/static/menu/Button_clicked.png">
+                        <div id="logout-button-container" class="d-flex align-items-center">
+                            <img id="button-logout" src="/static/menu/Button.png">
+                            <img id="button-logout-clicked" src="/static/menu/Button_clicked.png">
                             <div id="logout-button-text">Log out</div>
                         </div>
                     </div>
                 </div>
-
+                <!-- Central part with the game window -->
                 <div class="col-6">
                     <div class="row justify-content-center">
                         <canvas id="game-canvas"></canvas>
-                        <img id="border" src="/game/static/menu/Border.png" alt="game-window-border">
+                        <!-- Game window border -->
+                        <img id="border" src="/static/menu/Border.png" alt="game-window-border">
                         <!-- Title screen -->
-                        <img id="title" src="/game/static/background/Title.png">
+                        <img id="title" src="/static/background/Title.png">
                         <!-- Background layers -->
-                        <img id="layer-0" src="/game/static/background/Layer_0010_1.png">
-                        <img id="layer-1" src="/game/static/background/Layer_0009_2.png">
-                        <img id="layer-2" src="/game/static/background/Layer_0008_3.png">
-                        <img id="layer-3" src="/game/static/background/Layer_0007_Lights.png">
-                        <img id="layer-4" src="/game/static/background/Layer_0006_4.png">
-                        <img id="layer-5" src="/game/static/background/Layer_0005_5.png">
-                        <img id="layer-6" src="/game/static/background/Layer_0004_Lights.png">
-                        <img id="layer-7" src="/game/static/background/Layer_0003_6.png">
-                        <img id="layer-8" src="/game/static/background/Layer_0002_7.png">
-                        <img id="layer-9" src="/game/static/background/Layer_0001_8.png">
-                        <img id="layer-10" src="/game/static/background/Layer_0000_9.png">
+                        <img id="layer-0" src="/static/background/Layer_0010_1.png">
+                        <img id="layer-1" src="/static/background/Layer_0009_2.png">
+                        <img id="layer-2" src="/static/background/Layer_0008_3.png">
+                        <img id="layer-3" src="/static/background/Layer_0007_Lights.png">
+                        <img id="layer-4" src="/static/background/Layer_0006_4.png">
+                        <img id="layer-5" src="/static/background/Layer_0005_5.png">
+                        <img id="layer-6" src="/static/background/Layer_0004_Lights.png">
+                        <img id="layer-7" src="/static/background/Layer_0003_6.png">
+                        <img id="layer-8" src="/static/background/Layer_0002_7.png">
+                        <img id="layer-9" src="/static/background/Layer_0001_8.png">
+                        <img id="layer-10" src="/static/background/Layer_0000_9.png">
                         <!-- Player sprite -->
-                        <img id="player" src="/game/static/player/wizard.png">
+                        <img id="player" src="/static/player/wizard.png">
                         <!-- Enemy sprite -->
-                        <img id="dragon" src="/game/static/enemies/dragon.png">
+                        <img id="dragon" src="/static/enemies/dragon.png">
                         <!-- Explosion sprite -->
-                        <img id="explosion" src="/game/static/explosion/explosion.png">
+                        <img id="explosion" src="/static/explosion/explosion.png">
                         <!-- Form to store player's score -->
                     </div>
                 </div>
-
+                <!-- Right side button -->
                 <div class="col-3">
-
                     <div class="row justify-content-center">
                         <!-- "Instructions" button -->
-                        <div id="instruction-button-container">
-                            <img id="button-instruction" src="/game/static/menu/Button.png">
-                            <img id="button-instruction-clicked" src="/game/static/menu/Button_clicked.png">
+                        <div id="instruction-button-container" class="d-flex align-items-center">
+                            <img id="button-instruction" src="/static/menu/Button.png">
+                            <img id="button-instruction-clicked" src="/static/menu/Button_clicked.png">
                             <div id="instruction-button-text">Instructions</div>
                         </div>
                     </div>
-
+                    <!-- Instructions tablet -->
                     <div class="row justify-content-center">
                         <div id="instruction-tablet-container">
-                            <img id="instruction-tablet" src="/game/static/menu/Instruction_tablet.png">
+                            <img id="instruction-tablet" src="/static/menu/Instruction_tablet.png">
                             <div id="instruction-tablet-text">
                                 Your beloved Forest has been infested by awful creatures from the North.
-                                You are the only one who can stand against the invadors.
-                                <br>
-                                <br>
-                                Embrace your destiny, become The Eradicator and defend your homeland!
+                                You are the only one who can defeat them.
+                                Embrace your destiny and eradicate as many enemies as you can!
                                 <br>
                                 <br>
                                 To control your character use:
-                                <ul>
-                                    <li>left/right arrow keys to move</li>
-                                    <li>up arrow key to jump</li>
-                                    <li>spacebar to attack</li>
-                                </ul>
-                                Try to eradicate as many enemies as you can!
+                                <br>
+                                -left/right arrow keys to move
+                                <br>
+                                -up arrow key to jump
+                                <br>
+                                -spacebar to attack
+                                <br>
+                                <br>
+                                Tip: Keep the spacebar pressed for longer attacks. Attack while jumping to reach high flying enemies.
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
+        <!-- Game code -->
+        <script src="/static/index_script.js"></script>
         <!-- Get Bootstrap -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-        <!-- Game code -->
-        <script src="/game/static/game_script.js"></script>
     </body>
 </html>

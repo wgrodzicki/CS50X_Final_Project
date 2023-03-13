@@ -126,11 +126,11 @@ window.addEventListener("load", function() {
             let explosions = [];
             // Background music
             let music = new Audio();
-            music.src = "/game/static/background/music.mp3";
+            music.src = "/static/background/music.mp3";
             music.volume = 0.1;
             // Dragon wings sound
             let dragonWingSound = new Audio();
-            dragonWingSound.src = "/game/static/enemies/wings.wav";
+            dragonWingSound.src = "/static/enemies/wings.wav";
             dragonWingSound.volume = 0.15;
 
             // Class for parallax background layers
@@ -213,21 +213,21 @@ window.addEventListener("load", function() {
                     this.image = document.getElementById("player");
                     // Get the spell sound effect
                     this.spellSound = new Audio();
-                    this.spellSound.src = "/game/static/player/spell.mp3";
+                    this.spellSound.src = "/static/player/spell.mp3";
                     // Get the death sound effect
                     this.deathSound = new Audio();
-                    this.deathSound.src = "/game/static/player/death.mp3";
+                    this.deathSound.src = "/static/player/death.mp3";
                     this.deathSound.volume = 0.5;
                     // Get step sounds
                     this.stepSound = new Audio();
-                    this.stepSound.src = "/game/static/player/steps.wav";
+                    this.stepSound.src = "/static/player/steps.wav";
                     this.stepSoundFast = new Audio();
-                    this.stepSoundFast.src = "/game/static/player/steps_fast.wav";
+                    this.stepSoundFast.src = "/static/player/steps_fast.wav";
                     this.stepSoundSlow = new Audio();
-                    this.stepSoundSlow.src = "/game/static/player/steps_slow.wav";
+                    this.stepSoundSlow.src = "/static/player/steps_slow.wav";
                     // Get jump sound
                     this.jumpSound = new Audio();
-                    this.jumpSound.src = "/game/static/player/jump.mp3";
+                    this.jumpSound.src = "/static/player/jump.mp3";
                     this.jumpSound.volume = 0.8;
                     // Properites to navigate through the sprite sheet
                     this.frameX = 0;
@@ -500,7 +500,7 @@ window.addEventListener("load", function() {
                     this.image = document.getElementById("dragon");
                     // Get the roar sound
                     this.roarSound = new Audio();
-                    this.roarSound.src = "/game/static/enemies/roar.wav";
+                    this.roarSound.src = "/static/enemies/roar.wav";
                     this.roarSound.volume = 0.3;
                     this.roarRandom = Math.random(); // Roar sound randomizer
                     this.roarPlayed = false; // Raor sound tracker
@@ -618,7 +618,7 @@ window.addEventListener("load", function() {
                     this.image = document.getElementById("explosion");
                     // Get the sound effect from game.html
                     this.sound = new Audio();
-                    this.sound.src = "/game/static/explosion/explosion.mp3";
+                    this.sound.src = "/static/explosion/explosion.mp3";
                     this.sound.volume = 0.3;
                     // Properites to navigate through the sprite sheet
                     this.frame = 0;

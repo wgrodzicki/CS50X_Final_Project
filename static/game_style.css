@@ -1,26 +1,15 @@
 body {
-    background-image: url("/game/static/menu/Background.png");
+    /* background-image: url("/game/static/menu/Background.png"); */
+    background-image: url("/static/menu/Background.png");
     background-image: no-repeat;
     background-attachment: fixed;
     background-size: cover;
 }
 
+/* INDEX */
 
-.row {
-    border: 1px black solid;
-}
-
-.container-fluid {
+#index-container {
     margin-top: 5%;
-    border: 1px black solid;
-}
-
-.col-3 {
-    border: 1px black solid;
-}
-
-.col-6 {
-    border: 1px black solid;
 }
 
 #title, #border, #player, #dragon, #explosion, #layer-0, #layer-1, #layer-2, #layer-3, #layer-4, #layer-5, #layer-6, #layer-7, #layer-8, #layer-9, #layer-10 {
@@ -36,7 +25,6 @@ body {
     text-align: center;
     padding-left: 0%;
     padding-right: 0%;
-    border: 1px black solid;
 }
 
 #score-button-container, #view-button-container, #logout-button-container {
@@ -47,7 +35,6 @@ body {
     text-align: center;
     padding-left: 0%;
     padding-right: 0%;
-    border: 1px black solid;
 }
 
 #instruction-button-container {
@@ -56,7 +43,6 @@ body {
     width: 70%;
     padding-left: 0%;
     padding-right: 0%;
-    border: 1px black solid;
 }
 
 #start-button-container:hover, #score-button-container:hover,
@@ -84,7 +70,6 @@ body {
     font-family: Luminari, Papyrus, fantasy;
     font-size: 1.1vw;
     color: white;
-    border: 1px black solid;
 }
 
 #instruction-tablet-container {
@@ -104,10 +89,11 @@ body {
 #instruction-tablet-text {
     position: absolute;
     top: 50%;
-    left: 38%;
-    transform: translate(-30%, -50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
     font-family: Luminari, Papyrus, fantasy;
-    font-size: 1.05vw;
+    font-size: 1.1vw;
     color: white;
     display: none;
     animation-name: animate;
@@ -117,4 +103,49 @@ body {
 @keyframes animate {
     from {opacity: 0}
     to {opacity: 1}
+}
+
+/* REGISTER */
+
+#register-container {
+    margin-top: 15%;
+}
+
+#register-button-container {
+    position: relative;
+    text-align: center;
+    width: 200px;
+    padding-left: 0%;
+    padding-right: 0%;
+}
+
+#register-form-button {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 100%;
+    opacity: 0;
+}
+
+#button-register {
+    width: 100%;
+    border: 1px solid black;
+}
+
+#button-register-clicked {
+    width: 100%;
+    display: none;
+}
+
+#register-button-text {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    font-family: Luminari, Papyrus, fantasy;
+    font-size: 18px;
+    color: white;
+    border: 1px solid black;
 }
