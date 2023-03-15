@@ -4,55 +4,6 @@ window.addEventListener("load", function() {
 
     /** @type {HTMLCanvasElement} **/ // Suggests canvas methods
 
-    // Put all button elements in an array
-    let buttons = [];
-    buttons[0] = document.getElementById("score-button-container");
-    buttons[1] = document.getElementById("button-score");
-    buttons[2] = document.getElementById("button-score-clicked");
-    buttons[3] = document.getElementById("score-button-text");
-    buttons[4] = document.getElementById("view-button-container");
-    buttons[5] = document.getElementById("button-view");
-    buttons[6] = document.getElementById("button-view-clicked");
-    buttons[7] = document.getElementById("view-button-text");
-    buttons[8] = document.getElementById("logout-button-container");
-    buttons[9] = document.getElementById("button-logout");
-    buttons[10] = document.getElementById("button-logout-clicked");
-    buttons[11] = document.getElementById("logout-button-text");
-    buttons[12] = document.getElementById("instruction-button-container");
-    buttons[13] = document.getElementById("button-instruction");
-    buttons[14] = document.getElementById("button-instruction-clicked");
-    buttons[15] = document.getElementById("instruction-button-text");
-    // Variable to control the display of the instruction
-    let instructionDisplayed = false;
-    // Iterate over the buttons[] array and check if clicked by the user
-    for (let i = 0; i < buttons.length; i += 4) {
-        buttons[i].addEventListener("click", function() {
-            buttons[i + 1].style.display = "none"; // Hide the "unclicked" button image
-            buttons[i + 2].style.display = "initial"; // Display the "clicked" button image
-            buttons[i + 3].style.top = "45%"; // Move the text slightly
-            // Check if it's the instruction button
-            if (i == 12) {
-                // Display/hide the instruction tablet if so
-                if (instructionDisplayed == false) {
-                    document.getElementById("instruction-tablet").style.display = "initial";
-                    document.getElementById("instruction-tablet-text").style.display = "initial";
-                    instructionDisplayed = true;
-                }
-                else if (instructionDisplayed == true) {
-                    document.getElementById("instruction-tablet").style.display = "none";
-                    document.getElementById("instruction-tablet-text").style.display = "none";
-                    instructionDisplayed = false;
-                }
-            }
-            // After 120 ms
-            setTimeout(function() {
-                buttons[i + 1].style.display = "initial"; // Display the "unclicked" button image
-                buttons[i + 2].style.display = "none"; // Hide the "clicked" button image
-                buttons[i + 3].style.top = "50%"; // Move the text to the initial position
-            }, 120);
-        });
-    };
-
     // Handle canvas
     const canvas = document.getElementById("game-canvas");
     const context = canvas.getContext("2d");
@@ -71,15 +22,15 @@ window.addEventListener("load", function() {
     context.font = "120px Luminari, Papyrus, fantasy";
     context.fillText("The Eradicator", canvas.width / 2 + 3, canvas.height / 2 + 3);
     // Display game border
-    let border = document.getElementById("border");
+    let border = document.getElementById("border-game");
     context.drawImage(border, 0, 0, canvas.width, canvas.height);
     // Variable to control game starting
     let gameStarted = false;
     
     // Check if user clicks the starting button
     let buttonStartContainer = document.getElementById("start-button-container");
-    let buttonStart = document.getElementById("button-start"); // Starting button not clicked
-    let buttonStartClicked = document.getElementById("button-start-clicked"); // Starting button clicked
+    let buttonStart = document.getElementById("start-button"); // Starting button not clicked
+    let buttonStartClicked = document.getElementById("start-button-clicked"); // Starting button clicked
     let buttonStartText = document.getElementById("start-button-text");
     buttonStartContainer.addEventListener("click", function() {
         

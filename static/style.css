@@ -1,0 +1,212 @@
+/* GENERAL */
+
+body {
+    background-image: url("/static/menu/Background.png");
+    background-image: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+/* INDEX */
+
+/* Main container */
+#index-container {
+    margin-top: 7.5%;
+}
+
+/* Hide all assets */
+#title, #border-game, #player, #dragon, #explosion, #layer-0, #layer-1, #layer-2, #layer-3, #layer-4, #layer-5, #layer-6, #layer-7, #layer-8, #layer-9, #layer-10 {
+    display: none; /* Hide until the script runs */
+}
+
+/* Left side buttons containers */
+#start-button-container, #score-button-container, #view-button-container, #logout-button-container {
+    position: relative; /* Position relative to make other elements with position absolute display accordingly */
+    width: 70%;
+    margin-top: 8%;
+    margin-bottom: 8%;
+    text-align: center;
+    padding-left: 0%;
+    padding-right: 0%;
+}
+
+/* Change cursor when hovering over buttons */
+#start-button-container:hover, #score-button-container:hover,
+#view-button-container:hover, #logout-button-container:hover {
+    cursor: pointer;
+}
+
+/* "Unclicked" button images */
+#start-button, #score-button, #view-button, #logout-button {
+    width: 100%;
+}
+
+/* "Clicked" button images */
+#start-button-clicked, #score-button-clicked, #view-button-clicked, #logout-button-clicked {
+    width: 100%;
+    display: none; /* Hide until the script runs */
+}
+
+/* Text on buttons */
+#start-button-text, #score-button-text, #view-button-text, #logout-button-text {
+    position: absolute; /* Place it in the center of the button container */ 
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    font-family: Luminari, Papyrus, fantasy;
+    font-size: 1.1vw;
+    color: white;
+}
+
+/* Instruction tablet container */
+#instruction-tablet-container {
+    position: relative; /* Position relative to make other elements with position absolute display accordingly */
+    text-align: justify;
+}
+
+/* Instruction tablet background */
+#instruction-tablet-background {
+    position: absolute; /* Position relative to make the text with position absolute display accordingly */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: auto;
+    z-index: -2;
+    opacity: 0.5;
+}
+
+/* Instruction tablet border */
+#instruction-tablet-border {
+    position: absolute; /* Position relative to make the text with position absolute display accordingly */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: auto;
+}
+
+/* Instruction tablet text */
+#instruction-tablet-text {
+    position: absolute; /* Place it in the center of the tablet container */ 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    font-family: Luminari, Papyrus, fantasy;
+    font-size: 1.1vw;
+    color: white;
+}
+
+/* LOGIN & REGISTER */
+
+/* Main containers */
+#login-container, #register-container {
+    position: relative; /* Position relative to make other elements with position absolute display accordingly */ 
+    margin-top: 15%;
+}
+
+/* Login tablet background */
+#login-background {
+    position: absolute; /* Place it in the center of the main container */
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 550px;
+    z-index: -2; /* Move it behind the form and button */
+    opacity: 0.5;
+}
+
+/* Login tablet border */
+#login-border {
+    position: absolute; /* Place it in the center of the main container */
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 550px;
+    z-index: -1; /* Move it behind the form and button */
+}
+
+/* Login after registered tablet background */
+#register-background, #login-registered-background {
+    position: absolute; /* Place it in the center of the main container */
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    z-index: -2; /* Move it behind the form and button */
+    opacity: 0.5;
+}
+
+/* Login after registered tablet border */
+#register-border, #login-registered-border {
+    position: absolute; /* Place it in the center of the main container */
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    z-index: -1; /* Move it behind the form and button */
+}
+
+/* Button containers */
+#login-button-container, #register-login-button-container, #play-button-container, #register-button-container {
+    position: relative; /* Position relative to make other elements with position absolute display accordingly */ 
+    text-align: center;
+    width: 200px;
+    padding-left: 0%;
+    padding-right: 0%;
+}
+
+/* Change cursor when hovering over buttons */
+/* #register-login-button-container:hover, #play-button-container:hover {
+    cursor: pointer;
+} */
+
+/* Buttons themselves (invisible) */
+#login-form-button, #register-form-button, #play-form-button {
+    position: absolute; /* Place them in the center of the button container */ 
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 100%;
+    opacity: 0; /* Hide (make invisible) until the script runs */
+}
+
+/* "Clicked" button images */
+#login-button, #register-login-button, #play-button, #register-button {
+    width: 100%;
+}
+
+/* "Unclicked" button images */
+#login-button-clicked, #register-login-button-clicked, #play-button-clicked, #register-button-clicked {
+    width: 100%;
+    display: none;
+}
+
+/* Text on the button */
+#login-button-text, #register-login-button-text, #play-button-text, #register-button-text {
+    position: absolute; /* Place it in the center of the button container */ 
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    font-family: Luminari, Papyrus, fantasy;
+    font-size: 18px;
+    color: white;
+}
+
+/* "Invisible" form */
+#play-button-input {
+    display: none;
+}
+
+/* Apology text */
+.apology {
+    color: white;
+}
+
+/* <hr> element */
+.empty-line {
+    margin-top: 0px;
+    opacity: 0;
+}
