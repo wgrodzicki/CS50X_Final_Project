@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My scores
+{% endblock %}
+
+{% block main %}
+
+<div id="scores-container" class="mx-auto d-flex justify-content-center align-items-center">
+
+    <img id="scores-background" src="/static/menu/Instruction_tablet_background.png">
+    <img id="scores-border" src="/static/menu/Instruction_tablet_border.png">
+
+    <div id="scores-table-container">
+        <table class="table" style="color: white">
+            <thead>
+                <tr>
+                    <td class="text-center">Score</th>
+                    <td class="text-center">Date</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for score in scores %}
+                    <tr>
+                        <td class="text-center">{{ score["score"] }}</td>
+                        <td class="text-center">{{ score["date"] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot class="table-group-divider">
+                <tr>
+                    <td class="text-center">Best score:</td>
+                    <td class="text-center">{{ best_score }}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<!-- "Back" button linking back to the game -->
+<div id="back-scores-button-container" class="mx-auto d-flex align-items-center">
+    <a href="/">
+        <img id="back-scores-button" src="/static/menu/Button.png">
+        <img id="back-scores-button-clicked" src="/static/menu/Button_clicked.png">
+        <div id="back-scores-button-text">Back</div>
+    </a>
+</div>
+
+{% endblock %}

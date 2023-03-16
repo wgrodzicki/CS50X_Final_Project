@@ -23,6 +23,13 @@ window.addEventListener("load", function() {
             buttons[i + 1].style.display = "none"; // Hide the "unclicked" button image
             buttons[i + 2].style.display = "initial"; // Display the "clicked" button image
             buttons[i + 3].style.top = "45%"; // Move the text slightly
+
+            // !!
+            if (i == 0) {
+                let scoreValue = document.getElementById("score-value").value;
+                document.getElementById("score-button-input").value = scoreValue;
+            }
+
             // After 120 ms
             setTimeout(function() {
                 buttons[i + 1].style.display = "initial"; // Display the "unclicked" button image

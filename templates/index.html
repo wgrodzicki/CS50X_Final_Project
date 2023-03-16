@@ -7,9 +7,6 @@
 {% block main %}
 
     <main>
-        <form>
-            
-        </form>
         <!-- Main container -->
         <div id="index-container" class="container-fluid">
             <div class="row justify-content-center align-items-center">
@@ -25,21 +22,28 @@
                     </div>
                     {% if session["user_id"] %}
                     <!-- "Save score" button -->
-                    <div class="row justify-content-center">
-                        <div id="score-button-container" class="d-flex align-items-center">
-                            <img id="score-button" src="/static/menu/Button.png">
-                            <img id="score-button-clicked" src="/static/menu/Button_clicked.png">
-                            <div id="score-button-text">Save score</div>
+                    <form action="/", method="post">
+                        <div class="row justify-content-center">
+                            <div id="score-button-container" class="d-flex align-items-center">
+                                <img id="score-button" src="/static/menu/Button.png">
+                                <img id="score-button-clicked" src="/static/menu/Button_clicked.png">
+                                <div id="score-button-text">Save score</div>
+                                <input id="score-button-input" name="score" type="number" value="0">
+                                <!-- Button itself (invisible) -->
+                                <button id="score-form-button" type="submit" class="mx-auto d-flex align-items-center"></button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                     <!-- "View scores" button -->
-                    <div class="row justify-content-center">
-                        <div id="view-button-container" class="d-flex align-items-center">
-                            <img id="view-button" src="/static/menu/Button.png">
-                            <img id="view-button-clicked" src="/static/menu/Button_clicked.png">
-                            <div id="view-button-text">View scores</div>
+                        <div class="row justify-content-center">
+                            <div id="view-button-container" class="d-flex align-items-center">
+                                <a href="/scores">
+                                    <img id="view-button" src="/static/menu/Button.png">
+                                    <img id="view-button-clicked" src="/static/menu/Button_clicked.png">
+                                    <div id="view-button-text">View scores</div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
                     <!-- "Log out" button -->
                     <a href="/logout">
                         <div class="row justify-content-center">
@@ -111,6 +115,13 @@
                 </div>
             </div>
         </div>
+
+        <!-- !! -->
+        <form>
+            <input id="score-value" name="points" type="number" value="0">
+        </form>
+
+
         <!-- Game code -->
         <script src="/static/index_script.js"></script>
     </main>

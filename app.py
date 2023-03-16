@@ -4,6 +4,8 @@ from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.security import check_password_hash, generate_password_hash
+from datetime import datetime
+import re
 
 # Configure application
 app = Flask(__name__)
@@ -23,8 +25,26 @@ def index():
 
     # Check if user clicks "Just play" button in the login window
     if request.method == "POST":
+
+        # Check if user is logged in
+        if session:
+            
+            # Get the score from the invisible score form
+            score = request.form.get("score")
+
+            # Query database for the user's username
+            username = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])
+            
+            # Get and format current date
+            current_date = datetime.now().isoformat(timespec="seconds")
+            date_formatted = re.sub("T", " ", current_date)            
+
+            # Save the score in the database
+            db.execute("INSERT INTO scores (username, score, date) VALUES(?, ?, ?)", username[0]["username"], score, date_formatted)
+
         # Display the game without account access
         return render_template("index.html")
+    
     # Check if user tries to access game in another way
     else:
         # Check if logged in
@@ -166,6 +186,29 @@ def login():
         return redirect("/")
 
     return render_template("login.html")
+
+
+@app.route("/scores")
+def scores():
+    """Show user's scores"""
+
+    if session:
+
+        username = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])
+        scores = db.execute("SELECT * FROM scores WHERE username = ?", username[0]["username"])
+        best_score = 0
+
+        for i in range(len(scores)):
+            if i == 0:
+                best_score = scores[i]["score"]
+            else:
+                if scores[i]["score"] > best_score:
+                    best_score = scores[i]["score"]
+
+        return render_template("scores.html", scores=scores, best_score=best_score)
+
+    return redirect("/")
+
 
 @app.route("/logout")
 def logout():

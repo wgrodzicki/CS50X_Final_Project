@@ -60,6 +60,10 @@ window.addEventListener("load", function() {
             // Game state trackers
             let gameOver = false;
             let score = 0;
+            
+            //!! Reset score
+            document.getElementById("score-value").value = "0"; // Update the score form
+            
             let level = 0;
             // Variables to control the display of level messages
             let levelTimer = 100;
@@ -266,6 +270,7 @@ window.addEventListener("load", function() {
                             // Increase score if dragon killed
                             if (dragon.killed == true) {
                                 score++;
+                                document.getElementById("score-value").value = score;
                             }
                         }
                     });

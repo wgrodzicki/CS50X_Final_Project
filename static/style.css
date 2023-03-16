@@ -30,6 +30,17 @@ body {
     padding-right: 0%;
 }
 
+/* Score button itself (invisible) */
+#score-form-button {
+    position: absolute; /* Place it in the center of the button container */ 
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* Hide (make invisible) until the script runs */
+}
+
 /* Change cursor when hovering over buttons */
 #start-button-container:hover, #score-button-container:hover,
 #view-button-container:hover, #logout-button-container:hover {
@@ -56,6 +67,11 @@ body {
     font-family: Luminari, Papyrus, fantasy;
     font-size: 1.1vw;
     color: white;
+}
+
+/* "Invisible" form */
+#score-button-input, #score-value {
+    display: none;
 }
 
 /* Instruction tablet container */
@@ -102,8 +118,10 @@ body {
 
 /* Main containers */
 #login-container, #register-container {
-    position: relative; /* Position relative to make other elements with position absolute display accordingly */ 
-    margin-top: 15%;
+    position: absolute; /* Position relative to make other elements with position absolute display accordingly */ 
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
 }
 
 /* Login tablet background */
@@ -157,11 +175,6 @@ body {
     padding-right: 0%;
 }
 
-/* Change cursor when hovering over buttons */
-/* #register-login-button-container:hover, #play-button-container:hover {
-    cursor: pointer;
-} */
-
 /* Buttons themselves (invisible) */
 #login-form-button, #register-form-button, #play-form-button {
     position: absolute; /* Place them in the center of the button container */ 
@@ -209,4 +222,81 @@ body {
 .empty-line {
     margin-top: 0px;
     opacity: 0;
+}
+
+/* SCORES */
+
+#scores-container {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    min-height: 450px;
+    border: 1px solid black;
+}
+
+/* Scores tablet background */
+#scores-background {
+    position: absolute; /* Place it in the center of the main container */
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    height: 100%;
+    width: 350px;
+    z-index: -2; /* Move it behind the form and button */
+    opacity: 0.5;
+}
+
+/* Scores tablet border */
+#scores-border {
+    position: absolute; /* Place it in the center of the main container */
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    height: 100%;
+    width: 350px;
+    z-index: -1; /* Move it behind the form and button */
+}
+
+#scores-table-container {
+    position: relative; /* Place it in the center of the main container */
+    /* transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%; */
+    width: 300px;
+    max-height: 380px;
+    overflow: auto;
+    font-family: Luminari, Papyrus, fantasy;
+    border: 1px solid black;
+}
+
+/* Button container */
+#back-scores-button-container {
+    position: relative; /* Position relative to make other elements with position absolute display accordingly */ 
+    text-align: center;
+    width: 200px;
+    padding-left: 0%;
+    padding-right: 0%;
+}
+
+/* "Clicked" button image */
+#back-scores-button {
+    width: 100%;
+}
+
+/* "Unclicked" button image */
+#back-scores-button-clicked {
+    width: 100%;
+    display: none;
+}
+
+/* Text on the button */
+#back-scores-button-text {
+    position: absolute; /* Place it in the center of the button container */ 
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    font-family: Luminari, Papyrus, fantasy;
+    font-size: 18px;
+    color: white;
 }
