@@ -22,7 +22,7 @@ window.addEventListener("load", function() {
         buttons[i].addEventListener("click", function() {
             buttons[i + 1].style.display = "none"; // Hide the "unclicked" button image
             buttons[i + 2].style.display = "initial"; // Display the "clicked" button image
-            buttons[i + 3].style.top = "45%"; // Move the text slightly
+            buttons[i + 3].style.marginTop = "-1%"; // Move the text slightly
 
             // !!
             if (i == 0) {
@@ -34,7 +34,7 @@ window.addEventListener("load", function() {
             setTimeout(function() {
                 buttons[i + 1].style.display = "initial"; // Display the "unclicked" button image
                 buttons[i + 2].style.display = "none"; // Hide the "clicked" button image
-                buttons[i + 3].style.top = "50%"; // Move the text to the initial position
+                buttons[i + 3].style.marginTop = "0%"; // Move the text to the initial position
             }, 120);
         });
     }

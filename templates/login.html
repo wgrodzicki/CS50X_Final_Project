@@ -19,13 +19,13 @@
     <!-- Login form -->
     <form action="/login" method="post">
         <div class="mb-3">
-            <input autocomplete="off" name="username" placeholder="Username" type="text">
+            <input id="login-input-username" autocomplete="off" name="username" placeholder="Username" type="text">
             <br>
             <div class="apology">{{ user_lack }}</div>
             <div class="apology">{{ user_wrong }}</div>
         </div>
         <div class="mb-3">
-            <input autocomplete="off" name="password" placeholder="Password" type="password">
+            <input id="login-input-password" autocomplete="off" name="password" placeholder="Password" type="password">
             <br>
             <div class="apology">{{ password_lack }}</div>
             <div class="apology">{{ password_wrong }}</div>
@@ -40,18 +40,14 @@
         </div>
     </form>
     {% if registered != True %}
-    <hr class="empty-line">
-    <hr class="empty-line">
     <!-- "Register" button linking to the register form -->
     <div id="register-login-button-container" class="mx-auto d-flex align-items-center">
-        <a href="/register">
+        <a href="/register" id="link">
             <img id="register-login-button" src="/static/menu/Button.png">
             <img id="register-login-button-clicked" src="/static/menu/Button_clicked.png">
             <div id="register-login-button-text">Register</div>
         </a>
     </div>
-    <hr class="empty-line">
-    <hr class="empty-line">
     <!-- "Just play" button linking to the game without account access -->
     <form action="/", method="post">
         <div id="play-button-container" class="mx-auto d-flex align-items-center">

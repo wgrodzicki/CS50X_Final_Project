@@ -39,7 +39,7 @@ window.addEventListener("load", function() {
             // Animate button
             buttonStart.style.display = "none";
             buttonStartClicked.style.display = "initial";
-            buttonStartText.style.top = "45%";
+            buttonStartText.style.marginTop = "-1%";
             gameStarted = true; // Lock the button until game over
             // Put layers from game.html into an array
             const backgroundLayers = [];
@@ -845,7 +845,7 @@ window.addEventListener("load", function() {
                     gameStarted = false;
                     buttonStart.style.display = "initial";
                     buttonStartClicked.style.display = "none";
-                    buttonStartText.style.top = "50%";
+                    buttonStartText.style.marginTop = "0%";
                 }
                 else {
                     music.play(); // Play the background music

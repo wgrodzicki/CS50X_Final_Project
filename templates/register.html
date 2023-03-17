@@ -14,13 +14,13 @@
     <!-- Registration form -->
     <form action="/register" method="post">
         <div class="mb-3">
-            <input autocomplete="off" name="username" placeholder="Username" type="text">
+            <input id="register-input-username" autocomplete="off" name="username" placeholder="Username" type="text">
             <br>
             <div class="apology">{{ user_lack }}</div>
             <div class="apology">{{ user_exists }}</div>
         </div>
         <div class="mb-3">
-            <input autocomplete="off" name="password" placeholder="Password" type="password">
+            <input id="register-input-password" autocomplete="off" name="password" placeholder="Password" type="password">
             <br>
             <div class="apology">{{ password_lack }}</div>
             <div class="apology">{{ password_short }}</div>
@@ -28,7 +28,7 @@
             <div class="apology">{{ password_digit }}</div>
         </div>
         <div class="mb-3">
-            <input autocomplete="off" name="confirmation" placeholder="Confirm password" type="password">
+            <input id="register-input-confirmation" autocomplete="off" name="confirmation" placeholder="Confirm password" type="password">
             <br>
             <div class="apology">{{ confirmation_lack }}</div>
             <div class="apology">{{ confirmation_match }}</div>
@@ -43,7 +43,7 @@
         </div>
     </form>
 </div>
-<!-- Script for buttons -->
+<!-- Script for the button -->
 <script src="/static/register_script.js"></script>
 
 {% endblock %}

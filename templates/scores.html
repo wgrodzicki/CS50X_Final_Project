@@ -7,10 +7,10 @@
 {% block main %}
 
 <div id="scores-container" class="mx-auto d-flex justify-content-center align-items-center">
-
+    <!-- Background tablet -->
     <img id="scores-background" src="/static/menu/Instruction_tablet_background.png">
     <img id="scores-border" src="/static/menu/Instruction_tablet_border.png">
-
+    <!-- Table container -->
     <div id="scores-table-container">
         <table class="table" style="color: white">
             <thead>
@@ -20,6 +20,7 @@
                 </tr>
             </thead>
             <tbody class="table-group-divider">
+                <!-- Iterate over all scores of the user -->
                 {% for score in scores %}
                     <tr>
                         <td class="text-center">{{ score["score"] }}</td>
@@ -29,21 +30,23 @@
             </tbody>
             <tfoot class="table-group-divider">
                 <tr>
+                    <!-- Display user's best score -->
                     <td class="text-center">Best score:</td>
                     <td class="text-center">{{ best_score }}</td>
                 </tr>
             </tfoot>
         </table>
     </div>
-</div>
-
-<!-- "Back" button linking back to the game -->
-<div id="back-scores-button-container" class="mx-auto d-flex align-items-center">
+    <!-- "Back" button linking back to the game -->
     <a href="/">
-        <img id="back-scores-button" src="/static/menu/Button.png">
-        <img id="back-scores-button-clicked" src="/static/menu/Button_clicked.png">
-        <div id="back-scores-button-text">Back</div>
-    </a>
+        <div id="scores-back-button-container" class="d-flex align-items-center">
+            <img id="scores-back-button" src="/static/menu/Button.png">
+            <img id="scores-back-button-clicked" src="/static/menu/Button_clicked.png">
+            <div id="scores-back-button-text">Back</div>
+        </div>
+    </a>    
 </div>
+<!-- Script for the button -->
+<script src="/static/scores_script.js"></script>
 
 {% endblock %}

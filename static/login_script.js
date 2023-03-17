@@ -11,12 +11,12 @@ window.addEventListener("load", function() {
         // Animate button
         buttonLogin.style.display = "none";
         buttonLoginClicked.style.display = "initial";
-        buttonLoginText.style.top = "45%";
+        buttonLoginText.style.marginTop = "-1%";
         // After 120 ms
         setTimeout(function() {
             buttonLogin.style.display = "initial"; // Display the "unclicked" button image
             buttonLoginClicked.style.display = "none"; // Hide the "clicked" button image
-            buttonLoginText.style.top = "50%"; // Move the text to the initial position
+            buttonLoginText.style.marginTop = "0%"; // Move the text to the initial position
         }, 120);
     });
 

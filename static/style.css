@@ -23,11 +23,12 @@ body {
 #start-button-container, #score-button-container, #view-button-container, #logout-button-container {
     position: relative; /* Position relative to make other elements with position absolute display accordingly */
     width: 70%;
-    margin-top: 8%;
-    margin-bottom: 8%;
+    margin-top: 12%;
+    margin-bottom: 12%;
     text-align: center;
     padding-left: 0%;
     padding-right: 0%;
+    border: 1px black solid;
 }
 
 /* Score button itself (invisible) */
@@ -37,8 +38,8 @@ body {
     top: 50%;
     left: 50%;
     width: 100%;
-    height: 100%;
-    opacity: 0; /* Hide (make invisible) until the script runs */
+    min-height: 3.3vw;
+    opacity: 0.5; /* Hide (make invisible) until the script runs */
 }
 
 /* Change cursor when hovering over buttons */
@@ -49,11 +50,19 @@ body {
 
 /* "Unclicked" button images */
 #start-button, #score-button, #view-button, #logout-button {
+    position: absolute; /* Place it in the center of the button container */ 
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
     width: 100%;
 }
 
 /* "Clicked" button images */
 #start-button-clicked, #score-button-clicked, #view-button-clicked, #logout-button-clicked {
+    position: absolute; /* Place it in the center of the button container */ 
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
     width: 100%;
     display: none; /* Hide until the script runs */
 }
@@ -65,8 +74,9 @@ body {
     top: 50%;
     left: 50%;
     font-family: Luminari, Papyrus, fantasy;
-    font-size: 1.1vw;
+    font-size: 1.2vw;
     color: white;
+    border: 1px black solid;
 }
 
 /* "Invisible" form */
@@ -122,6 +132,7 @@ body {
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
+    border: 1px black solid;
 }
 
 /* Login tablet background */
@@ -130,7 +141,9 @@ body {
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    width: 550px;
+    /* width: 550px; */
+    height: 100%;
+    width: 40%;
     z-index: -2; /* Move it behind the form and button */
     opacity: 0.5;
 }
@@ -141,7 +154,9 @@ body {
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    width: 550px;
+    /* width: 550px; */
+    height: 100%;
+    width: 40%;
     z-index: -1; /* Move it behind the form and button */
 }
 
@@ -151,7 +166,9 @@ body {
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    width: 400px;
+        /* width: 400px; */
+        height: 100%;
+    width: 30%;
     z-index: -2; /* Move it behind the form and button */
     opacity: 0.5;
 }
@@ -162,17 +179,48 @@ body {
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    width: 400px;
+    /* width: 400px; */
+    height: 100%;
+    width: 30%;
     z-index: -1; /* Move it behind the form and button */
 }
 
+#login-input-username, #register-input-username {
+    margin-top: 3%;
+    width: 16%;
+}
+
+#login-input-password, #register-input-password, #register-input-confirmation {
+    width: 16%;
+}
+
 /* Button containers */
-#login-button-container, #register-login-button-container, #play-button-container, #register-button-container {
+#login-button-container, #register-button-container {
     position: relative; /* Position relative to make other elements with position absolute display accordingly */ 
     text-align: center;
-    width: 200px;
+    /* width: 200px; */
+    margin-top: 3%;
+    margin-bottom: 5%;
+    width: 16%;
     padding-left: 0%;
     padding-right: 0%;
+    border: 1px black solid;
+}
+
+#register-login-button-container, #play-button-container {
+    position: relative; /* Position relative to make other elements with position absolute display accordingly */ 
+    text-align: center;
+    /* width: 200px; */
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 16%;
+    padding-left: 0%;
+    padding-right: 0%;
+    border: 1px black solid;
+}
+
+#link {
+      border: 1px black solid;  
 }
 
 /* Buttons themselves (invisible) */
@@ -181,18 +229,31 @@ body {
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    width: 200px;
-    height: 100%;
-    opacity: 0; /* Hide (make invisible) until the script runs */
+    /* width: 200px; */
+    min-height: 2.8vw;
+    width: 100%;
+    opacity: 0.5; /* Hide (make invisible) until the script runs */
+    border: 1px black solid;
 }
 
 /* "Clicked" button images */
 #login-button, #register-login-button, #play-button, #register-button {
+    position: absolute; /* Place them in the center of the button container */ 
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;  /* Place it in the center of the button container */ 
+    /* transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%; */
     width: 100%;
 }
 
 /* "Unclicked" button images */
 #login-button-clicked, #register-login-button-clicked, #play-button-clicked, #register-button-clicked {
+    position: absolute; /* Place it in the center of the button container */ 
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
     width: 100%;
     display: none;
 }
@@ -204,7 +265,7 @@ body {
     top: 50%;
     left: 50%;
     font-family: Luminari, Papyrus, fantasy;
-    font-size: 18px;
+    font-size: 1.2vw;
     color: white;
 }
 
@@ -215,6 +276,7 @@ body {
 
 /* Apology text */
 .apology {
+    font-size: 1.1vw;
     color: white;
 }
 
@@ -231,8 +293,10 @@ body {
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    min-height: 450px;
-    border: 1px solid black;
+    /* min-height: 450px; */
+    width: 30%;
+    height: 70%;
+    /* border: 1px solid black; */
 }
 
 /* Scores tablet background */
@@ -242,7 +306,8 @@ body {
     top: 50%;
     left: 50%;
     height: 100%;
-    width: 350px;
+    /* width: 350px; */
+    width: 100%;
     z-index: -2; /* Move it behind the form and button */
     opacity: 0.5;
 }
@@ -254,49 +319,58 @@ body {
     top: 50%;
     left: 50%;
     height: 100%;
-    width: 350px;
+    /* width: 350px; */
+    width: 100%;
     z-index: -1; /* Move it behind the form and button */
 }
 
 #scores-table-container {
-    position: relative; /* Place it in the center of the main container */
-    /* transform: translate(-50%, -50%);
+    position: absolute; /* Place it in the center of the main container */
+    transform: translate(-50%, -50%);
     top: 50%;
-    left: 50%; */
-    width: 300px;
-    max-height: 380px;
+    left: 50%;
+    /* width: 300px;
+    max-height: 380px; */
+    width: 90%;
+    max-height: 90%;
     overflow: auto;
     font-family: Luminari, Papyrus, fantasy;
-    border: 1px solid black;
+    font-size: 1.1vw;
+    /* border: 1px solid black; */
 }
 
 /* Button container */
-#back-scores-button-container {
-    position: relative; /* Position relative to make other elements with position absolute display accordingly */ 
+#scores-back-button-container {
+    position: absolute; /* Position relative to make other elements with position absolute display accordingly */ 
+    transform: translate(-50%, -50%);
+    top: 110%;
+    left: 50%;
     text-align: center;
-    width: 200px;
+    /* width: 200px; */
+    width: 55%;
     padding-left: 0%;
     padding-right: 0%;
 }
 
 /* "Clicked" button image */
-#back-scores-button {
+#scores-back-button {
     width: 100%;
 }
 
 /* "Unclicked" button image */
-#back-scores-button-clicked {
+#scores-back-button-clicked {
     width: 100%;
     display: none;
 }
 
 /* Text on the button */
-#back-scores-button-text {
+#scores-back-button-text {
     position: absolute; /* Place it in the center of the button container */ 
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
     font-family: Luminari, Papyrus, fantasy;
-    font-size: 18px;
+    /* font-size: 18px; */
+    font-size: 1.2vw;
     color: white;
 }

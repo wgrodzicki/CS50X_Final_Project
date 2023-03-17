@@ -35,25 +35,25 @@
                         </div>
                     </form>
                     <!-- "View scores" button -->
-                        <div class="row justify-content-center">
-                            <div id="view-button-container" class="d-flex align-items-center">
-                                <a href="/scores">
-                                    <img id="view-button" src="/static/menu/Button.png">
-                                    <img id="view-button-clicked" src="/static/menu/Button_clicked.png">
-                                    <div id="view-button-text">View scores</div>
-                                </a>
-                            </div>
+                    <div class="row justify-content-center">
+                        <div id="view-button-container" class="d-flex align-items-center">
+                            <a href="/scores">
+                                <img id="view-button" src="/static/menu/Button.png">
+                                <img id="view-button-clicked" src="/static/menu/Button_clicked.png">
+                                <div id="view-button-text">View scores</div>
+                            </a>
                         </div>
+                    </div>
                     <!-- "Log out" button -->
-                    <a href="/logout">
-                        <div class="row justify-content-center">
-                            <div id="logout-button-container" class="d-flex align-items-center">
+                    <div class="row justify-content-center">   
+                        <div id="logout-button-container" class="d-flex align-items-center">
+                            <a href="/logout">
                                 <img id="logout-button" src="/static/menu/Button.png">
                                 <img id="logout-button-clicked" src="/static/menu/Button_clicked.png">
                                 <div id="logout-button-text">Log out</div>
-                            </div>
-                        </div>
-                    </a>
+                            </a>
+                        </div>  
+                    </div>
                     <script src="/static/index_registered_script.js"></script>
                     {% endif %}
                 </div>
@@ -83,7 +83,6 @@
                         <img id="dragon" src="/static/enemies/dragon.png">
                         <!-- Explosion sprite -->
                         <img id="explosion" src="/static/explosion/explosion.png">
-                        <!-- Form to store player's score -->
                     </div>
                 </div>
                 <!-- Right side button -->
@@ -115,13 +114,10 @@
                 </div>
             </div>
         </div>
-
-        <!-- !! -->
+        <!-- Invisible form to store player's score -->
         <form>
             <input id="score-value" name="points" type="number" value="0">
         </form>
-
-
         <!-- Game code -->
         <script src="/static/index_script.js"></script>
     </main>
