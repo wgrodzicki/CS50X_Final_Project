@@ -3,10 +3,10 @@
 window.addEventListener("load", function() {
 
     // Check if user clicks the back button
-    let buttonScoresBackContainer = document.getElementById("scores-back-button-container");
-    let buttonScoresBack = document.getElementById("scores-back-button"); // Back button not clicked
-    let buttonScoresBackClicked = document.getElementById("scores-back-button-clicked"); // Back button clicked
-    let buttonScoresBackText = document.getElementById("scores-back-button-text");
+    let buttonScoresBackContainer = document.getElementById("scores-credits-back-button-container");
+    let buttonScoresBack = document.getElementById("scores-credits-back-button"); // Back button not clicked
+    let buttonScoresBackClicked = document.getElementById("scores-credits-back-button-clicked"); // Back button clicked
+    let buttonScoresBackText = document.getElementById("scores-credits-back-button-text");
     buttonScoresBackContainer.addEventListener("click", function() {
         // Animate button
         buttonScoresBack.style.display = "none";

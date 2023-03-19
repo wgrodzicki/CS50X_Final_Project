@@ -54,13 +54,11 @@ def index():
         else:
             # Display the game with account access if so
             return render_template("index.html")
+        
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """Register user"""
-    
-    # Control if user visits routes after having registered
-    registered = False
 
     if request.method == "POST":
         
@@ -131,12 +129,53 @@ def register():
         # Register the user by stroing username and hashed password in the database
         db.execute("INSERT INTO users (username, hash) VALUES(?, ?)", username, hash)
 
-        # Variable to control if user visits the login window after having registered
-        registered = True
+        # return render_template("login.html", registered=registered)
+        return render_template("login-registered.html")
 
-        return render_template("login.html", registered=registered)
+    return render_template("register.html")
 
-    return render_template("register.html", registered=registered)
+@app.route("/login-registered", methods=["GET", "POST"])
+def login_registered():
+    """Log user in after registration"""
+
+    # Clear any ongoing session
+    session.clear()
+
+    if request.method == "POST":
+
+        # Get data from the login form
+        username = request.form.get("username")
+        password = request.form.get("password")
+
+        # Apologies
+        user_lack = "Username required"
+        user_wrong = "Wrong username"
+        password_lack = "Password required"
+        password_wrong = "Wrong password"
+
+        # Query database for all usernames already registered
+        usernames_db = db.execute("SELECT * FROM users WHERE username = ?", username)
+
+        # Check if username is provided
+        if not username:
+            return render_template("login-registered.html", user_lack=user_lack)
+        # Check if username exists in the database
+        elif len(usernames_db) != 1:
+            return render_template("login-registered.html", user_wrong=user_wrong)
+        # Check if password is provided
+        if not password:
+            return render_template("login-registered.html", password_lack=password_lack)
+        # Check if password matches the one in the database
+        elif check_password_hash(usernames_db[0]["hash"], password) != True:
+            return render_template("login-registered.html", password_wrong=password_wrong)
+        
+        # Initiate session
+        session["user_id"] = usernames_db[0]["id"]
+
+        return redirect("/")
+
+    return render_template("login-registered.html")
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -150,7 +189,7 @@ def login():
         # Get the data from the play button form
         play = request.form.get("name")
 
-        # If anything submitted (play button clicked)
+        # Check if play button is clicked
         if play:
             render_template("index.html")
 
@@ -192,22 +231,36 @@ def login():
 def scores():
     """Show user's scores"""
 
+    # Check if user is logged in
     if session:
 
+        #Query database for the user's data
         username = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])
         scores = db.execute("SELECT * FROM scores WHERE username = ?", username[0]["username"])
+        
+        # Iterate over all scores and find the best one
         best_score = 0
-
+        
         for i in range(len(scores)):
+            # Make the first score the best one
             if i == 0:
                 best_score = scores[i]["score"]
             else:
+                # Update the best score if subsequent score is higher
                 if scores[i]["score"] > best_score:
                     best_score = scores[i]["score"]
 
         return render_template("scores.html", scores=scores, best_score=best_score)
 
     return redirect("/")
+
+
+@app.route("/credits")
+def credits():
+    """Show credits"""
+
+    # Show credits page
+    return render_template("credits.html")
 
 
 @app.route("/logout")

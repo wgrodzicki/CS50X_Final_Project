@@ -14,6 +14,11 @@ body {
     margin-top: 7.5%;
 }
 
+/* All rows on the page */
+.row {
+    position: relative;
+}
+
 /* Hide all assets */
 #title, #border-game, #player, #dragon, #explosion, #layer-0, #layer-1, #layer-2, #layer-3, #layer-4, #layer-5, #layer-6, #layer-7, #layer-8, #layer-9, #layer-10 {
     display: none; /* Hide until the script runs */
@@ -25,10 +30,25 @@ body {
     width: 70%;
     margin-top: 12%;
     margin-bottom: 12%;
-    text-align: center;
     padding-left: 0%;
     padding-right: 0%;
-    border: 1px black solid;
+}
+
+/* Change cursor when hovering over button */
+#start-button-container:hover {
+    cursor: pointer;
+}
+
+/* Right side button container */
+#credits-button-container {
+    position: absolute; /* Place it in the center of the button container */ 
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 70%;
+    margin-top: 60%;
+    padding-left: 0%;
+    padding-right: 0%;
 }
 
 /* Score button itself (invisible) */
@@ -39,17 +59,11 @@ body {
     left: 50%;
     width: 100%;
     min-height: 3.3vw;
-    opacity: 0.5; /* Hide (make invisible) until the script runs */
-}
-
-/* Change cursor when hovering over buttons */
-#start-button-container:hover, #score-button-container:hover,
-#view-button-container:hover, #logout-button-container:hover {
-    cursor: pointer;
+    opacity: 0; /* Hide (make invisible) until the script runs */
 }
 
 /* "Unclicked" button images */
-#start-button, #score-button, #view-button, #logout-button {
+#start-button, #score-button, #view-button, #logout-button, #credits-button {
     position: absolute; /* Place it in the center of the button container */ 
     transform: translate(-50%, -50%);
     top: 50%;
@@ -58,7 +72,7 @@ body {
 }
 
 /* "Clicked" button images */
-#start-button-clicked, #score-button-clicked, #view-button-clicked, #logout-button-clicked {
+#start-button-clicked, #score-button-clicked, #view-button-clicked, #logout-button-clicked, #credits-button-clicked {
     position: absolute; /* Place it in the center of the button container */ 
     transform: translate(-50%, -50%);
     top: 50%;
@@ -68,7 +82,7 @@ body {
 }
 
 /* Text on buttons */
-#start-button-text, #score-button-text, #view-button-text, #logout-button-text {
+#start-button-text, #score-button-text, #view-button-text, #logout-button-text, #credits-button-text {
     position: absolute; /* Place it in the center of the button container */ 
     transform: translate(-50%, -50%);
     top: 50%;
@@ -76,7 +90,6 @@ body {
     font-family: Luminari, Papyrus, fantasy;
     font-size: 1.2vw;
     color: white;
-    border: 1px black solid;
 }
 
 /* "Invisible" form */
@@ -86,7 +99,11 @@ body {
 
 /* Instruction tablet container */
 #instruction-tablet-container {
-    position: relative; /* Position relative to make other elements with position absolute display accordingly */
+    position: absolute; /* Position relative to make the text with position absolute display accordingly */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: -7.5%;
     text-align: justify;
 }
 
@@ -120,7 +137,7 @@ body {
     transform: translate(-50%, -50%);
     width: 70%;
     font-family: Luminari, Papyrus, fantasy;
-    font-size: 1.1vw;
+    font-size: 1.05vw;
     color: white;
 }
 
@@ -132,7 +149,6 @@ body {
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    border: 1px black solid;
 }
 
 /* Login tablet background */
@@ -141,7 +157,6 @@ body {
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    /* width: 550px; */
     height: 100%;
     width: 40%;
     z-index: -2; /* Move it behind the form and button */
@@ -154,7 +169,6 @@ body {
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    /* width: 550px; */
     height: 100%;
     width: 40%;
     z-index: -1; /* Move it behind the form and button */
@@ -166,8 +180,7 @@ body {
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-        /* width: 400px; */
-        height: 100%;
+    height: 100%;
     width: 30%;
     z-index: -2; /* Move it behind the form and button */
     opacity: 0.5;
@@ -179,17 +192,18 @@ body {
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    /* width: 400px; */
     height: 100%;
     width: 30%;
     z-index: -1; /* Move it behind the form and button */
 }
 
+/* Boxes for user input */
 #login-input-username, #register-input-username {
     margin-top: 3%;
     width: 16%;
 }
 
+/* Boxes for user input */
 #login-input-password, #register-input-password, #register-input-confirmation {
     width: 16%;
 }
@@ -198,29 +212,22 @@ body {
 #login-button-container, #register-button-container {
     position: relative; /* Position relative to make other elements with position absolute display accordingly */ 
     text-align: center;
-    /* width: 200px; */
     margin-top: 3%;
     margin-bottom: 5%;
     width: 16%;
     padding-left: 0%;
     padding-right: 0%;
-    border: 1px black solid;
 }
 
+/* Button containers */
 #register-login-button-container, #play-button-container {
     position: relative; /* Position relative to make other elements with position absolute display accordingly */ 
     text-align: center;
-    /* width: 200px; */
     margin-top: 5%;
     margin-bottom: 5%;
     width: 16%;
     padding-left: 0%;
     padding-right: 0%;
-    border: 1px black solid;
-}
-
-#link {
-      border: 1px black solid;  
 }
 
 /* Buttons themselves (invisible) */
@@ -229,11 +236,9 @@ body {
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    /* width: 200px; */
     min-height: 2.8vw;
     width: 100%;
-    opacity: 0.5; /* Hide (make invisible) until the script runs */
-    border: 1px black solid;
+    opacity: 0; /* Hide (make invisible) until the script runs */
 }
 
 /* "Clicked" button images */
@@ -241,10 +246,7 @@ body {
     position: absolute; /* Place them in the center of the button container */ 
     transform: translate(-50%, -50%);
     top: 50%;
-    left: 50%;  /* Place it in the center of the button container */ 
-    /* transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%; */
+    left: 50%;
     width: 100%;
 }
 
@@ -286,91 +288,83 @@ body {
     opacity: 0;
 }
 
-/* SCORES */
+/* SCORES & CREDITS */
 
-#scores-container {
+#scores-credits-container {
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    /* min-height: 450px; */
     width: 30%;
     height: 70%;
-    /* border: 1px solid black; */
 }
 
 /* Scores tablet background */
-#scores-background {
+#scores-credits-background {
     position: absolute; /* Place it in the center of the main container */
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
     height: 100%;
-    /* width: 350px; */
     width: 100%;
     z-index: -2; /* Move it behind the form and button */
     opacity: 0.5;
 }
 
 /* Scores tablet border */
-#scores-border {
+#scores-credits-border {
     position: absolute; /* Place it in the center of the main container */
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
     height: 100%;
-    /* width: 350px; */
     width: 100%;
     z-index: -1; /* Move it behind the form and button */
 }
 
-#scores-table-container {
+/* Scores table */
+#scores-credits-table-container {
     position: absolute; /* Place it in the center of the main container */
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    /* width: 300px;
-    max-height: 380px; */
     width: 90%;
     max-height: 90%;
     overflow: auto;
     font-family: Luminari, Papyrus, fantasy;
     font-size: 1.1vw;
-    /* border: 1px solid black; */
 }
 
 /* Button container */
-#scores-back-button-container {
+#scores-credits-back-button-container {
     position: absolute; /* Position relative to make other elements with position absolute display accordingly */ 
     transform: translate(-50%, -50%);
     top: 110%;
     left: 50%;
     text-align: center;
-    /* width: 200px; */
     width: 55%;
     padding-left: 0%;
     padding-right: 0%;
 }
 
 /* "Clicked" button image */
-#scores-back-button {
+#scores-credits-back-button {
     width: 100%;
 }
 
 /* "Unclicked" button image */
-#scores-back-button-clicked {
+#scores-credits-back-button-clicked {
     width: 100%;
     display: none;
 }
 
 /* Text on the button */
-#scores-back-button-text {
+#scores-credits-back-button-text {
     position: absolute; /* Place it in the center of the button container */ 
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
     font-family: Luminari, Papyrus, fantasy;
-    /* font-size: 18px; */
     font-size: 1.2vw;
     color: white;
 }

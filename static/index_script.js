@@ -26,6 +26,23 @@ window.addEventListener("load", function() {
     context.drawImage(border, 0, 0, canvas.width, canvas.height);
     // Variable to control game starting
     let gameStarted = false;
+
+    // Check if user clicks the credits button
+    let buttonCreditsContainer = document.getElementById("credits-button-container");
+    let buttonCredits = document.getElementById("credits-button"); // Credits button not clicked
+    let buttonCreditsClicked = document.getElementById("credits-button-clicked"); // Credits button clicked
+    let buttonCreditsText = document.getElementById("credits-button-text");
+    buttonCreditsContainer.addEventListener("click", function() {
+        buttonCredits.style.display = "none";
+        buttonCreditsClicked.style.display = "initial";
+        buttonCreditsText.style.marginTop = "-1%";
+        // After 120 ms
+        setTimeout(function() {
+            buttonCredits.style.display = "initial"; // Display the "unclicked" button image
+            buttonCreditsClicked.style.display = "none"; // Hide the "clicked" button image
+            buttonCreditsText.marginTop = "0%"; // Move the text to the initial position
+        }, 120);
+    });
     
     // Check if user clicks the starting button
     let buttonStartContainer = document.getElementById("start-button-container");
@@ -219,7 +236,7 @@ window.addEventListener("load", function() {
                         // Dragon's hit box
                         let dragonFront = dragon.x + (dragon.width / 8); // Dragon's hit box front
                         let dragonRear = dragon.x + (dragon.width - (dragon.width /5)); // Dragon's hit box rear
-                        let dragonTop = dragon.y + (dragon.height / 2.5); // Dragon's hit box top
+                        let dragonTop = dragon.y + (dragon.height / 2); // Dragon's hit box top
                         let dragonBottom = dragon.y + (dragon.height - (this.height / 8)); // Dragon's hit box bottom
                         // Player's hit box
                         let playerFront = this.x + (this.width - (this.width / 2.1)); // Player's hit box front
@@ -244,10 +261,10 @@ window.addEventListener("load", function() {
                         if (attackGround == true || attackJump == true) {
                             let groundAttackTop = this.y + this.height / 8; // Top range of the ground attack
                             let groundAttackBottom = this.y + this.height / 2; // Bottom range of the ground attack
-                            let groundAttackRange = this.x + 2 * (this.width / 2.5); // Horizontal range of the ground attack
+                            let groundAttackRange = this.x + 2 * (this.width / 2.4); // Horizontal range of the ground attack
                             let jumpAttackTop = this.y; // Top range of the jump attack
                             let jumpAttackBottom = this.y + 0.75 * this.height; // Bottom range of the jump attack
-                            let jumpAttackRange = this.x + this.width / 2.5 + this.width / 3.5; // Horizontal range of the ground attack
+                            let jumpAttackRange = this.x + this.width / 2.5 + this.width / 3.2; // Horizontal range of the jump attack
                             
                             // Check if player attacks from the ground
                             if (attackGround == true) {
@@ -483,7 +500,7 @@ window.addEventListener("load", function() {
                     // HIT BOXES
                     // context.strokeStyle = "white";
                     // context.beginPath();
-                    // context.rect(this.x + (this.width / 8), this.y + (this.height / 2.5), this.width - (this.width / 8) - (this.width /5), this.height - (this.height / 2.5) - (this.height / 8));
+                    // context.rect(this.x + (this.width / 8), this.y + (this.height / 2), this.width - (this.width / 8) - (this.width /5), this.height - (this.height / 2) - (this.height / 8));
                     // context.stroke();
 
                     // Draw the image, using frameX and frameY to crop it / switch between character frames on the sprite sheet

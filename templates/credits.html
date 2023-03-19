@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Credits
+{% endblock %}
+
+{% block main %}
+
+<div id="scores-credits-container" class="mx-auto d-flex justify-content-center align-items-center">
+    <!-- Background tablet -->
+    <img id="scores-credits-background" src="/static/menu/Instruction_tablet_background.png">
+    <img id="scores-credits-border" src="/static/menu/Instruction_tablet_border.png">
+    <!-- Table container -->
+    <div id="scores-credits-table-container">
+        <table class="table" style="color: white">
+            <thead>
+                <tr>
+                    <td class="text-center">CREDITS</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                    <tr>
+                        <td class="text-start">Website background by ChrisFiedler via Pixabay: https://t.ly/68iD</td>
+                    </tr>
+                    <tr>
+                        <td class="text-start">Game GUI "RPG GUI construction kit v1.0" by Lamoot via OpenGameArt: https://t.ly/1QS4 (CC BY 3.0)</td>
+                    </tr>    
+                        <td class="text-start">Game background by Eder Muniz via GameDev Market: https://t.ly/e_df</td>
+                    </tr>
+                    <tr>
+                        <td class="text-start">Player sprite by CraftPix via CraftPix: https://t.ly/RvT-</td>
+                    </tr>
+                    <tr>    
+                        <td class="text-start">Enemy sprite "Flying Dragon Rework" by ZaPaper & Jordan Irwin (AntumDeluge), credits to: http://www.buko-studios.com/, commissioned by PlayCraft: https://www.playcraftapp.com/ via OpenGameArt: https://t.ly/UGBh (CC BY 3.0, with changes)</td>
+                    </tr>
+                    <tr>    
+                        <td class="text-start">Explosion effect "Explosions" by helpcomputer via OpenGameArt: tinyurl.com/2p934fab (CC BY 3.0)</td>
+                    </tr>
+                    <tr>    
+                        <td class="text-start">Music "RPG Battle Theme - "The Last Encounter" by Matthew Pablo: http://www.matthewpablo.com via OpenGameArt: tinyurl.com/2yyhkfnu (CC BY-SA 3.0)</td>
+                    </tr>
+                    <tr>    
+                        <td class="text-start">Player step sound by HaelDB via OpenGameArt: tinyurl.com/2p9xthe9 (CC0 1.0)</td>
+                    </tr>
+                    <tr>    
+                        <td class="text-start">Player jump sound by dave.des via Pixabay: tinyurl.com/yhbk8za9</td>
+                    </tr>
+                    <tr>    
+                        <td class="text-start">Player spell sound by cubicApocalypse via Pixabay: tinyurl.com/2w3x2jr7</td>
+                    </tr>
+                    <tr>    
+                        <td class="text-start">Player death sound by micahlg via Pixabay: tinyurl.com/yc2f6bw7</td>
+                    </tr>
+                    <tr>    
+                        <td class="text-start">Enemy scream sound "15 monster grunt/pain/death sounds" by Michel Baradari via OpenGameArt (CC BY 3.0)</td>
+                    </tr>
+                    <tr>    
+                        <td class="text-start">Enemy wing sound by AntumDeluge via OpenGameArt (CC0 1.0)</td>
+                    </tr>
+                    <tr>    
+                        <td class="text-start">Explosion effect sound by qubodup via Pixabay: tinyurl.com/2p8xw48c</td>
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- "Back" button linking back to the game -->
+    <a href="/">
+        <div id="scores-credits-back-button-container" class="d-flex align-items-center">
+            <img id="scores-credits-back-button" src="/static/menu/Button.png">
+            <img id="scores-credits-back-button-clicked" src="/static/menu/Button_clicked.png">
+            <div id="scores-credits-back-button-text">Back</div>
+        </div>
+    </a>    
+</div>
+<!-- Script for the button -->
+<script src="/static/scores_credits_script.js"></script>
+
+{% endblock %}

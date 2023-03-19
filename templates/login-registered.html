@@ -9,10 +9,10 @@
 <!-- Main container -->
 <div id="login-container" class="container-fluid text-center align-items-center">
     <!-- Background tablet -->
-    <img id="login-background" src="/static/menu/Tablet_background.png">
-    <img id="login-border" src="/static/menu/Border.png">
+    <img id="login-registered-background" src="/static/menu/Tablet_background.png">
+    <img id="login-registered-border" src="/static/menu/Border.png">
     <!-- Login form -->
-    <form action="/login" method="post">
+    <form action="/login-registered" method="post">
         <div class="mb-3">
             <input id="login-input-username" autocomplete="off" name="username" placeholder="Username" type="text">
             <br>
@@ -34,27 +34,6 @@
             <button id="login-form-button" type="submit" class="mx-auto d-flex align-items-center"></button>
         </div>
     </form>
-    <!-- "Register" button linking to the register form -->
-    <div id="register-login-button-container" class="mx-auto d-flex align-items-center">
-        <a href="/register" id="link">
-            <img id="register-login-button" src="/static/menu/Button.png">
-            <img id="register-login-button-clicked" src="/static/menu/Button_clicked.png">
-            <div id="register-login-button-text">Register</div>
-        </a>
-    </div>
-    <!-- "Just play" button linking to the game without account access -->
-    <form action="/", method="post">
-        <div id="play-button-container" class="mx-auto d-flex align-items-center">
-            <img id="play-button" src="/static/menu/Button.png">
-            <img id="play-button-clicked" src="/static/menu/Button_clicked.png">
-            <div id="play-button-text">Just play</div>
-            <input id="play-button-input" name="play" type="text" value="play">
-            <!-- Button itself (invisible) -->
-            <button id="play-form-button" type="submit" class="mx-auto d-flex align-items-center"></button>
-        </div>
-    </form>
-    <!-- Script for register and play buttons -->
-    <script src="/static/login_unregistered_script.js"></script>
 </div>
 <!-- Script for buttons -->
 <script src="/static/login_script.js"></script>
