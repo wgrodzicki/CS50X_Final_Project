@@ -11,7 +11,11 @@ body {
 
 /* Main container */
 #index-container {
-    margin-top: 7.5%;
+    /* margin-top: 7.5%; */
+    position: absolute; /* Place it in the center of the button container */ 
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
 }
 
 /* All rows on the page */
@@ -25,7 +29,7 @@ body {
 }
 
 /* Left side buttons containers */
-#start-button-container, #score-button-container, #view-button-container, #logout-button-container {
+#start-button-container, #score-button-container, #view-button-container, #logout-button-container, #index-back-button-container {
     position: relative; /* Position relative to make other elements with position absolute display accordingly */
     width: 70%;
     margin-top: 12%;
@@ -63,7 +67,7 @@ body {
 }
 
 /* "Unclicked" button images */
-#start-button, #score-button, #view-button, #logout-button, #credits-button {
+#start-button, #score-button, #view-button, #logout-button, #index-back-button, #credits-button {
     position: absolute; /* Place it in the center of the button container */ 
     transform: translate(-50%, -50%);
     top: 50%;
@@ -72,7 +76,7 @@ body {
 }
 
 /* "Clicked" button images */
-#start-button-clicked, #score-button-clicked, #view-button-clicked, #logout-button-clicked, #credits-button-clicked {
+#start-button-clicked, #score-button-clicked, #view-button-clicked, #logout-button-clicked, #index-back-button-clicked, #credits-button-clicked {
     position: absolute; /* Place it in the center of the button container */ 
     transform: translate(-50%, -50%);
     top: 50%;
@@ -82,7 +86,7 @@ body {
 }
 
 /* Text on buttons */
-#start-button-text, #score-button-text, #view-button-text, #logout-button-text, #credits-button-text {
+#start-button-text, #score-button-text, #view-button-text, #logout-button-text, #index-back-button-text, #credits-button-text {
     position: absolute; /* Place it in the center of the button container */ 
     transform: translate(-50%, -50%);
     top: 50%;
@@ -220,7 +224,7 @@ body {
 }
 
 /* Button containers */
-#register-login-button-container, #play-button-container {
+#register-login-button-container, #play-button-container, #register-back-button-container {
     position: relative; /* Position relative to make other elements with position absolute display accordingly */ 
     text-align: center;
     margin-top: 5%;
@@ -241,8 +245,8 @@ body {
     opacity: 0; /* Hide (make invisible) until the script runs */
 }
 
-/* "Clicked" button images */
-#login-button, #register-login-button, #play-button, #register-button {
+/* "Unclicked" button images */
+#login-button, #register-login-button, #play-button, #register-button, #register-back-button {
     position: absolute; /* Place them in the center of the button container */ 
     transform: translate(-50%, -50%);
     top: 50%;
@@ -250,8 +254,8 @@ body {
     width: 100%;
 }
 
-/* "Unclicked" button images */
-#login-button-clicked, #register-login-button-clicked, #play-button-clicked, #register-button-clicked {
+/* "Clicked" button images */
+#login-button-clicked, #register-login-button-clicked, #play-button-clicked, #register-button-clicked, #register-back-button-clicked {
     position: absolute; /* Place it in the center of the button container */ 
     transform: translate(-50%, -50%);
     top: 50%;
@@ -260,8 +264,8 @@ body {
     display: none;
 }
 
-/* Text on the button */
-#login-button-text, #register-login-button-text, #play-button-text, #register-button-text {
+/* Text on buttons */
+#login-button-text, #register-login-button-text, #play-button-text, #register-button-text, #register-back-button-text {
     position: absolute; /* Place it in the center of the button container */ 
     transform: translate(-50%, -50%);
     top: 50%;
@@ -336,7 +340,7 @@ body {
 }
 
 /* Button container */
-#scores-credits-back-button-container {
+#scores-credits-back-button-container, #scores-credits-unregistered-back-button-container {
     position: absolute; /* Position relative to make other elements with position absolute display accordingly */ 
     transform: translate(-50%, -50%);
     top: 110%;
@@ -347,19 +351,30 @@ body {
     padding-right: 0%;
 }
 
-/* "Clicked" button image */
-#scores-credits-back-button {
+/* Button itself (invisible) */
+#scores-credits-unregistered-back-form-button {
+    position: absolute; /* Place them in the center of the button container */ 
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    min-height: 3vw;
     width: 100%;
+    opacity: 0; /* Hide (make invisible) until the script runs */
 }
 
 /* "Unclicked" button image */
-#scores-credits-back-button-clicked {
+#scores-credits-back-button, #scores-credits-unregistered-back-button {
+    width: 100%;
+}
+
+/* "Clicked" button image */
+#scores-credits-back-button-clicked, #scores-credits-unregistered-back-button-clicked {
     width: 100%;
     display: none;
 }
 
 /* Text on the button */
-#scores-credits-back-button-text {
+#scores-credits-back-button-text, #scores-credits-unregistered-back-button-text {
     position: absolute; /* Place it in the center of the button container */ 
     transform: translate(-50%, -50%);
     top: 50%;
@@ -367,4 +382,9 @@ body {
     font-family: Luminari, Papyrus, fantasy;
     font-size: 1.2vw;
     color: white;
+}
+
+/* Invisible form */
+#scores-credits-unregistered-back-button-input {
+    display: none;
 }

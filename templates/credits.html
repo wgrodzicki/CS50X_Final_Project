@@ -64,15 +64,30 @@
         </table>
     </div>
     <!-- "Back" button linking back to the game -->
+    {% if session %}
     <a href="/">
         <div id="scores-credits-back-button-container" class="d-flex align-items-center">
             <img id="scores-credits-back-button" src="/static/menu/Button.png">
             <img id="scores-credits-back-button-clicked" src="/static/menu/Button_clicked.png">
             <div id="scores-credits-back-button-text">Back</div>
         </div>
-    </a>    
+    </a>
+    <!-- Script for the button -->
+    <script src="/static/scores_credits_script.js"></script>
+    {% else %}
+    <form action="/", method="post">
+        <div id="scores-credits-unregistered-back-button-container" class="d-flex align-items-center">
+            <img id="scores-credits-unregistered-back-button" src="/static/menu/Button.png">
+            <img id="scores-credits-unregistered-back-button-clicked" src="/static/menu/Button_clicked.png">
+            <div id="scores-credits-unregistered-back-button-text">Back</div>
+            <input id="scores-credits-unregistered-back-button-input" name="back" type="text" value="back">
+            <!-- Button itself (invisible) -->
+            <button id="scores-credits-unregistered-back-form-button" type="submit" class="mx-auto d-flex align-items-center"></button>
+        </div>
+    </form>
+    <!-- Script for the button -->
+    <script src="/static/credits_unregistered_script.js"></script>
+    {% endif %}
 </div>
-<!-- Script for the button -->
-<script src="/static/scores_credits_script.js"></script>
 
 {% endblock %}

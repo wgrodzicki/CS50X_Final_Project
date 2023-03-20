@@ -75,7 +75,7 @@ def register():
         password_letter = "Password must contain at least 1 letter"
         password_digit = "Password must contain at least 1 digit"
         confirmation_lack = "Confirmation password required"
-        confirmation_match = "Passwords don's match"
+        confirmation_match = "Passwords don't match"
 
         # Query database for all usernames already registered
         usernames_db = db.execute("SELECT username FROM users")
@@ -255,12 +255,21 @@ def scores():
     return redirect("/")
 
 
-@app.route("/credits")
+@app.route("/credits", methods=["GET", "POST"])
 def credits():
     """Show credits"""
 
+    if request.method == "POST":
+
+        # Get the data from the back button form
+        back = request.form.get("name")
+
+        # Check if back button is clicked
+        if back:
+            render_template("index.html", session=session)
+
     # Show credits page
-    return render_template("credits.html")
+    return render_template("credits.html", session=session)
 
 
 @app.route("/logout")

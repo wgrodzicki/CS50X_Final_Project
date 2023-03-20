@@ -15,11 +15,11 @@ window.addEventListener("load", function() {
     context.textAlign = "center";
     // Black &...
     context.fillStyle = "black";
-    context.font = "120px Luminari, Papyrus, fantasy";
+    context.font = "120px Luminari, Papyrus, serif";
     context.fillText("The Eradicator", canvas.width / 2, canvas.height / 2);
     // ...& white for shade effect
     context.fillStyle = "white";
-    context.font = "120px Luminari, Papyrus, fantasy";
+    context.font = "120px Luminari, Papyrus, serif";
     context.fillText("The Eradicator", canvas.width / 2 + 3, canvas.height / 2 + 3);
     // Display game border
     let border = document.getElementById("border-game");
@@ -33,6 +33,7 @@ window.addEventListener("load", function() {
     let buttonCreditsClicked = document.getElementById("credits-button-clicked"); // Credits button clicked
     let buttonCreditsText = document.getElementById("credits-button-text");
     buttonCreditsContainer.addEventListener("click", function() {
+        // Animate button
         buttonCredits.style.display = "none";
         buttonCreditsClicked.style.display = "initial";
         buttonCreditsText.style.marginTop = "-1%";
@@ -53,11 +54,30 @@ window.addEventListener("load", function() {
         
         // Check if game started
         if (gameStarted == false) {
+            
             // Animate button
             buttonStart.style.display = "none";
             buttonStartClicked.style.display = "initial";
             buttonStartText.style.marginTop = "-1%";
-            gameStarted = true; // Lock the button until game over
+            // After 120 ms
+            setTimeout(function() {
+                document.getElementById("left-column").style.display = "none"; // Hide left side buttons
+                document.getElementById("right-column").style.display = "none"; // Hide right side buttons
+                document.getElementById("central-column").className = "col-8"; // Increase game window size
+            }, 120);
+
+            gameStarted = true; // Lock the start button until game over
+
+            // Check if user clicks the escape key
+            window.addEventListener("keydown", event => {
+                if (event.key == "Escape") {
+                    // Go back to initial game window size and display side buttons if so
+                    document.getElementById("central-column").className = "col-6";
+                    document.getElementById("left-column").style.display = "initial";
+                    document.getElementById("right-column").style.display = "initial";
+                }
+             });
+
             // Put layers from game.html into an array
             const backgroundLayers = [];
             backgroundLayers[0] = document.getElementById("layer-0");
@@ -77,11 +97,9 @@ window.addEventListener("load", function() {
             // Game state trackers
             let gameOver = false;
             let score = 0;
-            
-            //!! Reset score
             document.getElementById("score-value").value = "0"; // Update the score form
-            
             let level = 0;
+            let screenInfo = 0;
             // Variables to control the display of level messages
             let levelTimer = 100;
             let levelOneDisplayed = false;
@@ -691,11 +709,11 @@ window.addEventListener("load", function() {
                 context.textAlign = "center";
                 // Black &...
                 context.fillStyle = "black";
-                context.font = "40px Luminari, Papyrus, fantasy";
+                context.font = "40px Luminari, Papyrus, serif";
                 context.fillText("Score: " + score, 110, 70);
                 // ...& white for shade effect
                 context.fillStyle = "white";
-                context.font = "40px Luminari, Papyrus, fantasy";
+                context.font = "40px Luminari, Papyrus, serif";
                 context.fillText("Score: " + score, 114, 74);
 
                 // Display level message according to current level
@@ -708,11 +726,11 @@ window.addEventListener("load", function() {
                             if (levelOneDisplayed == false) {
                                 // Black &...
                                 context.fillStyle = "black";
-                                context.font = "70px Luminari, Papyrus, fantasy";
+                                context.font = "70px Luminari, Papyrus, serif";
                                 context.fillText("Level 1", canvas.width / 2, canvas.height / 2);
                                 // ...& white for shade effect
                                 context.fillStyle = "white";
-                                context.font = "70px Luminari, Papyrus, fantasy";
+                                context.font = "70px Luminari, Papyrus, serif";
                                 context.fillText("Level 1", canvas.width / 2 + 3, canvas.height / 2 + 3);
                                 levelTimer--; // Keep decreasing the timer
                                 // Check if timer's out
@@ -727,11 +745,11 @@ window.addEventListener("load", function() {
                             if (levelTwoDisplayed == false) {
                                 // Black &...
                                 context.fillStyle = "black";
-                                context.font = "70px Luminari, Papyrus, fantasy";
+                                context.font = "70px Luminari, Papyrus, serif";
                                 context.fillText("Level 2", canvas.width / 2, canvas.height / 2);
                                 // ...& white for shade effect
                                 context.fillStyle = "white";
-                                context.font = "70px Luminari, Papyrus, fantasy";
+                                context.font = "70px Luminari, Papyrus, serif";
                                 context.fillText("Level 2", canvas.width / 2 + 3, canvas.height / 2 + 3);
                                 levelTimer--; // Keep decreasing the timer
                                 // Check if timer's out
@@ -746,11 +764,11 @@ window.addEventListener("load", function() {
                             if (levelThreeDisplayed == false) {
                                 // Black &...
                                 context.fillStyle = "black";
-                                context.font = "70px Luminari, Papyrus, fantasy";
+                                context.font = "70px Luminari, Papyrus, serif";
                                 context.fillText("Level 3", canvas.width / 2, canvas.height / 2);
                                 // ...& white for shade effect
                                 context.fillStyle = "white";
-                                context.font = "70px Luminari, Papyrus, fantasy";
+                                context.font = "70px Luminari, Papyrus, serif";
                                 context.fillText("Level 3", canvas.width / 2 + 3, canvas.height / 2 + 3);
                                 levelTimer--; // Keep decreasing the timer
                                 // Check if timer's out
@@ -765,11 +783,11 @@ window.addEventListener("load", function() {
                             if (levelFourDisplayed == false) {
                                 // Black &...
                                 context.fillStyle = "black";
-                                context.font = "70px Luminari, Papyrus, fantasy";
+                                context.font = "70px Luminari, Papyrus, serif";
                                 context.fillText("Level 4", canvas.width / 2, canvas.height / 2);
                                 // ...& white for shade effect
                                 context.fillStyle = "white";
-                                context.font = "70px Luminari, Papyrus, fantasy";
+                                context.font = "70px Luminari, Papyrus, serif";
                                 context.fillText("Level 4", canvas.width / 2 + 3, canvas.height / 2 + 3);
                                 levelTimer--; // Keep decreasing the timer
                                 // Check if timer's out
@@ -784,11 +802,11 @@ window.addEventListener("load", function() {
                             if (levelFiveDisplayed == false) {
                                 // Black &...
                                 context.fillStyle = "black";
-                                context.font = "70px Luminari, Papyrus, fantasy";
+                                context.font = "70px Luminari, Papyrus, serif";
                                 context.fillText("Level 5", canvas.width / 2, canvas.height / 2);
                                 // ...& white for shade effect
                                 context.fillStyle = "white";
-                                context.font = "70px Luminari, Papyrus, fantasy";
+                                context.font = "70px Luminari, Papyrus, serif";
                                 context.fillText("Level 5", canvas.width / 2 + 3, canvas.height / 2 + 3);
                                 levelTimer--; // Keep decreasing the timer
                                 // Check if timer's out
@@ -805,11 +823,11 @@ window.addEventListener("load", function() {
                 if (gameOver == true) {
                     // Black &...t
                     context.fillStyle = "black";
-                    context.font = "80px Luminari, Papyrus, fantasy";
+                    context.font = "80px Luminari, Papyrus, serif";
                     context.fillText("GAME OVER", canvas.width / 2, canvas.height / 2);
                     // ...& white for shade effect 
                     context.fillStyle = "white";
-                    context.font = "80px Luminari, Papyrus, fantasy";
+                    context.font = "80px Luminari, Papyrus, serif";
                     context.fillText("GAME OVER", canvas.width / 2 + 3, canvas.height / 2 + 3);
                 }
             }
@@ -847,6 +865,13 @@ window.addEventListener("load", function() {
                 handleDragons(deltaTime); // Display and animate dragons
                 triggerExplosions(deltaTime); // Display and animate explosions
                 displayStatus(context); // Display game status
+                // Display screen info for 200 frames
+                if (screenInfo < 200 && gameOver != true) {
+                    context.fillStyle = "white";
+                    context.font = "25px Segoe UI, serif";
+                    context.fillText('Press "Escape" to decrease screen size', 1140, 70);
+                }
+                screenInfo++; // Timer to hide screen info
                 // Check if game over
                 if (gameOver == true) {
                     music.pause(); // Stop the background music
@@ -858,11 +883,15 @@ window.addEventListener("load", function() {
                     player.jumpSound.pause();
                     player.spellSound.pause(); // Stop potential spell sound effect if game over
                     player.deathSound.play(); // Play the death sound if game over
-                    // Unlock starting button
+                    // Unlock the start button
                     gameStarted = false;
                     buttonStart.style.display = "initial";
                     buttonStartClicked.style.display = "none";
                     buttonStartText.style.marginTop = "0%";
+                    // Go back to initial game window size and display side buttons
+                    document.getElementById("central-column").className = "col-6";
+                    document.getElementById("left-column").style.display = "initial";
+                    document.getElementById("right-column").style.display = "initial";
                 }
                 else {
                     music.play(); // Play the background music

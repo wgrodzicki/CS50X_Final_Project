@@ -11,7 +11,7 @@
         <div id="index-container" class="container-fluid">
             <div class="row justify-content-center align-items-center">
                 <!-- Left side buttons -->
-                <div class="col-3">
+                <div id="left-column" class="col-3">
                     <!-- "New game" button -->
                     <div class="row justify-content-center align-items-center">
                         <div id="start-button-container" class="d-flex align-items-center">
@@ -20,6 +20,20 @@
                             <div id="start-button-text">New game</div>
                         </div>
                     </div>
+                    <!-- "Back" button to the login page -->
+                    {% if not session["user_id"] %}
+                    <div class="row justify-content-center">   
+                        <div id="index-back-button-container" class="d-flex align-items-center">
+                            <a href="/login">
+                                <img id="index-back-button" src="/static/menu/Button.png">
+                                <img id="index-back-button-clicked" src="/static/menu/Button_clicked.png">
+                                <div id="index-back-button-text">Back</div>
+                            </a>
+                        </div>  
+                    </div>
+                    <!-- Script for the button -->
+                    <script src="/static/index_unregistered_script.js"></script>
+                    {% endif %}
                     {% if session["user_id"] %}
                     <!-- "Save score" button -->
                     <form action="/", method="post">
@@ -54,11 +68,12 @@
                             </a>
                         </div>  
                     </div>
+                    <!-- Script for the buttons -->
                     <script src="/static/index_registered_script.js"></script>
                     {% endif %}
                 </div>
                 <!-- Central part with the game window -->
-                <div class="col-6">
+                <div id="central-column" class="col-6">
                     <div class="row justify-content-center">
                         <canvas id="game-canvas"></canvas>
                         <!-- Game window border -->
@@ -86,7 +101,7 @@
                     </div>
                 </div>
                 <!-- Right side -->
-                <div class="col-3">
+                <div id="right-column" class="col-3">
                     <!-- Instructions tablet -->
                     <div class="row justify-content-center">
                         <div id="instruction-tablet-container">

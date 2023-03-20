@@ -24,7 +24,7 @@ window.addEventListener("load", function() {
             buttons[i + 2].style.display = "initial"; // Display the "clicked" button image
             buttons[i + 3].style.marginTop = "-1%"; // Move the text slightly
 
-            // !!
+            // Pass the score to the button form if save button clicked
             if (i == 0) {
                 let scoreValue = document.getElementById("score-value").value;
                 document.getElementById("score-button-input").value = scoreValue;

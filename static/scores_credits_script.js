@@ -19,5 +19,4 @@ window.addEventListener("load", function() {
             buttonScoresBackText.style.marginTop = "0%"; // Move the text to the initial position
         }, 120);
     });
-
 });
