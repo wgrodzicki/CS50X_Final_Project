@@ -59,24 +59,33 @@ window.addEventListener("load", function() {
             buttonStart.style.display = "none";
             buttonStartClicked.style.display = "initial";
             buttonStartText.style.marginTop = "-1%";
-            // After 120 ms
-            setTimeout(function() {
-                document.getElementById("left-column").style.display = "none"; // Hide left side buttons
-                document.getElementById("right-column").style.display = "none"; // Hide right side buttons
-                document.getElementById("central-column").className = "col-8"; // Increase game window size
-            }, 120);
 
             gameStarted = true; // Lock the start button until game over
 
-            // Check if user clicks the escape key
-            window.addEventListener("keydown", event => {
-                if (event.key == "Escape") {
-                    // Go back to initial game window size and display side buttons if so
-                    document.getElementById("central-column").className = "col-6";
-                    document.getElementById("left-column").style.display = "initial";
-                    document.getElementById("right-column").style.display = "initial";
-                }
-             });
+            // Check if new game started
+            if (gameStarted == true) {
+                // Variable to control screen size
+                let screenBig = false;
+                // Check if user clicks the enter key
+                window.addEventListener("keydown", event => {
+                    if (event.key == "Enter") {
+                        // Check if screen is small
+                        if (screenBig == false) {
+                            document.getElementById("left-column").style.display = "none"; // Hide left side buttons
+                            document.getElementById("right-column").style.display = "none"; // Hide right side buttons
+                            document.getElementById("central-column").className = "col-8"; // Increase game window size
+                            screenBig = true;
+                        }
+                        // Check if screen is big
+                        else if (screenBig == true) {
+                            document.getElementById("left-column").style.display = "initial"; // Show left side buttons
+                            document.getElementById("right-column").style.display = "initial"; // Show right side buttons
+                            document.getElementById("central-column").className = "col-6"; // Decrease game window size
+                            screenBig = false;
+                        }
+                    }
+                });
+            }
 
             // Put layers from game.html into an array
             const backgroundLayers = [];
@@ -869,7 +878,7 @@ window.addEventListener("load", function() {
                 if (screenInfo < 200 && gameOver != true) {
                     context.fillStyle = "white";
                     context.font = "25px Segoe UI, serif";
-                    context.fillText('Press "Escape" to decrease screen size', 1140, 70);
+                    context.fillText('Press "Enter" to change screen size', 1140, 70);
                 }
                 screenInfo++; // Timer to hide screen info
                 // Check if game over

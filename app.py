@@ -1,8 +1,7 @@
 
 from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session
+from flask import Flask, redirect, render_template, request, session
 from flask_session import Session
-from tempfile import mkdtemp
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
 import re
@@ -11,7 +10,6 @@ import re
 app = Flask(__name__)
 
 # Configure session to be handled on the server side
-# Change to browser cookies?
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
@@ -39,8 +37,20 @@ def index():
             current_date = datetime.now().isoformat(timespec="seconds")
             date_formatted = re.sub("T", " ", current_date)            
 
+            # Query database for all scores
+            scores = db.execute("SELECT * FROM scores")
+            # Get the number of scores records
+            scores_length = len(scores)
+            # Set the id of the score to be saved to 1 if no there are no other records (it's the first one in the database)
+            new_id = 1
+            # Query database for the id of the previous record
+            last_id = db.execute("SELECT id FROM scores WHERE id = ?", scores_length)
+            # Set the id of the score to be saved to be 1 more than the previous one, if there are other records (it's not the first one in the database)
+            if last_id:
+                new_id = last_id[0]["id"] + 1
+
             # Save the score in the database
-            db.execute("INSERT INTO scores (username, score, date) VALUES(?, ?, ?)", username[0]["username"], score, date_formatted)
+            db.execute("INSERT INTO scores (id, username, score, date) VALUES(?, ?, ?, ?)", new_id, username[0]["username"], score, date_formatted)
 
         # Display the game without account access
         return render_template("index.html")
@@ -78,14 +88,14 @@ def register():
         confirmation_match = "Passwords don't match"
 
         # Query database for all usernames already registered
-        usernames_db = db.execute("SELECT username FROM users")
+        usernames = db.execute("SELECT username FROM users")
 
         # Check if username is provided
         if not username:
             return render_template("register.html", user_lack=user_lack)
         else:
             # Otherwise, check if username already exists in the database
-            for user in usernames_db: # Iterate over all rows 
+            for user in usernames: # Iterate over all rows 
                 if user["username"] == username: # Check the content of the "username" column
                     return render_template("register.html", user_exists=user_exists)
         
@@ -126,13 +136,24 @@ def register():
         # Hash the password
         hash = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
 
-        # Register the user by stroing username and hashed password in the database
-        db.execute("INSERT INTO users (username, hash) VALUES(?, ?)", username, hash)
+        # Get the number of usernames records
+        usernames_length = len(usernames)
+        # Set the id of the user to be registered to 1 if no there are no other records (it's the first one in the database)
+        new_id = 1
+        # Query database for the id of the previous record
+        last_id = db.execute("SELECT id FROM users WHERE id = ?", usernames_length)
+        # Set the id of the user to be registered to be 1 more than the previous one, if there are other records (it's not the first one in the database)
+        if last_id:
+            new_id = last_id[0]["id"] + 1
+
+        # Register the user by storing username and hashed password in the database
+        db.execute("INSERT INTO users (id, username, hash) VALUES(?, ?, ?)", new_id, username, hash)
 
         # return render_template("login.html", registered=registered)
         return render_template("login-registered.html")
 
     return render_template("register.html")
+
 
 @app.route("/login-registered", methods=["GET", "POST"])
 def login_registered():
@@ -153,24 +174,24 @@ def login_registered():
         password_lack = "Password required"
         password_wrong = "Wrong password"
 
-        # Query database for all usernames already registered
-        usernames_db = db.execute("SELECT * FROM users WHERE username = ?", username)
+        # Query database for the username provided
+        usernames = db.execute("SELECT * FROM users WHERE username = ?", username)
 
         # Check if username is provided
         if not username:
             return render_template("login-registered.html", user_lack=user_lack)
         # Check if username exists in the database
-        elif len(usernames_db) != 1:
+        elif len(usernames) != 1:
             return render_template("login-registered.html", user_wrong=user_wrong)
         # Check if password is provided
         if not password:
             return render_template("login-registered.html", password_lack=password_lack)
         # Check if password matches the one in the database
-        elif check_password_hash(usernames_db[0]["hash"], password) != True:
+        elif check_password_hash(usernames[0]["hash"], password) != True:
             return render_template("login-registered.html", password_wrong=password_wrong)
         
         # Initiate session
-        session["user_id"] = usernames_db[0]["id"]
+        session["user_id"] = usernames[0]["id"]
 
         return redirect("/")
 
@@ -203,24 +224,24 @@ def login():
         password_lack = "Password required"
         password_wrong = "Wrong password"
 
-        # Query database for all usernames already registered
-        usernames_db = db.execute("SELECT * FROM users WHERE username = ?", username)
+        # Query database for the username provided
+        usernames = db.execute("SELECT * FROM users WHERE username = ?", username)
 
         # Check if username is provided
         if not username:
             return render_template("login.html", user_lack=user_lack)
         # Check if username exists in the database
-        elif len(usernames_db) != 1:
+        elif len(usernames) != 1:
             return render_template("login.html", user_wrong=user_wrong)
         # Check if password is provided
         if not password:
             return render_template("login.html", password_lack=password_lack)
         # Check if password matches the one in the database
-        elif check_password_hash(usernames_db[0]["hash"], password) != True:
+        elif check_password_hash(usernames[0]["hash"], password) != True:
             return render_template("login.html", password_wrong=password_wrong)
         
         # Initiate session
-        session["user_id"] = usernames_db[0]["id"]
+        session["user_id"] = usernames[0]["id"]
 
         return redirect("/")
 
@@ -280,3 +301,63 @@ def logout():
     session.clear()
 
     return redirect("/")
+
+
+@app.route("/delete", methods=["GET", "POST"])
+def delete():
+    """Delete user account"""
+
+    if request.method == "POST":
+
+        if session:
+
+            # Query database for the logged-in user's username
+            username = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])
+
+            # Query database for all scores and get the total number of scores recorded
+            scores = db.execute("SELECT * FROM scores")
+            scores_length = len(scores)
+
+            # Check if logged-in user had any saved scores
+            user_scores = db.execute("SELECT * FROM scores WHERE username = ?", username[0]["username"])
+
+            if user_scores:
+
+                # If so, iterate over the logged-in user's scores
+                for i in range(len(user_scores)):
+                    
+                    # Query database for the id of the first saved score of the logged-in user
+                    current_id = db.execute("SELECT id FROM scores WHERE username = ? LIMIT 1", username[0]["username"])
+                    current_id = current_id[0]["id"]
+
+                    # Check if the current score is the last record in the database
+                    if current_id >= scores_length:
+                        db.execute("DELETE FROM scores WHERE id = ?", current_id)
+                        break
+
+                    # Query database for all records past the current score
+                    next_scores = db.execute("SELECT * FROM scores WHERE id > ?", current_id)
+                    # Delete current score
+                    db.execute("DELETE FROM scores WHERE id = ?", current_id)
+                    # Iterate over all records in the database past the current score and update their ids
+                    for i in range(len(next_scores)):
+                        db.execute("UPDATE scores SET id = ? WHERE id = ?", current_id + i, current_id + i + 1)
+
+            # Query database for all users past the logged-in user
+            next_users = db.execute("SELECT * FROM users WHERE id > ?", session["user_id"])
+
+            # Delete the logged-in user from the database
+            db.execute("DELETE FROM users WHERE id = ?", session["user_id"])
+
+            # Check if the logged-in user was the last one in the database
+            if next_users:
+                # If no, iterate over all users past the logged-in user and update their ids
+                for i in range(len(next_users)):
+                    db.execute("UPDATE users SET id = ? WHERE id = ?", session["user_id"] + i, next_users[i]["id"])
+
+            # Clear any ongoing session
+            session.clear()
+
+            return redirect("/")
+
+    return render_template("delete.html")

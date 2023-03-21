@@ -16,6 +16,10 @@ window.addEventListener("load", function() {
     buttons[9] = document.getElementById("logout-button");
     buttons[10] = document.getElementById("logout-button-clicked");
     buttons[11] = document.getElementById("logout-button-text");
+    buttons[12] = document.getElementById("delete-button-container");
+    buttons[13] = document.getElementById("delete-button");
+    buttons[14] = document.getElementById("delete-button-clicked");
+    buttons[15] = document.getElementById("delete-button-text");
     
     // Iterate over the buttons[] array and check if clicked by the user
     for (let i = 0; i < buttons.length; i += 4) {

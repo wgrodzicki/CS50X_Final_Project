@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Delete account
+{% endblock %}
+
+{% block main %}
+
+<!-- Main container -->
+<div id="delete-container" class="container-fluid text-center align-items-center">
+    <!-- Background tablet -->
+    <img id="delete-background" src="/static/menu/Tablet_background.png">
+    <img id="delete-border" src="/static/menu/Border.png">
+    <p id="delete-question">Are you sure you want to delete your account?</p>
+    <form action="/delete" method="post">
+        <!-- "Yes" button -->
+        <div id="delete-yes-button-container" class="mx-auto d-flex align-items-center">
+            <img id="delete-yes-button" src="/static/menu/Button.png">
+            <img id="delete-yes-button-clicked" src="/static/menu/Button_clicked.png">
+            <div id="delete-yes-button-text">Yes</div>
+            <!-- Button itself (invisible) -->
+            <button id="delete-yes-form-button" type="submit" class="mx-auto d-flex align-items-center"></button>
+        </div>
+    </form>
+    <!-- "No" button to the login page  -->
+    <div id="delete-no-button-container" class="mx-auto d-flex align-items-center">
+        <a href="/">
+            <img id="delete-no-button" src="/static/menu/Button.png">
+            <img id="delete-no-button-clicked" src="/static/menu/Button_clicked.png">
+            <div id="delete-no-button-text">No</div>
+        </a>
+    </div>
+</div>
+<!-- Script for the buttons -->
+<script src="/static/delete_script.js"></script>
+
+{% endblock %}

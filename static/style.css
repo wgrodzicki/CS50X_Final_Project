@@ -29,7 +29,8 @@ body {
 }
 
 /* Left side buttons containers */
-#start-button-container, #score-button-container, #view-button-container, #logout-button-container, #index-back-button-container {
+#start-button-container, #score-button-container, #view-button-container,
+#logout-button-container, #delete-button-container, #index-back-button-container {
     position: relative; /* Position relative to make other elements with position absolute display accordingly */
     width: 70%;
     margin-top: 12%;
@@ -67,7 +68,7 @@ body {
 }
 
 /* "Unclicked" button images */
-#start-button, #score-button, #view-button, #logout-button, #index-back-button, #credits-button {
+#start-button, #score-button, #view-button, #logout-button, #delete-button, #index-back-button, #credits-button {
     position: absolute; /* Place it in the center of the button container */ 
     transform: translate(-50%, -50%);
     top: 50%;
@@ -76,7 +77,8 @@ body {
 }
 
 /* "Clicked" button images */
-#start-button-clicked, #score-button-clicked, #view-button-clicked, #logout-button-clicked, #index-back-button-clicked, #credits-button-clicked {
+#start-button-clicked, #score-button-clicked, #view-button-clicked, #logout-button-clicked,
+#delete-button-clicked, #index-back-button-clicked, #credits-button-clicked {
     position: absolute; /* Place it in the center of the button container */ 
     transform: translate(-50%, -50%);
     top: 50%;
@@ -86,12 +88,13 @@ body {
 }
 
 /* Text on buttons */
-#start-button-text, #score-button-text, #view-button-text, #logout-button-text, #index-back-button-text, #credits-button-text {
+#start-button-text, #score-button-text, #view-button-text, #logout-button-text,
+#delete-button-text, #index-back-button-text, #credits-button-text {
     position: absolute; /* Place it in the center of the button container */ 
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    font-family: Luminari, Papyrus, fantasy;
+    font-family: Luminari, Papyrus, serif;
     font-size: 1.2vw;
     color: white;
 }
@@ -140,7 +143,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 70%;
-    font-family: Luminari, Papyrus, fantasy;
+    font-family: Luminari, Papyrus, serif;
     font-size: 1.05vw;
     color: white;
 }
@@ -148,7 +151,7 @@ body {
 /* LOGIN & REGISTER */
 
 /* Main containers */
-#login-container, #register-container {
+#login-container, #register-container, #delete-container {
     position: absolute; /* Position relative to make other elements with position absolute display accordingly */ 
     transform: translate(-50%, -50%);
     top: 50%;
@@ -179,7 +182,7 @@ body {
 }
 
 /* Login after registered tablet background */
-#register-background, #login-registered-background {
+#register-background, #login-registered-background, #delete-background {
     position: absolute; /* Place it in the center of the main container */
     transform: translate(-50%, -50%);
     top: 50%;
@@ -191,7 +194,7 @@ body {
 }
 
 /* Login after registered tablet border */
-#register-border, #login-registered-border {
+#register-border, #login-registered-border, #delete-border {
     position: absolute; /* Place it in the center of the main container */
     transform: translate(-50%, -50%);
     top: 50%;
@@ -213,7 +216,7 @@ body {
 }
 
 /* Button containers */
-#login-button-container, #register-button-container {
+#login-button-container, #register-button-container, #delete-yes-button-container {
     position: relative; /* Position relative to make other elements with position absolute display accordingly */ 
     text-align: center;
     margin-top: 3%;
@@ -224,7 +227,7 @@ body {
 }
 
 /* Button containers */
-#register-login-button-container, #play-button-container, #register-back-button-container {
+#register-login-button-container, #play-button-container, #register-back-button-container, #delete-no-button-container {
     position: relative; /* Position relative to make other elements with position absolute display accordingly */ 
     text-align: center;
     margin-top: 5%;
@@ -235,7 +238,7 @@ body {
 }
 
 /* Buttons themselves (invisible) */
-#login-form-button, #register-form-button, #play-form-button {
+#login-form-button, #register-form-button, #play-form-button, #delete-yes-form-button {
     position: absolute; /* Place them in the center of the button container */ 
     transform: translate(-50%, -50%);
     top: 50%;
@@ -246,7 +249,7 @@ body {
 }
 
 /* "Unclicked" button images */
-#login-button, #register-login-button, #play-button, #register-button, #register-back-button {
+#login-button, #register-login-button, #play-button, #register-button, #register-back-button, #delete-yes-button, #delete-no-button {
     position: absolute; /* Place them in the center of the button container */ 
     transform: translate(-50%, -50%);
     top: 50%;
@@ -255,7 +258,8 @@ body {
 }
 
 /* "Clicked" button images */
-#login-button-clicked, #register-login-button-clicked, #play-button-clicked, #register-button-clicked, #register-back-button-clicked {
+#login-button-clicked, #register-login-button-clicked, #play-button-clicked, #register-button-clicked,
+#register-back-button-clicked, #delete-yes-button-clicked, #delete-no-button-clicked {
     position: absolute; /* Place it in the center of the button container */ 
     transform: translate(-50%, -50%);
     top: 50%;
@@ -265,12 +269,13 @@ body {
 }
 
 /* Text on buttons */
-#login-button-text, #register-login-button-text, #play-button-text, #register-button-text, #register-back-button-text {
+#login-button-text, #register-login-button-text, #play-button-text, #register-button-text,
+#register-back-button-text, #delete-yes-button-text, #delete-no-button-text {
     position: absolute; /* Place it in the center of the button container */ 
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    font-family: Luminari, Papyrus, fantasy;
+    font-family: Luminari, Papyrus, serif;
     font-size: 1.2vw;
     color: white;
 }
@@ -286,10 +291,13 @@ body {
     color: white;
 }
 
-/* <hr> element */
-.empty-line {
-    margin-top: 0px;
-    opacity: 0;
+/* Delete question */
+#delete-question {
+    margin-top: 3%;
+    margin-bottom: 4%;
+    font-family: Luminari, Papyrus, serif;
+    font-size: 1.25vw;
+    color: white;
 }
 
 /* SCORES & CREDITS */
@@ -335,7 +343,7 @@ body {
     width: 90%;
     max-height: 90%;
     overflow: auto;
-    font-family: Luminari, Papyrus, fantasy;
+    font-family: Luminari, Papyrus, serif;
     font-size: 1.1vw;
 }
 
@@ -379,7 +387,7 @@ body {
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    font-family: Luminari, Papyrus, fantasy;
+    font-family: Luminari, Papyrus, serif;
     font-size: 1.2vw;
     color: white;
 }
