@@ -347,6 +347,11 @@ body {
     font-size: 1.1vw;
 }
 
+/* Table itself */
+#scores-credits-table {
+    color: white;
+}
+
 /* Button container */
 #scores-credits-back-button-container, #scores-credits-unregistered-back-button-container {
     position: absolute; /* Position relative to make other elements with position absolute display accordingly */ 
