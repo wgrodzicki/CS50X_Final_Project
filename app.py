@@ -1,3 +1,11 @@
+# For numerical/aplhabetical checks methods in Python I consulted: https://www.tutorialsteacher.com/python/string-methods
+# For techniques to handle dates and regular expressions in Python I used: https://docs.python.org/3/
+# For the basis of the game code and techniques I followed the course on: https://www.freecodecamp.org/news/learn-javascript-game-development-full-course/
+# For information regarding JS arrays I consulted: https://www.freecodecamp.org/news/check-if-javascript-array-is-empty-or-not-with-length/
+# For information on specific fonts I visited: https://www.w3.org/Style/Examples/007/fonts.en.html
+# For any other HTML/CSS/JS techniques or code explanation I used information from: https://www.w3schools.com/ and https://developer.mozilla.org/
+
+# Back-end part of the project to handle registration/logging in, sessions and scores storing
 
 from cs50 import SQL
 from flask import Flask, redirect, render_template, request, session
@@ -24,8 +32,14 @@ def index():
     # Check if user clicks "Just play" button in the login window
     if request.method == "POST":
 
+        play = request.form.get("play")
+
         # Check if user is logged in
         if session:
+
+            # Log user out if accidently accessed the "Just play" button
+            if play:
+                redirect("/logout")
             
             # Get the score from the invisible score form
             score = request.form.get("score")
@@ -206,13 +220,6 @@ def login():
     session.clear()
 
     if request.method == "POST":
-
-        # Get the data from the play button form
-        play = request.form.get("name")
-
-        # Check if play button is clicked
-        if play:
-            render_template("index.html")
 
         # Get data from the login form
         username = request.form.get("username")

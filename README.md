@@ -3,11 +3,11 @@
 #
 This is "The Eradicator", a 2D side-scroller game available directly in the browser. You can play it straight away or, optionally, register to set up an account and keep track of your scores!
 
-![Menu sample](/game/static/images/title_sample.png)
+![Menu sample](/game/static/images/menu_sample.png)
 
 ## **Learning through gaming**
 
-Computer games are what got me into coding in the first place. I'm also a firm believer in the "learning through gaming" approach to gaining new skills. That being said, a programming field I wanted to explore more is web development. That's why I decided to combine both and create for my final project an online, web-based game.
+Computer games are what got me into coding in the first place. I'm also a firm believer in the "learning through gaming" approach to gaining new skills. That being said, a programming field I wanted to explore more is web development. That's why I decided to combine both and create for my final project browser-based game embedded in a full-stack web application.
 
 ## **Features**
 
@@ -39,13 +39,13 @@ The game itself is fairly simple. It's an endless 2D side-scroller where you bec
 
 #### **Player controls**
 
-Control the character using you keyboard:
+Control the character using your keyboard:
 
 - press left/right arrow keys to run
 - press up arrow key to jump
 - press spacebar to attack
 
-You can jump and attack at the same time, while attacking on the ground makes the character stop moving Attacks in the air have a shorter range, but cover more space. On the contrary, attacks from the ground have a longer range, but require more precision. Also note that keeping the spacebar pressed allows for long-lasting attacks.
+You can jump and attack at the same time, while attacking on the ground makes the character stop moving Attacks in the air have a shorter range, but cover more space. On the contrary, attacks from the ground have a longer range, but require more precision. Also note that keeping the spacebar pressed allows for long-lasting attacks. If you want to play with a larger screen size, just press enter.
 
 ![Menu sample](/game/static/images/gameplay_sample.png)
 
@@ -59,7 +59,7 @@ There are 5 difficulty levels you can unlock after having defeated a sufficient 
 
 #### **Front-end**
 
-For the markup and styling of the website I used HTML, CSS and [Bootstrap](https://getbootstrap.com/). The game itself was implemented in pure JavaScript using the code base provided in the FreeCodeCamp's ["JavaScript Game Development Course for Beginners"](https://www.freecodecamp.org/news/learn-javascript-game-development-full-course/).
+For the markup and styling of the website I used HTML, CSS and [Bootstrap](https://getbootstrap.com/). The game itself was implemented in pure JavaScript using the code base provided in the FreeCodeCamp's [JavaScript Game Development Course for Beginners](https://www.freecodecamp.org/news/learn-javascript-game-development-full-course/).
 
 #### **Back-end**
 
@@ -69,15 +69,15 @@ The server-side of the application was implemented in Python using the [Flask](h
 
 When designing and implementing the project I stumbled upon several challenges:
 
-- Character attacks: I needed to figure out how to properly render attack animations and determine their reach. The solution was to: re-design the character sprite sheet so that it had no blank spaces; appropriately insert the attack controls into the movement code with boolean variables to keep track of the attack mode and character position (in the air/on the ground); tie attacks ranges to character and enemy hit boxes.
+- _Character attacks_. I needed to figure out how to properly render attack animations and determine their reach. The solution was to: re-design the character sprite sheet so that it had no blank spaces; appropriately insert the attack controls into the movement code with boolean variables to keep track of the attack mode and character position (in the air/on the ground); tie attack ranges to character and enemy hit boxes.
 
-- Difficulty level: I wanted the diffculty level to affect enemy behaviour and to be updated depending on player's score. The solution was to: include the code changing enemy movement inside the enemy class; declare a global variable to keep track of the level and update it inside the enemy class; create a switch statement in the function responsible for displaying level messages that evaluates the global variable value with every animation frame.
+- _Difficulty level_. I wanted the diffculty level to affect enemy behaviour and to be updated depending on player's score. The solution was to: include the code changing enemy movement inside the enemy class; declare a global variable to keep track of the current level and update it inside the enemy class; create a switch statement in the function responsible for displaying level messages that evaluates the global variable value (that keeps track of the level) with every animation frame.
 
-- Button animation: I found assets for "clicked" and "unclicked" button images, so I wanted to animate them dynamically and give them real "button properties". The solution was to: place HTML buttons and/or links over button images; add function listening to the click event and reacting by hiding the "unclicked" image, displaying the "clicked" image and slightly changing the position of button text for a short period, creating the effect of interactive buttons.
+- _Button animation_. I found assets for "clicked" and "unclicked" button images, so I wanted to animate them dynamically and give them real "button properties". The solution was to: place HTML buttons and/or links over button images; add a function listening to the click event and reacting by hiding the "unclicked" image, displaying the "clicked" image and changing the position of button text slightly for a short period, creating the effect of interactive buttons.
 
-- Playing without logging in: one of my goals was to give the user a choice whether to set up an account or not, but implementing this option turned out to be tricky. The solutin was to: 
+- _Playing without logging in_. One of my goals was to give the user a choice whether to set up an account or not, but implementing this option turned out to be tricky. The solution was to: place an HTML form on a special button redirecting the user to a restricted version of the website (giving access to the game itself without the option to save scores); implement in the back-end an option to visit the game page by the "post" method that fetches the data from the form/button and renders the game without logging in; to distinguish it from the access for registered users, the "get" method is used when logging in and the complete version of the website is rendered.
 
-- Updating the database: 
+- _Updating the database_. I wanted the user to be able to delete the account (and all stored scores and credentials), but keep the database "tidy" in terms of indexes at the same time. The solution was to: after deletion of any row in tables containing user's data, loop over all subsequent rows - one by one - to update their indexes to be 1 less than before; it was also necessary to get rid of the autoincrementation of indexes and handle the indexing of new records when inserting them into tables by always setting their index to be 1 more than the index of the last record in the table.
 
 ## **Future plans**
 
@@ -85,15 +85,27 @@ I plan to deploy the application and make it avaiable online. In the future I wo
 
 ## **Credits**
 
-#### **Game code basis**
+#### **Code basis & techniques**
 
-- 
+- Game code scaffold by Frank Dvorak via FreeCodeCamp: https://t.ly/TZyr
 
 #### **Assets**
 
-- 
+- Website background by ChrisFiedler via Pixabay: https://t.ly/68iD
+- Game GUI "RPG GUI construction kit v1.0" by Lamoot via OpenGameArt: https://t.ly/1QS4 (CC BY 3.0)
+- Game background by Eder Muniz via GameDev Market: https://t.ly/e_df
+- Player sprite by CraftPix via CraftPix: https://t.ly/RvT-
+- Enemy sprite "Flying Dragon Rework" by ZaPaper & Jordan Irwin (AntumDeluge), credits to: http://www.buko-studios.com/, commissioned by PlayCraft: https://www.playcraftapp.com/ via OpenGameArt: https://t.ly/UGBh (CC BY 3.0, with changes)
+- Explosion effect "Explosions" by helpcomputer via OpenGameArt: http://tinyurl.com/2p934fab (CC BY 3.0) 
 
 #### **Music & sound effects**
 
-- 
+- Music "RPG Battle Theme - "The Last Encounter" by Matthew Pablo: http://www.matthewpablo.com via OpenGameArt: http://tinyurl.com/2yyhkfnu (CC BY-SA 3.0)
+- Player step sound by HaelDB via OpenGameArt: http://tinyurl.com/2p9xthe9 (CC0 1.0)
+- Player jump sound by dave.des via Pixabay: http://tinyurl.com/yhbk8za9
+- Player spell sound by cubicApocalypse via Pixabay: http://tinyurl.com/2w3x2jr7
+- Player death sound by micahlg via Pixabay: http://tinyurl.com/yc2f6bw7
+- Enemy scream sound "15 monster grunt/pain/death sounds" by Michel Baradari via OpenGameArt: https://t.ly/twKsq (CC BY 3.0)
+- Enemy wing sound by AntumDeluge via OpenGameArt: https://t.ly/wBHA (CC0 1.0)
+- Explosion effect sound by qubodup via Pixabay: http://tinyurl.com/2p8xw48c
 

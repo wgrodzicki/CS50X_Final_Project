@@ -302,6 +302,7 @@ body {
 
 /* SCORES & CREDITS */
 
+/* Main container */
 #scores-credits-container {
     position: absolute;
     transform: translate(-50%, -50%);
@@ -311,7 +312,7 @@ body {
     height: 70%;
 }
 
-/* Scores tablet background */
+/* Scores/credits tablet background */
 #scores-credits-background {
     position: absolute; /* Place it in the center of the main container */
     transform: translate(-50%, -50%);
@@ -323,7 +324,7 @@ body {
     opacity: 0.5;
 }
 
-/* Scores tablet border */
+/* Scores/credits tablet border */
 #scores-credits-border {
     position: absolute; /* Place it in the center of the main container */
     transform: translate(-50%, -50%);
@@ -334,8 +335,8 @@ body {
     z-index: -1; /* Move it behind the form and button */
 }
 
-/* Scores table */
-#scores-credits-table-container {
+/* Scores table container */
+#scores-table-container {
     position: absolute; /* Place it in the center of the main container */
     transform: translate(-50%, -50%);
     top: 50%;
@@ -345,6 +346,25 @@ body {
     overflow: auto;
     font-family: Luminari, Papyrus, serif;
     font-size: 1.1vw;
+}
+
+/* Credits table title */
+#credits-table-title {
+    font-family: Luminari, Papyrus, serif;
+    font-size: 1.1vw;
+}
+
+/* Credits table container */
+#credits-table-container {
+    position: absolute; /* Place it in the center of the main container */
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    max-height: 90%;
+    overflow: auto;
+    font-family: Segoe UI, serif;
+    font-size: 0.9vw;
 }
 
 /* Table itself */
