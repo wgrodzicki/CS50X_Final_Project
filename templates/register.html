@@ -8,9 +8,11 @@
 
 <!-- Main container -->
 <div id="register-container" class="container-fluid text-center align-items-center">
+
     <!-- Background tablet -->
-    <img id="register-background" src="/static/menu/Tablet_background.png">
-    <img id="register-border" src="/static/menu/Border.png">
+    <img id="register-background" src="/static/menu/Tablet_background.png" alt="Background">
+    <img id="register-border" src="/static/menu/Border.png" alt="Border">
+
     <!-- Registration form -->
     <form action="/register" method="post">
         <div class="mb-3">
@@ -33,25 +35,30 @@
             <div class="apology">{{ confirmation_lack }}</div>
             <div class="apology">{{ confirmation_match }}</div>
         </div>
+
         <!-- "Register" button -->
         <div id="register-button-container" class="mx-auto d-flex align-items-center">
-            <img id="register-button" src="/static/menu/Button.png">
-            <img id="register-button-clicked" src="/static/menu/Button_clicked.png">
+            <img id="register-button" src="/static/menu/Button.png" alt="Clicked button">
+            <img id="register-button-clicked" src="/static/menu/Button_clicked.png" alt="Unclicked button">
             <div id="register-button-text">Register</div>
             <!-- Button itself (invisible) -->
             <button id="register-form-button" type="submit" class="mx-auto d-flex align-items-center"></button>
         </div>
+
     </form>
+
     <!-- "Back" button to the login page  -->
     <div id="register-back-button-container" class="mx-auto d-flex align-items-center">
         <a href="/login">
-            <img id="register-back-button" src="/static/menu/Button.png">
-            <img id="register-back-button-clicked" src="/static/menu/Button_clicked.png">
+            <img id="register-back-button" src="/static/menu/Button.png" alt="Clicked button">
+            <img id="register-back-button-clicked" src="/static/menu/Button_clicked.png" alt="Unclicked button">
             <div id="register-back-button-text">Back</div>
         </a>
     </div>
+
 </div>
+
 <!-- Script for the buttons -->
-<script src="/static/register_script.js"></script>
+<script src="/static/buttons_script.js"></script>
 
 {% endblock %}

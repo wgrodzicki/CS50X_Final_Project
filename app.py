@@ -25,6 +25,7 @@ Session(app)
 # Configure SQL database
 db = SQL("sqlite:///game.db")
 
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     """Play the game"""
@@ -55,11 +56,11 @@ def index():
             scores = db.execute("SELECT * FROM scores")
             # Get the number of scores records
             scores_length = len(scores)
-            # Set the id of the score to be saved to 1 if no there are no other records (it's the first one in the database)
+            # Set the id of the score to be saved to 1 if there are no other records (it's the first one in the database)
             new_id = 1
             # Query database for the id of the previous record
             last_id = db.execute("SELECT id FROM scores WHERE id = ?", scores_length)
-            # Set the id of the score to be saved to be 1 more than the previous one, if there are other records (it's not the first one in the database)
+            # Set the id of the score to be saved to be 1 more than the previous one if there are other records (it's not the first one in the database)
             if last_id:
                 new_id = last_id[0]["id"] + 1
 
@@ -69,7 +70,7 @@ def index():
         # Display the game without account access
         return render_template("index.html")
     
-    # Check if user tries to access game in another way
+    # Check if user tries to access the game in another way
     else:
         # Check if logged in
         if not session:
@@ -150,9 +151,9 @@ def register():
         # Hash the password
         hash = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
 
-        # Get the number of usernames records
+        # Get the number of usernames registered
         usernames_length = len(usernames)
-        # Set the id of the user to be registered to 1 if no there are no other records (it's the first one in the database)
+        # Set the id of the user to be registered to 1 if there are no other records (it's the first one in the database)
         new_id = 1
         # Query database for the id of the previous record
         last_id = db.execute("SELECT id FROM users WHERE id = ?", usernames_length)
@@ -163,7 +164,6 @@ def register():
         # Register the user by storing username and hashed password in the database
         db.execute("INSERT INTO users (id, username, hash) VALUES(?, ?, ?)", new_id, username, hash)
 
-        # return render_template("login.html", registered=registered)
         return render_template("login-registered.html")
 
     return render_template("register.html")
@@ -316,24 +316,25 @@ def delete():
 
     if request.method == "POST":
 
+        # Check if user is logged in
         if session:
 
-            # Query database for the logged-in user's username
+            # Query database for the logged in user's username
             username = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])
 
             # Query database for all scores and get the total number of scores recorded
             scores = db.execute("SELECT * FROM scores")
             scores_length = len(scores)
 
-            # Check if logged-in user had any saved scores
+            # Check if the logged in user had any saved scores
             user_scores = db.execute("SELECT * FROM scores WHERE username = ?", username[0]["username"])
 
             if user_scores:
 
-                # If so, iterate over the logged-in user's scores
+                # If so, iterate over the logged in user's scores
                 for i in range(len(user_scores)):
                     
-                    # Query database for the id of the first saved score of the logged-in user
+                    # Query database for the id of the first saved score of the logged in user
                     current_id = db.execute("SELECT id FROM scores WHERE username = ? LIMIT 1", username[0]["username"])
                     current_id = current_id[0]["id"]
 
@@ -350,15 +351,15 @@ def delete():
                     for i in range(len(next_scores)):
                         db.execute("UPDATE scores SET id = ? WHERE id = ?", current_id + i, current_id + i + 1)
 
-            # Query database for all users past the logged-in user
+            # Query database for all users past the logged in user
             next_users = db.execute("SELECT * FROM users WHERE id > ?", session["user_id"])
 
-            # Delete the logged-in user from the database
+            # Delete the logged in user from the database
             db.execute("DELETE FROM users WHERE id = ?", session["user_id"])
 
-            # Check if the logged-in user was the last one in the database
+            # Check if the logged in user was the last one in the database
             if next_users:
-                # If no, iterate over all users past the logged-in user and update their ids
+                # If no, iterate over all users past the logged in user and update their ids
                 for i in range(len(next_users)):
                     db.execute("UPDATE users SET id = ? WHERE id = ?", session["user_id"] + i, next_users[i]["id"])
 

@@ -6,10 +6,13 @@
 
 {% block main %}
 
+<!-- Main container -->
 <div id="scores-credits-container" class="mx-auto d-flex justify-content-center align-items-center">
+
     <!-- Background tablet -->
-    <img id="scores-credits-background" src="/static/menu/Instruction_tablet_background.png">
-    <img id="scores-credits-border" src="/static/menu/Instruction_tablet_border.png">
+    <img id="scores-credits-background" src="/static/menu/Instruction_tablet_background.png" alt="Background">
+    <img id="scores-credits-border" src="/static/menu/Instruction_tablet_border.png" alt="Border">
+
     <!-- Table container -->
     <div id="credits-table-container">
         <table id="scores-credits-table" class="table">
@@ -20,14 +23,15 @@
             </thead>
             <tbody class="table-group-divider">
                     <tr>
-                        <td class="text-start">Game code scaffold by Frank Dvorak via FreeCodeCamp: https://t.ly/TZyr</td>
+                        <td class="text-start">Game code basis by Frank Dvorak via FreeCodeCamp: https://t.ly/TZyr</td>
                     </tr>
                     <tr>
                         <td class="text-start">Website background by ChrisFiedler via Pixabay: https://t.ly/68iD</td>
                     </tr>
                     <tr>
                         <td class="text-start">Game GUI "RPG GUI construction kit v1.0" by Lamoot via OpenGameArt: https://t.ly/1QS4 (CC BY 3.0)</td>
-                    </tr>    
+                    </tr>   
+                    <tr> 
                         <td class="text-start">Game background by Eder Muniz via GameDev Market: https://t.ly/e_df</td>
                     </tr>
                     <tr>
@@ -66,31 +70,36 @@
             </tbody>
         </table>
     </div>
-    <!-- "Back" button linking back to the game -->
+
+    <!-- "Back" button linking back to the game (user registered and logged in) -->
     {% if session %}
     <a href="/">
         <div id="scores-credits-back-button-container" class="d-flex align-items-center">
-            <img id="scores-credits-back-button" src="/static/menu/Button.png">
-            <img id="scores-credits-back-button-clicked" src="/static/menu/Button_clicked.png">
+            <img id="scores-credits-back-button" src="/static/menu/Button.png" alt="Clicked button">
+            <img id="scores-credits-back-button-clicked" src="/static/menu/Button_clicked.png" alt="Unclicked button">
             <div id="scores-credits-back-button-text">Back</div>
         </div>
     </a>
-    <!-- Script for the button -->
-    <script src="/static/scores_credits_script.js"></script>
+
     {% else %}
+    <!-- Mark the page for the buttons script -->
+    <div class="conditional-part">credits_unregistered</div>
+    <!-- "Back" button linking back to the game (user unregistered) -->
     <form action="/", method="post">
         <div id="scores-credits-unregistered-back-button-container" class="d-flex align-items-center">
-            <img id="scores-credits-unregistered-back-button" src="/static/menu/Button.png">
-            <img id="scores-credits-unregistered-back-button-clicked" src="/static/menu/Button_clicked.png">
+            <img id="scores-credits-unregistered-back-button" src="/static/menu/Button.png" alt="Clicked button">
+            <img id="scores-credits-unregistered-back-button-clicked" src="/static/menu/Button_clicked.png" alt="Unclicked button">
             <div id="scores-credits-unregistered-back-button-text">Back</div>
             <input id="scores-credits-unregistered-back-button-input" name="back" type="text" value="back">
             <!-- Button itself (invisible) -->
             <button id="scores-credits-unregistered-back-form-button" type="submit" class="mx-auto d-flex align-items-center"></button>
         </div>
     </form>
-    <!-- Script for the button -->
-    <script src="/static/credits_unregistered_script.js"></script>
     {% endif %}
+    
 </div>
+
+<!-- Script for the button -->
+<script src="/static/buttons_script.js"></script>
 
 {% endblock %}

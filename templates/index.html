@@ -6,155 +6,170 @@
 
 {% block main %}
 
-    <main>
-        <!-- Main container -->
-        <div id="index-container" class="container-fluid">
+<!-- Main container -->
+<div id="index-container" class="container-fluid">
+    <div class="row justify-content-center align-items-center">
+
+        <!-- Left side buttons -->
+        <div id="left-column" class="col-3">
+
+            <!-- "New game" button -->
             <div class="row justify-content-center align-items-center">
-                <!-- Left side buttons -->
-                <div id="left-column" class="col-3">
-                    <!-- "New game" button -->
-                    <div class="row justify-content-center align-items-center">
-                        <div id="start-button-container" class="d-flex align-items-center">
-                            <img id="start-button" src="/static/menu/Button.png">
-                            <img id="start-button-clicked" src="/static/menu/Button_clicked.png">
-                            <div id="start-button-text">New game</div>
-                        </div>
-                    </div>
-                    <!-- "Back" button to the login page -->
-                    {% if not session["user_id"] %}
-                    <div class="row justify-content-center">   
-                        <div id="index-back-button-container" class="d-flex align-items-center">
-                            <a href="/login">
-                                <img id="index-back-button" src="/static/menu/Button.png">
-                                <img id="index-back-button-clicked" src="/static/menu/Button_clicked.png">
-                                <div id="index-back-button-text">Back</div>
-                            </a>
-                        </div>  
-                    </div>
-                    <!-- Script for the button -->
-                    <script src="/static/index_unregistered_script.js"></script>
-                    {% endif %}
-                    {% if session["user_id"] %}
-                    <!-- "Save score" button -->
-                    <form action="/", method="post">
-                        <div class="row justify-content-center">
-                            <div id="score-button-container" class="d-flex align-items-center">
-                                <img id="score-button" src="/static/menu/Button.png">
-                                <img id="score-button-clicked" src="/static/menu/Button_clicked.png">
-                                <div id="score-button-text">Save score</div>
-                                <input id="score-button-input" name="score" type="number" value="0">
-                                <!-- Button itself (invisible) -->
-                                <button id="score-form-button" type="submit" class="mx-auto d-flex align-items-center"></button>
-                            </div>
-                        </div>
-                    </form>
-                    <!-- "View scores" button -->
-                    <div class="row justify-content-center">
-                        <div id="view-button-container" class="d-flex align-items-center">
-                            <a href="/scores">
-                                <img id="view-button" src="/static/menu/Button.png">
-                                <img id="view-button-clicked" src="/static/menu/Button_clicked.png">
-                                <div id="view-button-text">View scores</div>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- "Log out" button -->
-                    <div class="row justify-content-center">   
-                        <div id="logout-button-container" class="d-flex align-items-center">
-                            <a href="/logout">
-                                <img id="logout-button" src="/static/menu/Button.png">
-                                <img id="logout-button-clicked" src="/static/menu/Button_clicked.png">
-                                <div id="logout-button-text">Log out</div>
-                            </a>
-                        </div>  
-                    </div>
-                    <!-- "Delete account" button -->
-                    <div class="row justify-content-center">   
-                        <div id="delete-button-container" class="d-flex align-items-center">
-                            <a href="/delete">
-                                <img id="delete-button" src="/static/menu/Button.png">
-                                <img id="delete-button-clicked" src="/static/menu/Button_clicked.png">
-                                <div id="delete-button-text">Delete account</div>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Script for the buttons -->
-                    <script src="/static/index_registered_script.js"></script>
-                    {% endif %}
+                <div id="start-button-container" class="d-flex align-items-center">
+                    <img id="start-button" src="/static/menu/Button.png" alt="Clicked button">
+                    <img id="start-button-clicked" src="/static/menu/Button_clicked.png" alt="Unclicked button">
+                    <div id="start-button-text">New game</div>
                 </div>
-                <!-- Central part with the game window -->
-                <div id="central-column" class="col-6">
-                    <div class="row justify-content-center">
-                        <canvas id="game-canvas"></canvas>
-                        <!-- Game window border -->
-                        <img id="border-game" src="/static/menu/Border.png" alt="game-window-border">
-                        <!-- Title screen -->
-                        <img id="title" src="/static/background/Title.png">
-                        <!-- Background layers -->
-                        <img id="layer-0" src="/static/background/Layer_0010_1.png">
-                        <img id="layer-1" src="/static/background/Layer_0009_2.png">
-                        <img id="layer-2" src="/static/background/Layer_0008_3.png">
-                        <img id="layer-3" src="/static/background/Layer_0007_Lights.png">
-                        <img id="layer-4" src="/static/background/Layer_0006_4.png">
-                        <img id="layer-5" src="/static/background/Layer_0005_5.png">
-                        <img id="layer-6" src="/static/background/Layer_0004_Lights.png">
-                        <img id="layer-7" src="/static/background/Layer_0003_6.png">
-                        <img id="layer-8" src="/static/background/Layer_0002_7.png">
-                        <img id="layer-9" src="/static/background/Layer_0001_8.png">
-                        <img id="layer-10" src="/static/background/Layer_0000_9.png">
-                        <!-- Player sprite -->
-                        <img id="player" src="/static/player/wizard.png">
-                        <!-- Enemy sprite -->
-                        <img id="dragon" src="/static/enemies/dragon.png">
-                        <!-- Explosion sprite -->
-                        <img id="explosion" src="/static/explosion/explosion.png">
+            </div>
+            
+            {% if not session["user_id"] %}
+            <!-- Mark the page for the buttons script -->
+            <div class="conditional-part">index_unregistered</div>
+            <!-- "Back" button to the login page -->
+            <div class="row justify-content-center">
+                <div id="index-back-button-container" class="d-flex align-items-center">
+                    <a href="/login">
+                        <img id="index-back-button" src="/static/menu/Button.png" alt="Clicked button">
+                        <img id="index-back-button-clicked" src="/static/menu/Button_clicked.png" alt="Unclicked button">
+                        <div id="index-back-button-text">Back</div>
+                    </a>
+                </div>  
+            </div>
+            {% endif %}
+
+            {% if session["user_id"] %}
+            <!-- Mark the page for the buttons script -->
+            <div class="conditional-part">index_registered</div>
+            <!-- "Save score" button -->
+            <form action="/", method="post">
+                <div class="row justify-content-center">
+                    <div id="score-button-container" class="d-flex align-items-center">
+                        <img id="score-button" src="/static/menu/Button.png" alt="Clicked button">
+                        <img id="score-button-clicked" src="/static/menu/Button_clicked.png" alt="Unclicked button">
+                        <div id="score-button-text">Save score</div>
+                        <input id="score-button-input" name="score" type="number" value="0">
+                        <!-- Button itself (invisible) -->
+                        <button id="score-form-button" type="submit" class="mx-auto d-flex align-items-center"></button>
                     </div>
                 </div>
-                <!-- Right side -->
-                <div id="right-column" class="col-3">
-                    <!-- Instructions tablet -->
-                    <div class="row justify-content-center">
-                        <div id="instruction-tablet-container">
-                            <img id="instruction-tablet-background" src="/static/menu/Instruction_tablet_background.png">
-                            <img id="instruction-tablet-border" src="/static/menu/Instruction_tablet_border.png">
-                            <div id="instruction-tablet-text">
-                                Your beloved Forest has been infested by awful creatures from the North.
-                                You are the only one who can defeat them.
-                                Embrace your destiny and eradicate as many enemies as you can!
-                                <br>
-                                <br>
-                                To control your character use:
-                                <br>
-                                -left/right arrow keys to move
-                                <br>
-                                -up arrow key to jump
-                                <br>
-                                -spacebar to attack
-                                <br>
-                                <br>
-                                Tip: Keep the spacebar pressed for longer attacks. Attack while jumping to reach high flying enemies.
-                            </div>
-                        </div>
-                    </div>
-                    <!-- "Credits" button -->
-                    <div class="row justify-content-center">
-                        <div id="credits-button-container" class="d-flex align-items-center">
-                            <a href="/credits">
-                                <img id="credits-button" src="/static/menu/Button.png">
-                                <img id="credits-button-clicked" src="/static/menu/Button_clicked.png">
-                                <div id="credits-button-text">Credits</div>
-                            </a>
-                        </div>   
+            </form>
+
+            <!-- "View scores" button -->
+            <div class="row justify-content-center">
+                <div id="view-button-container" class="d-flex align-items-center">
+                    <a href="/scores">
+                        <img id="view-button" src="/static/menu/Button.png" alt="Clicked button">
+                        <img id="view-button-clicked" src="/static/menu/Button_clicked.png" alt="Unclicked button">
+                        <div id="view-button-text">View scores</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- "Log out" button -->
+            <div class="row justify-content-center">   
+                <div id="logout-button-container" class="d-flex align-items-center">
+                    <a href="/logout">
+                        <img id="logout-button" src="/static/menu/Button.png" alt="Clicked button">
+                        <img id="logout-button-clicked" src="/static/menu/Button_clicked.png" alt="Unclicked button">
+                        <div id="logout-button-text">Log out</div>
+                    </a>
+                </div>  
+            </div>
+
+            <!-- "Delete account" button -->
+            <div class="row justify-content-center">   
+                <div id="delete-button-container" class="d-flex align-items-center">
+                    <a href="/delete">
+                        <img id="delete-button" src="/static/menu/Button.png" alt="Clicked button">
+                        <img id="delete-button-clicked" src="/static/menu/Button_clicked.png" alt="Unclicked button">
+                        <div id="delete-button-text">Delete account</div>
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+
+        <!-- Central part with the game window -->
+        <div id="central-column" class="col-6">
+            <div class="row justify-content-center">
+                <canvas id="game-canvas"></canvas>
+                <!-- Game window border -->
+                <img id="border-game" src="/static/menu/Border.png" alt="game-window-border" alt="Border">
+                <!-- Title screen -->
+                <img id="title" src="/static/background/Title.png" alt="Title screen">
+                <!-- Background layers -->
+                <img id="layer-0" src="/static/background/Layer_0010_1.png" alt="Background layer 1">
+                <img id="layer-1" src="/static/background/Layer_0009_2.png" alt="Background layer 2">
+                <img id="layer-2" src="/static/background/Layer_0008_3.png" alt="Background layer 3">
+                <img id="layer-3" src="/static/background/Layer_0007_Lights.png" alt="Background layer lights">
+                <img id="layer-4" src="/static/background/Layer_0006_4.png" alt="Background layer 4">
+                <img id="layer-5" src="/static/background/Layer_0005_5.png" alt="Background layer 5">
+                <img id="layer-6" src="/static/background/Layer_0004_Lights.png" alt="Background layer lights 2">
+                <img id="layer-7" src="/static/background/Layer_0003_6.png" alt="Background layer 6">
+                <img id="layer-8" src="/static/background/Layer_0002_7.png" alt="Background layer 7">
+                <img id="layer-9" src="/static/background/Layer_0001_8.png" alt="Background layer 8">
+                <img id="layer-10" src="/static/background/Layer_0000_9.png" alt="Background layer 9">
+                <!-- Player sprite -->
+                <img id="player" src="/static/player/wizard.png" alt="Player character">
+                <!-- Enemy sprite -->
+                <img id="dragon" src="/static/enemies/dragon.png" alt="Dragon">
+                <!-- Explosion sprite -->
+                <img id="explosion" src="/static/explosion/explosion.png" alt="Explosion">
+            </div>
+        </div>
+
+        <!-- Right side -->
+        <div id="right-column" class="col-3">
+
+            <!-- Instructions tablet -->
+            <div class="row justify-content-center">
+                <div id="instruction-tablet-container">
+                    <img id="instruction-tablet-background" src="/static/menu/Instruction_tablet_background.png" alt="Background">
+                    <img id="instruction-tablet-border" src="/static/menu/Instruction_tablet_border.png" alt="Border">
+                    <div id="instruction-tablet-text">
+                        Your beloved Forest has been infested by awful creatures from the North.
+                        You are the only one who can defeat them.
+                        Embrace your destiny and eradicate as many enemies as you can!
+                        <br>
+                        <br>
+                        To control your character use:
+                        <br>
+                        -left/right arrow keys to move
+                        <br>
+                        -up arrow key to jump
+                        <br>
+                        -spacebar to attack
+                        <br>
+                        <br>
+                        Tip: Keep the spacebar pressed for longer attacks. Attack while jumping to reach high flying enemies.
                     </div>
                 </div>
             </div>
+
+            <!-- "Credits" button -->
+            <div class="row justify-content-center">
+                <div id="credits-button-container" class="d-flex align-items-center">
+                    <a href="/credits">
+                        <img id="credits-button" src="/static/menu/Button.png" alt="Clicked button">
+                        <img id="credits-button-clicked" src="/static/menu/Button_clicked.png" alt="Unclicked button">
+                        <div id="credits-button-text">Credits</div>
+                    </a>
+                </div>   
+            </div>
         </div>
-        <!-- Invisible form to store player's score -->
-        <form>
-            <input id="score-value" name="points" type="number" value="0">
-        </form>
-        <!-- Game code -->
-        <script src="/static/index_script.js"></script>
-    </main>
+    </div>
+</div>
+
+<!-- Invisible form to store player's score -->
+<form>
+    <input id="score-value" name="points" type="number" value="0">
+</form>
+
+<!-- Game code -->
+<script src="/static/index_script.js"></script>
+
+<!-- Script for buttons -->
+<script src="/static/buttons_script.js"></script>
 
 {% endblock %}

@@ -2,13 +2,14 @@
 // Wait until the page loads
 window.addEventListener("load", function() {
 
-    /** @type {HTMLCanvasElement} **/ // Suggests canvas methods
+    /** @type {HTMLCanvasElement} **/ // Suggest canvas methods
 
     // Handle canvas
     const canvas = document.getElementById("game-canvas");
     const context = canvas.getContext("2d");
     canvas.width = 1392;
     canvas.height = 1000;
+
     // Display game title
     let title = document.getElementById("title");
     context.drawImage(title, 0, 0, canvas.width, canvas.height);
@@ -21,29 +22,13 @@ window.addEventListener("load", function() {
     context.fillStyle = "white";
     context.font = "120px Luminari, Papyrus, serif";
     context.fillText("The Eradicator", canvas.width / 2 + 3, canvas.height / 2 + 3);
+
     // Display game border
     let border = document.getElementById("border-game");
     context.drawImage(border, 0, 0, canvas.width, canvas.height);
+
     // Variable to control game starting
     let gameStarted = false;
-
-    // Check if user clicks the credits button
-    let buttonCreditsContainer = document.getElementById("credits-button-container");
-    let buttonCredits = document.getElementById("credits-button"); // Credits button not clicked
-    let buttonCreditsClicked = document.getElementById("credits-button-clicked"); // Credits button clicked
-    let buttonCreditsText = document.getElementById("credits-button-text");
-    buttonCreditsContainer.addEventListener("click", function() {
-        // Animate button
-        buttonCredits.style.display = "none";
-        buttonCreditsClicked.style.display = "initial";
-        buttonCreditsText.style.marginTop = "-1%";
-        // After 120 ms
-        setTimeout(function() {
-            buttonCredits.style.display = "initial"; // Display the "unclicked" button image
-            buttonCreditsClicked.style.display = "none"; // Hide the "clicked" button image
-            buttonCreditsText.marginTop = "0%"; // Move the text to the initial position
-        }, 120);
-    });
     
     // Check if user clicks the starting button
     let buttonStartContainer = document.getElementById("start-button-container");
@@ -60,14 +45,20 @@ window.addEventListener("load", function() {
             buttonStartClicked.style.display = "initial";
             buttonStartText.style.marginTop = "-1%";
 
-            gameStarted = true; // Lock the start button until game over
+            // Lock the start button until game over
+            gameStarted = true;
+
+            // SCREEN SIZE
 
             // Check if new game started
             if (gameStarted == true) {
+
                 // Variable to control screen size
                 let screenBig = false;
+
                 // Check if user clicks the enter key
                 window.addEventListener("keydown", event => {
+
                     if (event.key == "Enter") {
                         // Check if screen is small
                         if (screenBig == false) {
@@ -87,7 +78,7 @@ window.addEventListener("load", function() {
                 });
             }
 
-            // Put layers from game.html into an array
+            // Put layers from index.html into an array
             const backgroundLayers = [];
             backgroundLayers[0] = document.getElementById("layer-0");
             backgroundLayers[1] = document.getElementById("layer-1");
@@ -101,14 +92,17 @@ window.addEventListener("load", function() {
             backgroundLayers[9] = document.getElementById("layer-9");
             backgroundLayers[10] = document.getElementById("layer-10");
             const layers = [];
+
             // Variable to control general game speed
             let gameSpeedMod = 2.5;
+
             // Game state trackers
             let gameOver = false;
             let score = 0;
             document.getElementById("score-value").value = "0"; // Update the score form
             let level = 0;
             let screenInfo = 0;
+
             // Variables to control the display of level messages
             let levelTimer = 100;
             let levelOneDisplayed = false;
@@ -116,21 +110,28 @@ window.addEventListener("load", function() {
             let levelThreeDisplayed = false;
             let levelFourDisplayed = false;
             let levelFiveDisplayed = false;
+
             // Player attacks trackers
             let attackGround = false;
             let attackJump = false;
+
             // Array for active dragons
             let dragons = [];
+
             // Array for triggered explosions
             let explosions = [];
+
             // Background music
             let music = new Audio();
             music.src = "/static/background/music.mp3";
             music.volume = 0.1;
+
             // Dragon wings sound
             let dragonWingSound = new Audio();
             dragonWingSound.src = "/static/enemies/wings.wav";
             dragonWingSound.volume = 0.15;
+
+            // BACKGROUND
 
             // Class for parallax background layers
             class Background {
@@ -142,7 +143,7 @@ window.addEventListener("load", function() {
                     this.height = 1000;
                     this.x = 0;
                     this.y = 0;
-                    // Get the layer file from game.html
+                    // Get the layer file from index.html
                     this.image = image;
                     // Layer speed
                     this.speed = speed;
@@ -167,13 +168,17 @@ window.addEventListener("load", function() {
                 }
             }
 
+            // USER INPUT
+
             // Class to handle user input
             class InputHandler {
                 constructor() {
                     // Array to store information about currently pressed keys
                     this.keys = [];
+
                     // Listen for the user pressing keys
                     window.addEventListener("keydown", event => {
+
                         // Check if any key is pressed and whether it's not in the array yet
                         if ((event.key == " " ||
                             event.key == "ArrowUp" ||
@@ -184,8 +189,10 @@ window.addEventListener("load", function() {
                             this.keys.push(event.key);
                         }
                     });
+
                     // Listen for the user releasing keys
                     window.addEventListener("keyup", event => {
+
                         // Check if any key is released
                         if (event.key == " " ||
                             event.key == "ArrowUp" ||
@@ -198,6 +205,8 @@ window.addEventListener("load", function() {
                 }
             }
 
+            // PLAYER CHARACTER
+
             // Class for the player character
             class Player {
                 constructor(gameWidth, gameHeight) {
@@ -208,7 +217,7 @@ window.addEventListener("load", function() {
                     this.height = 128;
                     this.x = -40; // Put the player as close to the right border as possible
                     this.y = this.gameHeight - (this.height + 120); // Put the player on the grass
-                    // Get the sprite image from game.html
+                    // Get the sprite image from index.html
                     this.image = document.getElementById("player");
                     // Get the spell sound effect
                     this.spellSound = new Audio();
@@ -243,13 +252,6 @@ window.addEventListener("load", function() {
                 }
                 // Displays the player
                 draw(context) {
-
-                    // HIT BOXES
-                    // context.strokeStyle = "white";
-                    // context.beginPath();
-                    // context.rect(this.x + (this.width / 3.5), this.y + (this.height / 10), this.width - (this.width / 3.5) - (this.width / 2.1), this.height - (this.height / 10));
-                    // context.stroke();
-
                     // Draw the image, using frameX and frameY to crop it / switch between character frames on the sprite sheet
                     context.drawImage(this.image, this.frameX * this.width, this.frameY * this.height, this.width, this.height, this.x, this.y, this.width, this.height);
                 }
@@ -295,15 +297,19 @@ window.addEventListener("load", function() {
                             
                             // Check if player attacks from the ground
                             if (attackGround == true) {
+
                                 // Check if dragon's in range
-                                if (dragonBottom > groundAttackTop && dragonTop < groundAttackBottom && (dragon.x < groundAttackRange && dragon.x > playerFront)) {
+                                if (dragonBottom > groundAttackTop && dragonTop < groundAttackBottom &&
+                                    (dragon.x < groundAttackRange && dragon.x > playerFront)) {
                                     // Kill the dragon and trigger explosion
                                     explosions.push(new Explosion(dragon.x, dragon.y));
                                     dragon.killed = true;
                                 }
                             }
+
                             // Check if player attacks while jumping
                             if (attackJump == true) {
+
                                 // Check if dragon's in range
                                 if (dragonBottom > jumpAttackTop && dragonTop < jumpAttackBottom && (dragon.x < jumpAttackRange && dragon.x > playerFront)) {
                                     // Kill the dragon and trigger explosion
@@ -311,6 +317,7 @@ window.addEventListener("load", function() {
                                     dragon.killed = true;
                                 }
                             }
+
                             // Increase score if dragon killed
                             if (dragon.killed == true) {
                                 score++;
@@ -323,10 +330,12 @@ window.addEventListener("load", function() {
 
                     // Check if current character frame should finish
                     if (this.frameTimer > this.frameInterval) {
+
                         // Check if it's the last character frame (horizontally) on the sprite sheet
                         if (this.frameX >= this.maxFrame) {
                             // Switch to the first character frame on the sprite sheet if so
                             this.frameX = 0;
+
                             // Check if the player is attacking
                             if (attackGround == true) {
                                 // Finish the attack if so
@@ -395,6 +404,7 @@ window.addEventListener("load", function() {
                     if (attackGround == false) {
                         this.x += this.speed;
                     }
+
                     // Make sure player doesn't go beyond canvas borders horizontally
                     if (this.x < -40) { // Left border
                         this.x = -40;
@@ -416,6 +426,7 @@ window.addEventListener("load", function() {
                         this.jumpSpeed += this.gravity; // Keep pulling the player back down
                         this.maxFrame = 5; // Set the number of character frames for jumping on the sprite sheer
                         this.frameY = 1; // Switch to the row with jumping animation on the sprite sheet
+
                         // Check if the player is attacking while jumping
                         if (attackJump == true) {
                             // Play the spell sound effect
@@ -435,6 +446,7 @@ window.addEventListener("load", function() {
                         if (this.onGround() == true) {
                             // Play default step sounds
                             this.stepSound.play();
+
                             // Play fast step sounds and stop all others if moving to the right
                             if (userInput.keys.indexOf("ArrowRight") != -1) {
                                 this.stepSound.pause();
@@ -444,6 +456,7 @@ window.addEventListener("load", function() {
                             else if (userInput.keys.indexOf("ArrowRight") == -1) {
                                 this.stepSoundFast.pause();
                             }
+
                             // Play slow step sounds and stop all others if moving to the left
                             if (userInput.keys.indexOf("ArrowLeft") != -1) {
                                 this.stepSound.pause();
@@ -457,7 +470,6 @@ window.addEventListener("load", function() {
 
                         // Check if the player is attacking on the ground
                         if (attackGround == true) {
-
                             // Stop playing step sounds
                             this.stepSound.pause();
                             this.stepSoundFast.pause();
@@ -469,6 +481,7 @@ window.addEventListener("load", function() {
                             this.frameY = 2;
                         }
                     }
+
                     // Make sure player lands on the ground after a jump
                     if (this.y > this.gameHeight - (this.height + 120)) {
                         this.y = this.gameHeight - (this.height + 120);
@@ -486,6 +499,8 @@ window.addEventListener("load", function() {
                 }
             }
 
+            // DRAGONS
+
             // Class for the dragons
             class Dragon {
                 constructor(gameWidth, gameHeight) {
@@ -496,7 +511,7 @@ window.addEventListener("load", function() {
                     this.height = 150;
                     this.x = this.gameWidth;
                     this.y = this.gameHeight - (this.height + 120) - (Math.random() * 300); // Randomize vertical position
-                    // Get the sprite image from game.html
+                    // Get the sprite image from index.html
                     this.image = document.getElementById("dragon");
                     // Get the roar sound
                     this.roarSound = new Audio();
@@ -523,13 +538,6 @@ window.addEventListener("load", function() {
                 }
                 // Displays the dragon
                 draw(context) {
-
-                    // HIT BOXES
-                    // context.strokeStyle = "white";
-                    // context.beginPath();
-                    // context.rect(this.x + (this.width / 8), this.y + (this.height / 2), this.width - (this.width / 8) - (this.width /5), this.height - (this.height / 2) - (this.height / 8));
-                    // context.stroke();
-
                     // Draw the image, using frameX and frameY to crop it / switch between character frames on the sprite sheet
                     context.drawImage(this.image, this.frameX * this.width, this.frameY * this.height, this.width, this.height, this.x, this.y, this.width, this.height);
                 }
@@ -537,6 +545,7 @@ window.addEventListener("load", function() {
                 update(deltaTime) {
                     // Check if current character frame should finish
                     if (this.frameTimer > this.frameInterval) {
+
                         // Check if it's the last character frame (horizontally) on the sprite sheet
                         if (this.frameX >= this.maxFrame) {
                             // Switch to the first character frame on the sprite sheet if so
@@ -553,8 +562,10 @@ window.addEventListener("load", function() {
                         // Otherwise keep increasing the game frame counter
                         this.frameTimer += deltaTime;
                     }
+
                     // Move dragon from right to left
                     this.x -= this.speed;
+
                     // Check if dragon off screen
                     if (this.x < 0 - this.width) {
                         // Mark it for deletion if so
@@ -604,6 +615,8 @@ window.addEventListener("load", function() {
                 }
             }
 
+            // EXPLOSIONS
+
             // Class for explosions
             class Explosion {
                 constructor(x, y) { // Gets coordinates of the dragon
@@ -614,9 +627,9 @@ window.addEventListener("load", function() {
                     this.height = this.imageHeight * 2;
                     this.x = x + 12;
                     this.y = y - 13;
-                    // Get the sprite image from game.html
+                    // Get the sprite image from index.html
                     this.image = document.getElementById("explosion");
-                    // Get the sound effect from game.html
+                    // Get the sound effect from index.html
                     this.sound = new Audio();
                     this.sound.src = "/static/explosion/explosion.mp3";
                     this.sound.volume = 0.3;
@@ -637,8 +650,10 @@ window.addEventListener("load", function() {
                 update(deltaTime) {
                     // Play the sound effect
                     this.sound.play();
+
                     // Check if current character frame should finish
                     if (this.frameTimer >= this.frameInterval) {
+
                         // Check if it's the last character frame (horizontally) on the sprite sheet
                         if (this.frame >= this.maxFrame) {
                             this.markedForDeletion = true;                   
@@ -664,8 +679,10 @@ window.addEventListener("load", function() {
                     explosion.draw(context); // Display explosions
                     explosion.update(deltaTime) // Animate explosions
                 });
+
                 // Update the explosions array by filtering out explosions marked for deletion
                 explosions = explosions.filter(explosion => {
+
                     // Keep only explosions not marked for deletion
                     if (explosion.markedForDeletion == false) {
                         return explosion;
@@ -680,6 +697,7 @@ window.addEventListener("load", function() {
             function handleDragons(deltaTime) {
                 // Variable to randomize dragon spawning
                 let randomDragonInterval = Math.random() * 100000 + 100;
+
                 // Check if enough time has passed to spawn a new dragon
                 if (dragonTimer > (dragonInterval + randomDragonInterval)) {
                     // Spawn a new dragon if so and add it to the active dragons array
@@ -691,13 +709,16 @@ window.addEventListener("load", function() {
                     // Keep tracking game time otherwise
                     dragonTimer += deltaTime;
                 }
+
                 // Iterate all active dragons
                 dragons.forEach(dragon => {
                     dragon.draw(context); // Display dragons
                     dragon.update(deltaTime); // Animate dragons
                 });
+
                 // Update the dragons array by filtering out dragons marked for deletion
                 dragons = dragons.filter(dragon => {
+
                     // Keep only dragons not marked for deletion
                     if (dragon.markedForDeletion == false && dragon.killed == false) {
                         return dragon;
@@ -706,6 +727,7 @@ window.addEventListener("load", function() {
                         return null;
                     }
                 });
+
                 // Play dragon wings sound if any dragons are on the screen
                 if (dragons.length != 0) {
                     dragonWingSound.play();
@@ -741,7 +763,10 @@ window.addEventListener("load", function() {
                                 context.fillStyle = "white";
                                 context.font = "70px Luminari, Papyrus, serif";
                                 context.fillText("Level 1", canvas.width / 2 + 3, canvas.height / 2 + 3);
-                                levelTimer--; // Keep decreasing the timer
+
+                                // Keep decreasing the timer
+                                levelTimer--;
+
                                 // Check if timer's out
                                 if (levelTimer == 0) {
                                     levelOneDisplayed = true; // Mark level info as displayed
@@ -760,7 +785,10 @@ window.addEventListener("load", function() {
                                 context.fillStyle = "white";
                                 context.font = "70px Luminari, Papyrus, serif";
                                 context.fillText("Level 2", canvas.width / 2 + 3, canvas.height / 2 + 3);
-                                levelTimer--; // Keep decreasing the timer
+
+                                // Keep decreasing the timer
+                                levelTimer--;
+
                                 // Check if timer's out
                                 if (levelTimer == 0) {
                                     levelTwoDisplayed = true; // Mark level info as displayed
@@ -779,7 +807,10 @@ window.addEventListener("load", function() {
                                 context.fillStyle = "white";
                                 context.font = "70px Luminari, Papyrus, serif";
                                 context.fillText("Level 3", canvas.width / 2 + 3, canvas.height / 2 + 3);
-                                levelTimer--; // Keep decreasing the timer
+
+                                // Keep decreasing the timer
+                                levelTimer--;
+
                                 // Check if timer's out
                                 if (levelTimer == 0) {
                                     levelThreeDisplayed = true; // Mark level info as displayed
@@ -798,7 +829,10 @@ window.addEventListener("load", function() {
                                 context.fillStyle = "white";
                                 context.font = "70px Luminari, Papyrus, serif";
                                 context.fillText("Level 4", canvas.width / 2 + 3, canvas.height / 2 + 3);
-                                levelTimer--; // Keep decreasing the timer
+                                
+                                // Keep decreasing the timer
+                                levelTimer--;
+
                                 // Check if timer's out
                                 if (levelTimer == 0) {
                                     levelFourDisplayed = true; // Mark level info as displayed
@@ -817,7 +851,10 @@ window.addEventListener("load", function() {
                                 context.fillStyle = "white";
                                 context.font = "70px Luminari, Papyrus, serif";
                                 context.fillText("Level 5", canvas.width / 2 + 3, canvas.height / 2 + 3);
-                                levelTimer--; // Keep decreasing the timer
+
+                                // Keep decreasing the timer
+                                levelTimer--;
+
                                 // Check if timer's out
                                 if (levelTimer == 0) {
                                     levelFiveDisplayed = true; // Mark level info as displayed
@@ -845,25 +882,30 @@ window.addEventListener("load", function() {
             for (let i = 0; i < backgroundLayers.length; i++) {
                 layers[i] = new Background(canvas.width, canvas.height, backgroundLayers[i], (i / 10 + gameSpeedMod));
             }
+
             // Create an instance of the InputHandler class to register user input
             const userInput = new InputHandler();
+
             // Create an instance of the Player class to display the player character
             const player = new Player(canvas.width, canvas.height);
+
             // Variable to keep track of game frames duration
             let lastTime = 0;
-            // Variable to time dragon spawning
+
+            // Variables to time dragon spawning
             let dragonTimer = 0;
-            // Variable to control dragon spawning frequency
-            let dragonInterval = 2500;
+            let dragonInterval = 2500; // Dragon spawning frequency
 
             // Animation loop
             function animate(timeStamp) {
+
                 // Declare deltaTime to keep track of how many ms 1 game frame takes on the user machine
                 const deltaTime = timeStamp - lastTime;
-                // Update the lastTime stamp to the current timeStamp
-                lastTime = timeStamp;
+                lastTime = timeStamp; // Update the lastTime stamp to the current timeStamp
+
                 // Clear previous animations
                 context.clearRect(0, 0, canvas.width, canvas.height);
+
                 // Loop through background layers
                 for (let i = 0; i < layers.length; i++) {
                     layers[i].draw(context); // Display layer
@@ -874,6 +916,7 @@ window.addEventListener("load", function() {
                 handleDragons(deltaTime); // Display and animate dragons
                 triggerExplosions(deltaTime); // Display and animate explosions
                 displayStatus(context); // Display game status
+
                 // Display screen info for 200 frames
                 if (screenInfo < 200 && gameOver != true) {
                     context.fillStyle = "white";
@@ -881,10 +924,12 @@ window.addEventListener("load", function() {
                     context.fillText('Press "Enter" to change screen size', 1140, 70);
                 }
                 screenInfo++; // Timer to hide screen info
+
                 // Check if game over
                 if (gameOver == true) {
                     music.pause(); // Stop the background music
                     dragonWingSound.pause(); // Stop dragon wings sound
+
                     // Stop playing player sounds
                     player.stepSound.pause();
                     player.stepSoundFast.pause();
@@ -892,12 +937,14 @@ window.addEventListener("load", function() {
                     player.jumpSound.pause();
                     player.spellSound.pause(); // Stop potential spell sound effect if game over
                     player.deathSound.play(); // Play the death sound if game over
+
                     // Unlock the start button
                     gameStarted = false;
                     buttonStart.style.display = "initial";
                     buttonStartClicked.style.display = "none";
                     buttonStartText.style.marginTop = "0%";
-                    // Go back to initial game window size and display side buttons
+
+                    // Go back to the initial game window size and display side buttons
                     document.getElementById("central-column").className = "col-6";
                     document.getElementById("left-column").style.display = "initial";
                     document.getElementById("right-column").style.display = "initial";
@@ -906,6 +953,7 @@ window.addEventListener("load", function() {
                     music.play(); // Play the background music
                     requestAnimationFrame(animate); // Keep playing
                 }
+                
                 // Draw the game window border
                 context.drawImage(border, 0, 0, canvas.width, canvas.height);                              
             }

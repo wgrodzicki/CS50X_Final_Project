@@ -8,9 +8,14 @@
 
 <!-- Main container -->
 <div id="login-container" class="container-fluid text-center align-items-center">
+
     <!-- Background tablet -->
-    <img id="login-registered-background" src="/static/menu/Tablet_background.png">
-    <img id="login-registered-border" src="/static/menu/Border.png">
+    <img id="login-registered-background" src="/static/menu/Tablet_background.png" alt="Background">
+    <img id="login-registered-border" src="/static/menu/Border.png" alt="Border">
+
+    <!-- Mark the page for the buttons script -->
+    <div class="conditional-part">login_registered</div>
+
     <!-- Login form -->
     <form action="/login-registered" method="post">
         <div class="mb-3">
@@ -25,17 +30,21 @@
             <div class="apology">{{ password_lack }}</div>
             <div class="apology">{{ password_wrong }}</div>
         </div>
+        
         <!-- "Log in" button -->
         <div id="login-button-container" class="mx-auto d-flex align-items-center">
-            <img id="login-button" src="/static/menu/Button.png">
-            <img id="login-button-clicked" src="/static/menu/Button_clicked.png">
+            <img id="login-button" src="/static/menu/Button.png" alt="Clicked button">
+            <img id="login-button-clicked" src="/static/menu/Button_clicked.png" alt="Unclicked button">
             <div id="login-button-text">Log in</div>
             <!-- Button itself (invisible) -->
             <button id="login-form-button" type="submit" class="mx-auto d-flex align-items-center"></button>
         </div>
+
     </form>
+
 </div>
+
 <!-- Script for buttons -->
-<script src="/static/login_script.js"></script>
+<script src="/static/buttons_script.js"></script>
 
 {% endblock %}
