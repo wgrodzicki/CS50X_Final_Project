@@ -1,7 +1,7 @@
 # **The Eradicator**
 ## Wojciech Grodzicki's CS50x Final Project
 #
-This is "The Eradicator", a 2D side-scroller game available directly in the browser. You can play it straight away or, optionally, register to set up an account and keep track of your scores!
+This is "The Eradicator", a 2D side-scroller game available directly in the browser. You can play it straight away or, optionally, register to set up an account and keep track of your scores! Take a look at [my video explaining](https://youtu.be/YYejFXN4yGc) the project.
 
 ![Menu sample](/game/static/images/menu_sample.png)
 
@@ -82,11 +82,11 @@ When designing and implementing the project I stumbled upon several challenges:
 
 - _Difficulty level_. I wanted the diffculty level to affect enemy behaviour and to be updated depending on player's score. The solution was to: include the code changing enemy movement inside the enemy class; declare a global variable to keep track of the current level and update it inside the enemy class; create a switch statement in the function responsible for displaying level messages with a timer tied to animation frames.
 
-- _Button animation_. I found assets for "clicked" and "unclicked" button images, so I wanted to animate them dynamically and give them real "button properties". The solution was to: place HTML buttons and/or links over button images; add a function listening to the click event and reacting by hiding the "unclicked" image, displaying the "clicked" image and changing the position of button text slightly for a short period, creating the effect of interactive buttons.
+- _Button animation_. I had assets for "clicked" and "unclicked" button images, so I wanted to animate them dynamically and give them real "button properties". The solution was to: place HTML buttons and/or links over button images; add a function listening to the click event and reacting by hiding the "unclicked" image, displaying the "clicked" image and changing the position of button text slightly for a short period, which creates the effect of interactive buttons.
 
-- _Playing without logging in_. One of my goals was to give the user a choice whether to set up an account or not, but implementing this option turned out to be tricky. The solution was to: place an HTML form on a special button redirecting the user to a restricted version of the website (giving access to the game itself without the option to save scores); implement in the back-end an option to visit the game page by the "post" method that fetches the data from the form/button and renders the game without logging in; to distinguish it from the access for registered users, the "get" method is used when logging in and the complete version of the website is rendered.
+- _Playing without logging in_. One of my goals was to give the user a choice whether to set up an account or not, but implementing this option turned out to be tricky. The solution was to: place an HTML form on a special button redirecting the user to a restricted version of the website (giving access to the game itself without the option to save scores); implement on the back-end an option to visit the game page by the "post" method that fetches the data from the form/button and renders the game without logging in.
 
-- _Updating the database_. I wanted the user to be able to delete the account (and all stored scores and credentials), but keep the database "tidy" in terms of indexes at the same time. The solution was to: after deletion of any row in tables containing user's data, loop over all subsequent rows - one by one - to update their indexes to be 1 less than before; it was also necessary to get rid of the autoincrementation of indexes and handle the indexing of new records when inserting them into tables by always setting their index to be 1 more than the index of the last record in the table.
+- _Updating the database_. I wanted the user to be able to delete the account (and all stored scores and credentials), but keep the database "tidy" in terms of indexes at the same time. The solution was to: after deletion of any row in tables containing user's data, loop over all subsequent rows - one by one - to update their indexes to be 1 less than before; it was also necessary to get rid of the autoincrementation of indexes and handle the indexing of new records when inserting them into tables by always setting their indexes to be 1 more than the index of the last record in the table.
 
 ## **Future plans**
 
@@ -96,7 +96,7 @@ I plan to deploy the application and make it avaiable online. In the future I wo
 
 ### **Code basis & techniques**
 
-- Game code basis by Frank Dvorak via FreeCodeCamp: https://t.ly/TZyr
+- Basic game code structure by Frank Dvorak via FreeCodeCamp: https://t.ly/TZyr
 
 ### **Assets**
 
