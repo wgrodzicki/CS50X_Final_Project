@@ -3,7 +3,7 @@
 #
 This is "The Eradicator", a 2D side-scroller game available directly in the browser. You can play it straight away or, optionally, register to set up an account and keep track of your scores! Take a look at [my video explaining](https://youtu.be/YYejFXN4yGc) the project.
 
-![Menu sample](/game/static/images/menu_sample.png)
+![Menu sample](static/images/menu_sample.png)
 
 ## **Learning through gaming**
 
@@ -31,7 +31,7 @@ Computer games are what got me into coding in the first place. I'm also a firm b
 
 Upon opening the website you are prompted to log in to your account (after having registered if that's your first visit). Setting up an account let's you save your scores and access them whenever you want. If you decide you no longer need the account, you can always delete it. However, this functionality can be skipped altogether and you can just play.
 
-![Menu sample](/game/static/images/login_sample.png)
+![Login sample](static/images/login_sample.png)
 
 ### **Main goal**
 
@@ -47,7 +47,7 @@ Control the character using your keyboard:
 
 You can jump and attack at the same time, but attacking on the ground makes the character stop moving. Attacks in the air have a shorter range, however, cover more space. On the contrary, attacks from the ground have a longer range, but require more precision. Also note that keeping the spacebar pressed allows for long-lasting attacks. If you want to play with a larger screen size, just press enter.
 
-![Menu sample](/game/static/images/gameplay_sample.png)
+![Gameplay sample](static/images/gameplay_sample.png)
 
 Take advantage of differences between attack modes and combine them with well-timed movement to reach and dodge enemies effectively!
 
