@@ -1,7 +1,7 @@
 # **The Eradicator**
 ## Wojciech Grodzicki's CS50x Final Project
 #
-This is "The Eradicator", a 2D side-scroller game available directly in the browser. You can play it straight away or, optionally, register to set up an account and keep track of your scores! Take a look at [my video explaining](https://youtu.be/YYejFXN4yGc) the project.
+This is "The Eradicator", a 2D side-scroller game available directly in the browser. You can play it straight away or, optionally, register to set up an account and keep track of your scores! Take a look at [my video](https://youtu.be/YYejFXN4yGc) explaining the project.
 
 ![Menu sample](static/images/menu_sample.png)
 
