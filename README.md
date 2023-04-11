@@ -94,7 +94,11 @@ I plan to deploy the application and make it avaiable online. In the future I wo
 
 ## **Credits**
 
-### **Code basis & techniques**
+### **CS50**
+
+- Harvard CS50x course by David J. Malan via edX: https://www.edx.org/course/introduction-computer-science-harvardx-cs50x
+
+### **Game code basis & techniques**
 
 - Basic game code structure by Frank Dvorak via FreeCodeCamp: https://t.ly/TZyr
 
