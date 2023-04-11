@@ -1,3 +1,4 @@
+// Script handling the buttons
 
 // Wait until the page loads
 window.addEventListener("load", function() {
