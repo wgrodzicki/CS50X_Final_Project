@@ -1,4 +1,13 @@
+# For numerical/aplhabetical checks methods in Python I consulted: https://www.tutorialsteacher.com/python/string-methods
+# For techniques to handle dates and regular expressions in Python I used: https://docs.python.org/3/
+# For the basis of the game code and techniques I followed the course on: https://www.freecodecamp.org/news/learn-javascript-game-development-full-course/
+# For information regarding JS arrays I consulted: https://www.freecodecamp.org/news/check-if-javascript-array-is-empty-or-not-with-length/
+# For information on specific fonts I visited: https://www.w3.org/Style/Examples/007/fonts.en.html
+# For any other HTML/CSS/JS techniques or code explanation I used information from: https://www.w3schools.com/ and https://developer.mozilla.org/
+# For the mobile device check I followed: https://www.youtube.com/watch?v=VKZvBf0VLXE
+
 # Back-end part of the project to handle registration/logging in, sessions and scores storing
+
 
 from cs50 import SQL
 from flask import Flask, redirect, render_template, request, session
