@@ -21,7 +21,7 @@ app = Flask(__name__)
 app.config.from_pyfile('config.py')
 
 
-# Configure SQL database
+# Configure SQL database (in Pythonanywhere it must be: db = SQL("sqlite:////home/wgrodzicki/CS50x_Final_Project/game.db"))
 db = SQL("sqlite:///game.db")
 
 
