@@ -95,9 +95,8 @@ def register():
         user_lack = "Username required"
         user_exists = "Username already exists"
         password_lack = "Password required"
-        password_short = "Password must be at least 6 characters long"
-        password_letter = "Password must contain at least 1 letter"
-        password_digit = "Password must contain at least 1 digit"
+        password_clue_first = "Password must be at least 6 characters long,"
+        password_clue_second = "contain at least 1 letter and 1 digit"
         confirmation_lack = "Confirmation password required"
         confirmation_match = "Passwords don't match"
 
@@ -119,7 +118,7 @@ def register():
         
         # Check if password is at least 6 characters long
         if len(password) < 6:
-            return render_template("register.html", password_short=password_short)
+            return render_template("register.html", password_clue_first=password_clue_first, password_clue_second=password_clue_second)
 
         # Check if password contains at least 1 letter and at least 1 digit
         has_letter = False
@@ -135,9 +134,9 @@ def register():
                 has_digit = True
 
         if has_letter == False:
-            return render_template("register.html", password_letter=password_letter)
+            return render_template("register.html", password_clue_first=password_clue_first, password_clue_second=password_clue_second)
         if has_digit == False:
-            return render_template("register.html", password_digit=password_digit)
+            return render_template("register.html", password_clue_first=password_clue_first, password_clue_second=password_clue_second)
         
         # Check if confirmation is provided
         if not confirmation:

@@ -27,25 +27,33 @@ body {
 .row {
     position: relative;
 }
+#row-mobile-up, #row-mobile-lateral, #row-mobile-attack {
+    display: none;
+}
 
 /* All assets */
-#title, #border-game, #player, #dragon, #explosion, #layer-0, #layer-1, #layer-2, #layer-3, #layer-4, #layer-5, #layer-6, #layer-7, #layer-8, #layer-9, #layer-10 {
+#title, #border-game, #player, #dragon, #explosion, #layer-0, #layer-1, #layer-2, #layer-3, #layer-4, #layer-5,
+#layer-6, #layer-7, #layer-8, #layer-9, #layer-10 {
     display: none; /* Hide until the script runs */
 }
 
 /* Left side buttons containers */
 #start-button-container, #score-button-container, #view-button-container,
-#logout-button-container, #delete-button-container, #index-back-button-container {
+#logout-button-container, #delete-button-container, #index-back-button-container,
+#arrow-up-button-container, #arrows-lateral-button-container, #attack-button-container {
     position: relative;
-    width: 70%;
-    margin-top: 12%;
-    margin-bottom: 12%;
+    width: 230px;
+    margin-top: 40px;
+    margin-bottom: 40px;
     padding-left: 0%;
     padding-right: 0%;
 }
+#arrows-lateral-button-container {
+    margin-left: 1vw;
+}
 
 /* Change cursor when hovering over button */
-#start-button-container:hover {
+#start-button-container, #arrow-up-button, #arrow-left-button, #arrow-right-button, #attack-button {
     cursor: pointer;
 }
 
@@ -55,7 +63,7 @@ body {
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    width: 70%;
+    width: 230px;
     margin-top: 60%;
     padding-left: 0%;
     padding-right: 0%;
@@ -68,7 +76,7 @@ body {
     top: 50%;
     left: 50%;
     width: 100%;
-    min-height: 3.3vw;
+    min-height: 40px;
     opacity: 0;
 }
 
@@ -79,6 +87,25 @@ body {
     top: 50%;
     left: 50%;
     width: 100%;
+}
+#arrow-up-button, #arrow-left-button, #arrow-right-button, #attack-button {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 45%;
+}
+#arrow-up-button {
+    margin-top: -1vw;
+}
+#arrow-left-button {
+    margin-left: -4vw;
+}
+#arrow-right-button {
+    margin-left: 4vw;
+}
+#attack-button {
+    margin-top: 1vw;
 }
 
 /* "Clicked" button images */
@@ -91,6 +118,26 @@ body {
     width: 100%;
     display: none; /* Hide until the script runs */
 }
+#arrow-up-button-clicked, #arrow-left-button-clicked, #arrow-right-button-clicked, #attack-button-clicked {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 45%;
+    display: none; /* Hide until the script runs */
+}
+#arrow-up-button-clicked {
+    margin-top: -1vw;
+}
+#arrow-left-button-clicked {
+    margin-left: -4vw;
+}
+#arrow-right-button-clicked {
+    margin-left: 4vw;
+}
+#attack-button-clicked {
+    margin-top: 1vw;
+}
 
 /* Text on buttons */
 #start-button-text, #score-button-text, #view-button-text, #logout-button-text,
@@ -100,7 +147,7 @@ body {
     top: 50%;
     left: 50%;
     font-family: Luminari, Papyrus, serif;
-    font-size: 1.2vw;
+    font-size: 14px;
     color: white;
 }
 
@@ -115,7 +162,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    margin-top: -7.5%;
+    margin-top: -25px;
     text-align: justify;
 }
 
@@ -149,7 +196,7 @@ body {
     transform: translate(-50%, -50%);
     width: 70%;
     font-family: Luminari, Papyrus, serif;
-    font-size: 1.05vw;
+    font-size: 15px;
     color: white;
 }
 
@@ -169,8 +216,7 @@ body {
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    height: 100%;
-    width: 40%;
+    width: 500px;
     z-index: -2;
     opacity: 0.5;
 }
@@ -181,52 +227,49 @@ body {
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    height: 100%;
-    width: 40%;
+    width: 500px;
     z-index: -1;
 }
 
-/* Login after registered tablet background */
+/* Register tablet background */
 #register-background, #login-registered-background, #delete-background {
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    height: 100%;
-    width: 30%;
+    width: 500px;
     z-index: -2;
     opacity: 0.5;
 }
 
-/* Login after registered tablet border */
+/* Register tablet border */
 #register-border, #login-registered-border, #delete-border {
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    height: 100%;
-    width: 30%;
+    width: 500px;
     z-index: -1;
 }
 
 /* Boxes for user input */
 #login-input-username, #register-input-username {
-    margin-top: 3%;
-    width: 16%;
+    margin-top: -50px;
+    width: 250px;
 }
 
 /* Boxes for user input */
 #login-input-password, #register-input-password, #register-input-confirmation {
-    width: 16%;
+    width: 250px;
 }
 
 /* Button containers */
 #login-button-container, #register-button-container, #delete-yes-button-container {
     position: relative;
     text-align: center;
-    margin-top: 3%;
-    margin-bottom: 5%;
-    width: 16%;
+    margin-top: 40px;
+    margin-bottom: 5px;
+    width: 250px;
     padding-left: 0%;
     padding-right: 0%;
 }
@@ -235,9 +278,9 @@ body {
 #register-login-button-container, #play-button-container, #register-back-button-container, #delete-no-button-container {
     position: relative;
     text-align: center;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    width: 16%;
+    margin-top: 60px;
+    margin-bottom: 5px;
+    width: 250px;
     padding-left: 0%;
     padding-right: 0%;
 }
@@ -281,7 +324,7 @@ body {
     top: 50%;
     left: 50%;
     font-family: Luminari, Papyrus, serif;
-    font-size: 1.2vw;
+    font-size: 18px;
     color: white;
 }
 
@@ -292,23 +335,28 @@ body {
 
 /* Apology text */
 .apology {
-    font-size: 1.1vw;
+    font-size: 16px;
+    color: white;
+}
+
+/* Continue prompt */
+#login-registered-continue {
+    font-family: Luminari, Papyrus, serif;
+    font-size: 20px;
     color: white;
 }
 
 /* Delete question */
 #delete-question {
-    margin-top: 3%;
-    margin-bottom: 4%;
     font-family: Luminari, Papyrus, serif;
-    font-size: 1.25vw;
+    font-size: 18px;
     color: white;
 }
 
 /* SCORES & CREDITS */
 
 /* Main container */
-#scores-credits-container {
+#scores-container, #credits-container {
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
@@ -350,13 +398,13 @@ body {
     max-height: 90%;
     overflow: auto;
     font-family: Luminari, Papyrus, serif;
-    font-size: 1.1vw;
+    font-size: 12px;
 }
 
 /* Credits table title */
 #credits-table-title {
     font-family: Luminari, Papyrus, serif;
-    font-size: 1.1vw;
+    font-size: 16px;
 }
 
 /* Credits table container */
@@ -369,7 +417,7 @@ body {
     max-height: 90%;
     overflow: auto;
     font-family: Segoe UI, serif;
-    font-size: 0.9vw;
+    font-size: 12px;
 }
 
 /* Table itself */
@@ -384,7 +432,7 @@ body {
     top: 110%;
     left: 50%;
     text-align: center;
-    width: 55%;
+    width: 250px;
     padding-left: 0%;
     padding-right: 0%;
 }
@@ -418,11 +466,430 @@ body {
     top: 50%;
     left: 50%;
     font-family: Luminari, Papyrus, serif;
-    font-size: 1.2vw;
+    font-size: 18px;
     color: white;
 }
 
 /* Invisible form */
 #scores-credits-unregistered-back-button-input {
     display: none;
+}
+
+/* ON DIFFERENT DEVICES */
+
+@media (min-width: 2270px) {
+    /* Index */
+    #start-button-container, #score-button-container, #view-button-container,
+    #logout-button-container, #delete-button-container, #index-back-button-container {
+        width: 400px;
+        margin-top: 70px;
+        margin-bottom: 70px;
+    }
+    #start-button-text, #score-button-text, #view-button-text, #logout-button-text,
+    #delete-button-text, #index-back-button-text, #credits-button-text {
+        font-size: 23px;
+    }
+    #instruction-tablet-text {
+        font-size: 25px;
+    }
+    #credits-button-container {
+        width: 400px;
+    }
+}
+
+@media (max-width: 2269px) {
+    /* Index */
+    #start-button-container, #score-button-container, #view-button-container,
+    #logout-button-container, #delete-button-container, #index-back-button-container {
+        width: 400px;
+        margin-top: 70px;
+        margin-bottom: 70px;
+    }
+    #start-button-text, #score-button-text, #view-button-text, #logout-button-text,
+    #delete-button-text, #index-back-button-text, #credits-button-text {
+        font-size: 23px;
+    }
+    #instruction-tablet-text {
+        font-size: 23px;
+    }
+    #credits-button-container {
+        width: 400px;
+    }
+}
+
+@media (max-width: 2100px) {
+    /* Index */
+    #start-button-container, #score-button-container, #view-button-container,
+    #logout-button-container, #delete-button-container, #index-back-button-container {
+        width: 350px;
+        margin-top: 60px;
+        margin-bottom: 60px;
+    }
+    #start-button-text, #score-button-text, #view-button-text, #logout-button-text,
+    #delete-button-text, #index-back-button-text, #credits-button-text {
+        font-size: 21px;
+    }
+    #instruction-tablet-text {
+        font-size: 21px;
+    }
+    #credits-button-container {
+        width: 350px;
+    }
+}
+
+@media (max-width: 1900px) {
+    /* Index */
+    #instruction-tablet-text {
+        font-size: 19px;
+    }
+}
+
+@media (max-width: 1720px) {
+    /* Index */
+    #start-button-container, #score-button-container, #view-button-container,
+    #logout-button-container, #delete-button-container, #index-back-button-container {
+        width: 300px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+    #instruction-tablet-text {
+        font-size: 17px;
+    }
+    #credits-button-container {
+        width: 300px;
+    }
+}
+
+@media (min-width: 1540px) {
+    /* Login & register */
+    #login-background, #login-border, #register-background, #login-registered-background, #delete-background,
+    #register-border, #login-registered-border, #delete-border {
+        width: 1000px;
+    }
+    #login-input-username, #register-input-username, #login-input-password, #register-input-password, #register-input-confirmation {
+        margin-bottom: 25px;
+        height: 50px;
+        width: 500px;
+    }
+    #login-button-container, #register-button-container, #delete-yes-button-container,
+    #register-login-button-container, #play-button-container, #register-back-button-container, #delete-no-button-container {
+        margin-top: 60px;
+        margin-bottom: 50px;
+        width: 500px;
+    }
+    #login-button-text, #register-login-button-text, #play-button-text, #register-button-text,
+    #register-back-button-text, #delete-yes-button-text, #delete-no-button-text {
+        font-size: 40px;
+    }
+    .apology {
+        font-size: 30px;
+    }
+    #login-registered-continue, #delete-question {
+        font-size: 40px;
+    }
+    /* Scores & credits */
+    #scores-container {
+        width: 30%;
+        height: 45%;
+    }
+    #credits-container {
+        width: 35%;
+        height: 70%;
+    }
+    #credits-table-title {
+        font-size: 35px;
+    }
+    #scores-table-container {
+        font-size: 27px;
+    }
+    #credits-table-container {
+        font-size: 20px;
+    }
+    #scores-credits-back-button-container, #scores-credits-unregistered-back-button-container {
+        width: 250px;
+    }
+    #scores-credits-back-button-text, #scores-credits-unregistered-back-button-text {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 1539px) {
+    /* Index */
+    #start-button-container, #score-button-container, #view-button-container,
+    #logout-button-container, #delete-button-container, #index-back-button-container {
+        width: 250px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+    #start-button-text, #score-button-text, #view-button-text, #logout-button-text,
+    #delete-button-text, #index-back-button-text, #credits-button-text {
+        font-size: 18px;
+    }
+    #instruction-tablet-text {
+        font-size: 15px;
+    }
+    #credits-button-container {
+        width: 250px;
+    }
+    /* Scores & credits */
+    #scores-container {
+        width: 40%;
+        height: 60%;
+    }
+    #scores-table-container {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1360px) {
+    /* Index */
+    #instruction-tablet-text {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 1270px) {
+    /* Index */
+    #start-button-container, #score-button-container, #view-button-container,
+    #logout-button-container, #delete-button-container, #index-back-button-container {
+        width: 200px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    #start-button-text, #score-button-text, #view-button-text, #logout-button-text,
+    #delete-button-text, #index-back-button-text, #credits-button-text {
+        font-size: 14px;
+    }
+    #instruction-tablet-text {
+        font-size: 13px;
+    }
+    #credits-button-container {
+        width: 200px;
+    }
+}
+
+@media (max-width: 1180px) {
+    /* Index */
+    #instruction-tablet-text {
+        font-size: 11px;
+    }
+}    
+
+@media (max-width: 1000px) {
+    /* Index */
+    #start-button-container, #score-button-container, #view-button-container,
+    #logout-button-container, #delete-button-container, #index-back-button-container {
+        width: 180px;
+    }
+    #start-button-text, #score-button-text, #view-button-text, #logout-button-text,
+    #delete-button-text, #index-back-button-text, #credits-button-text {
+        font-size: 11px;
+    }
+    #arrow-up-button, #arrow-up-button-clicked {
+        margin-top: 0vw;
+    }
+    #attack-button, #attack-button-clicked {
+        margin-top: 0vw;
+    }
+    #instruction-tablet-container {
+        margin-top: -5%;
+    }
+    #instruction-tablet-text {
+        font-size: 10px;
+    }
+    #credits-button-container {
+        width: 180px;
+    }
+    /* Scores & credits */
+    #scores-container {
+        width: 40%;
+        height: 45%;
+    }
+    #scores-table-container {
+        font-size: 11px;
+    }
+    #credits-container {
+        width: 45%;
+        height: 60%;
+    }
+    #credits-table-title {
+        font-size: 14px;
+    }
+    #credits-table-container {
+        font-size: 10px;
+    }
+    #scores-credits-back-button-container, #scores-credits-unregistered-back-button-container {
+        margin-top: 10px;
+        width: 180px;
+    }
+    #scores-credits-back-button-text, #scores-credits-unregistered-back-button-text {
+        font-size: 11px;
+    } 
+}
+
+@media (max-width: 910px) {
+    /* Index */
+    #start-button-container, #score-button-container, #view-button-container,
+    #logout-button-container, #delete-button-container, #index-back-button-container {
+        width: 160px;
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
+    #start-button-text, #score-button-text, #view-button-text, #logout-button-text,
+    #delete-button-text, #index-back-button-text, #credits-button-text {
+        font-size: 10px;
+    }
+    #instruction-tablet-text {
+        font-size: 9px;
+    }
+    #credits-button-container {
+        width: 160px;
+    }
+}
+
+@media (max-width: 815px) {
+    /* Index */
+    #arrow-up-button,#arrow-up-button-clicked {
+        margin-top: 1vw;
+    }
+    #attack-button, #attack-button-clicked {
+        margin-top: -1vw;
+    }
+    #instruction-tablet-text {
+        font-size: 8px;
+    }
+}
+
+@media (max-width: 725px) {
+    /* Index */
+    #start-button-container, #score-button-container, #view-button-container,
+    #logout-button-container, #delete-button-container, #index-back-button-container {
+        width: 140px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    #start-button-text, #score-button-text, #view-button-text, #logout-button-text,
+    #delete-button-text, #index-back-button-text, #credits-button-text {
+        font-size: 9px;
+    }
+    #arrow-up-button, #arrow-up-button-clicked {
+        margin-top: 1.5vw;
+    }
+    #attack-button, #attack-button-clicked {
+        margin-top: -1.5vw;
+    }
+    #instruction-tablet-text {
+        font-size: 7px;
+    }
+    #credits-button-container {
+        width: 140px;
+    }
+}
+
+@media (max-width: 640px) {
+    /* Index */
+    #start-button-container, #score-button-container, #view-button-container,
+    #logout-button-container, #delete-button-container, #index-back-button-container {
+        width: 130px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    #start-button-text, #score-button-text, #view-button-text, #logout-button-text,
+    #delete-button-text, #index-back-button-text, #credits-button-text {
+        font-size: 8px;
+    }
+    #arrow-up-button, #arrow-up-button-clicked {
+        margin-top: 2vw;
+    }
+    #attack-button, #attack-button-clicked {
+        margin-top: -2vw;
+    }
+    #instruction-tablet-text {
+        font-size: 6px;
+    }
+    #credits-button-container {
+        width: 130px;
+    }
+}
+
+@media (max-width: 575px) {
+    /* Index */
+    #start-button-container, #score-button-container, #view-button-container,
+    #logout-button-container, #delete-button-container, #index-back-button-container {
+        width: 250px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+    #arrow-left-button, #arrow-left-button-clicked, #arrow-right-button, #arrow-right-button-clicked,
+    #arrow-up-button, #arrow-up-button-clicked, #attack-button, #attack-button-clicked {
+        display: none;
+    }
+    #start-button-text, #score-button-text, #view-button-text, #logout-button-text,
+    #delete-button-text, #index-back-button-text, #credits-button-text {
+        font-size: 17px;
+    }
+    /* Login & register */
+    #login-background, #login-border, #register-background, #login-registered-background, #delete-background,
+    #register-border, #login-registered-border, #delete-border {
+        height: 120%;
+        width: 100%;
+    }
+    #login-input-username, #register-input-username {
+        margin-top: 3%;
+        width: 50%;
+    }
+    #login-input-password, #register-input-confirmation {
+        margin-bottom: 3%;
+        width: 50%;
+    }
+    #register-input-password {
+        width: 50%;
+    }
+    #login-button-container, #register-button-container, #delete-yes-button-container,
+    #register-login-button-container, #play-button-container, #register-back-button-container, #delete-no-button-container {
+        margin-top: 5%;
+        margin-bottom: 5%;
+        width: 40vw;
+    }
+    #login-button-text, #register-login-button-text, #play-button-text, #register-button-text,
+    #register-back-button-text, #delete-yes-button-text, #delete-no-button-text {
+        font-size: 12px;
+    }
+    .apology {
+        font-size: 12px;
+    }
+    #login-registered-continue, #delete-question {
+        margin-top: 2%;
+        font-size: 14px;
+    }
+    /* Scores & credits */
+    #scores-container {
+        width: 55%;
+        height: 50%;
+    }
+    #scores-table-container {
+        font-size: 9px;
+    }
+    #credits-container {
+        width: 55%;
+        height: 75%;
+    }
+    #credits-table-title {
+        font-size: 12px;
+    }
+    #credits-table-container {
+        font-size: 7px;
+    }
+    #scores-credits-back-button-container, #scores-credits-unregistered-back-button-container {
+        top: 105%;
+        width: 150px;
+    }
+    #scores-credits-back-button-text, #scores-credits-unregistered-back-button-text {
+        font-size: 10px;
+    }
+}
+@media (max-height: 500px) {
+    #game-canvas {
+        width: 90%;
+    }
 }

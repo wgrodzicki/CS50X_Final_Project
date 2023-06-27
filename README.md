@@ -17,19 +17,18 @@ Computer games are what got me into coding in the first place. I'm also a firm b
 - 2 attack modes: in the air and on the ground
 - 5 difficulty levels with different enemy movement patterns
 - plenty of atmospheric sound effects
-- option to change screen size
 
 ### **Application**
 - optional account creation with custom credentials (username, password)
 - session storage
 - score saving and browsing
-- option to delete account
+- option to delete the account
 
 ## **How to play?**
 
 ### **Choosing game mode**
 
-Upon opening the website you are prompted to log in to your account (after having registered if that's your first visit). Setting up an account let's you save your scores and access them whenever you want. If you decide you no longer need the account, you can always delete it. However, this functionality can be skipped altogether and you can just play.
+Upon opening the website you are prompted to log in to your account (after having registered if that's your first visit). Setting up an account lets you save your scores and access them whenever you want. If you decide you no longer need the account, you can always delete it. However, this functionality can be skipped altogether and you can just play the game.
 
 ![Login sample](static/images/login_sample.png)
 
@@ -55,6 +54,12 @@ Take advantage of differences between attack modes and combine them with well-ti
 
 There are 5 difficulty levels you can unlock after having defeated a sufficient number of opponents. With every level enemies spawn more frequently, move faster and/or change their movement patterns.
 
+### **Mobile support**
+
+Although still experimental, the game provides mobile support. However, it may not work properly on every device, so for the best experience playing on a laptop or PC is recommended.
+
+![Mobile sample](static/images/mobile_sample.jpg)
+
 ## **Some technicalities**
 
 ### **Front-end**
@@ -70,7 +75,7 @@ The server-side of the application was implemented in Python using the [Flask](h
 The project is divided into several parts:
 - **_app.py_**: contains the back-end code to handle user registration/logging in, sessions and storing scores in the database.
 - **_game.db_**: SQL database to store user credentials and scores.
-- **static**: folder containing JS scripts (**_index_script.js_** for the game code and **_buttons_script.js_** to animate buttons), CSS file **_style.css_** with page styling, game assets (in individual folders) and the website icon.
+- **static**: folder containing JS scripts (**_index_script.js_** for the game code, **_buttons_script.js_** to animate buttons, and **_alert_script.js_** for mobile device users), CSS file **_style.css_** with page styling, game assets (in individual folders) and the website icon.
 - **templates**: folder containing HTML files (**_layout.html_** with the general layout for all pages, **_login.html_** with the initial login form, **_register.html_** with the registration form, **_login-registered.html_** with the login form after registration, **_index.html_** with the game itself, **_credits.html_** with game credits, **_scores.html_** with saved scores for registered users and **_delete.html_** to delete account for registered users).
 
 
@@ -91,6 +96,10 @@ When designing and implementing the project I stumbled upon several challenges:
 ## **Future plans**
 
 I plan to deploy the application and make it avaiable online. In the future I would also like to add mobile support to the game.
+
+**Edit:** the game is already availabe online on: http://wgrodzicki.pythonanywhere.com/login
+
+**Edit2:** there is (experimental) mobile support available.
 
 ## **Credits**
 

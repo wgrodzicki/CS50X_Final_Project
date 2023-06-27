@@ -8,54 +8,58 @@
 
 <!-- Main container -->
 <div id="register-container" class="container-fluid text-center align-items-center">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="row justify-content-center">
 
-    <!-- Background tablet -->
-    <img id="register-background" src="/static/menu/Tablet_background.png" alt="Background">
-    <img id="register-border" src="/static/menu/Border.png" alt="Border">
+                <!-- Background tablet -->
+                <img id="register-background" src="/static/menu/Tablet_background.png" alt="Background">
+                <img id="register-border" src="/static/menu/Border.png" alt="Border">
 
-    <!-- Registration form -->
-    <form action="/register" method="post">
-        <div class="mb-3">
-            <input id="register-input-username" autocomplete="off" name="username" placeholder="Username" type="text">
-            <br>
-            <div class="apology">{{ user_lack }}</div>
-            <div class="apology">{{ user_exists }}</div>
+                <!-- Registration form -->
+                <form action="/register" method="post">
+                    <div class="mb-3">
+                        <input id="register-input-username" autocomplete="off" name="username" placeholder="Username" type="text">
+                        <br>
+                        <div class="apology">{{ user_lack }}</div>
+                        <div class="apology">{{ user_exists }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <input id="register-input-password" autocomplete="off" name="password" placeholder="Password" type="password">
+                        <br>
+                        <div class="apology">{{ password_lack }}</div>
+                        <div class="apology">{{ password_clue_first }}</div>
+                        <div class="apology">{{ password_clue_second }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <input id="register-input-confirmation" autocomplete="off" name="confirmation" placeholder="Confirm password" type="password">
+                        <br>
+                        <div class="apology">{{ confirmation_lack }}</div>
+                        <div class="apology">{{ confirmation_match }}</div>
+                    </div>
+
+                    <!-- "Register" button -->
+                    <div id="register-button-container" class="mx-auto d-flex align-items-center">
+                        <img id="register-button" src="/static/menu/Button.png" alt="Clicked button">
+                        <img id="register-button-clicked" src="/static/menu/Button_clicked.png" alt="Unclicked button">
+                        <div id="register-button-text">Register</div>
+                        <!-- Button itself (invisible) -->
+                        <button id="register-form-button" type="submit" class="mx-auto d-flex align-items-center"></button>
+                    </div>
+
+                </form>
+
+                <!-- "Back" button to the login page  -->
+                <div id="register-back-button-container" class="mx-auto d-flex align-items-center">
+                    <a href="/login">
+                        <img id="register-back-button" src="/static/menu/Button.png" alt="Clicked button">
+                        <img id="register-back-button-clicked" src="/static/menu/Button_clicked.png" alt="Unclicked button">
+                        <div id="register-back-button-text">Back</div>
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-            <input id="register-input-password" autocomplete="off" name="password" placeholder="Password" type="password">
-            <br>
-            <div class="apology">{{ password_lack }}</div>
-            <div class="apology">{{ password_short }}</div>
-            <div class="apology">{{ password_letter }}</div>
-            <div class="apology">{{ password_digit }}</div>
-        </div>
-        <div class="mb-3">
-            <input id="register-input-confirmation" autocomplete="off" name="confirmation" placeholder="Confirm password" type="password">
-            <br>
-            <div class="apology">{{ confirmation_lack }}</div>
-            <div class="apology">{{ confirmation_match }}</div>
-        </div>
-
-        <!-- "Register" button -->
-        <div id="register-button-container" class="mx-auto d-flex align-items-center">
-            <img id="register-button" src="/static/menu/Button.png" alt="Clicked button">
-            <img id="register-button-clicked" src="/static/menu/Button_clicked.png" alt="Unclicked button">
-            <div id="register-button-text">Register</div>
-            <!-- Button itself (invisible) -->
-            <button id="register-form-button" type="submit" class="mx-auto d-flex align-items-center"></button>
-        </div>
-
-    </form>
-
-    <!-- "Back" button to the login page  -->
-    <div id="register-back-button-container" class="mx-auto d-flex align-items-center">
-        <a href="/login">
-            <img id="register-back-button" src="/static/menu/Button.png" alt="Clicked button">
-            <img id="register-back-button-clicked" src="/static/menu/Button_clicked.png" alt="Unclicked button">
-            <div id="register-back-button-text">Back</div>
-        </a>
     </div>
-
 </div>
 
 <!-- Script for the buttons -->

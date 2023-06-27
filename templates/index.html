@@ -11,14 +11,24 @@
     <div class="row justify-content-center align-items-center">
 
         <!-- Left side buttons -->
-        <div id="left-column" class="col-3">
+        <div id="left-column" class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
 
             <!-- "New game" button -->
-            <div class="row justify-content-center align-items-center">
+            <div id="row-start-button" class="row justify-content-center align-items-center">
                 <div id="start-button-container" class="d-flex align-items-center">
                     <img id="start-button" src="/static/menu/Button.png" alt="Clicked button">
                     <img id="start-button-clicked" src="/static/menu/Button_clicked.png" alt="Unclicked button">
                     <div id="start-button-text">New game</div>
+                </div>
+            </div>
+
+            <!-- Mobile left/right buttons -->
+            <div id="row-mobile-lateral" class="row justify-content-center align-items-center">
+                <div id="arrows-lateral-button-container" class="d-flex align-items-center">
+                    <img id="arrow-left-button" class="float-start" src="/static/menu/Button_arrow_left.png" alt="Clicked button">
+                    <img id="arrow-left-button-clicked" src="/static/menu/Button_arrow_left_clicked.png" alt="Unclicked button">
+                    <img id="arrow-right-button" class="float-end" src="/static/menu/Button_arrow_right.png" alt="Clicked button">
+                    <img id="arrow-right-button-clicked" src="/static/menu/Button_arrow_right_clicked.png" alt="Unclicked button">
                 </div>
             </div>
             
@@ -26,7 +36,7 @@
             <!-- Mark the page for the buttons script -->
             <div class="conditional-part">index_unregistered</div>
             <!-- "Back" button to the login page -->
-            <div class="row justify-content-center">
+            <div id="row-back-button" class="row justify-content-center">
                 <div id="index-back-button-container" class="d-flex align-items-center">
                     <a href="/login">
                         <img id="index-back-button" src="/static/menu/Button.png" alt="Clicked button">
@@ -41,7 +51,7 @@
             <!-- Mark the page for the buttons script -->
             <div class="conditional-part">index_registered</div>
             <!-- "Save score" button -->
-            <form action="/", method="post">
+            <form id="form-score-button" action="/", method="post">
                 <div class="row justify-content-center">
                     <div id="score-button-container" class="d-flex align-items-center">
                         <img id="score-button" src="/static/menu/Button.png" alt="Clicked button">
@@ -55,7 +65,7 @@
             </form>
 
             <!-- "View scores" button -->
-            <div class="row justify-content-center">
+            <div id="row-view-button" class="row justify-content-center">
                 <div id="view-button-container" class="d-flex align-items-center">
                     <a href="/scores">
                         <img id="view-button" src="/static/menu/Button.png" alt="Clicked button">
@@ -66,7 +76,7 @@
             </div>
 
             <!-- "Log out" button -->
-            <div class="row justify-content-center">   
+            <div id="row-logout-button" class="row justify-content-center">   
                 <div id="logout-button-container" class="d-flex align-items-center">
                     <a href="/logout">
                         <img id="logout-button" src="/static/menu/Button.png" alt="Clicked button">
@@ -77,7 +87,7 @@
             </div>
 
             <!-- "Delete account" button -->
-            <div class="row justify-content-center">   
+            <div id="row-delete-button" class="row justify-content-center">   
                 <div id="delete-button-container" class="d-flex align-items-center">
                     <a href="/delete">
                         <img id="delete-button" src="/static/menu/Button.png" alt="Clicked button">
@@ -91,7 +101,7 @@
         </div>
 
         <!-- Central part with the game window -->
-        <div id="central-column" class="col-6">
+        <div id="central-column" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 d-none d-sm-block">
             <div class="row justify-content-center">
                 <canvas id="game-canvas"></canvas>
                 <!-- Game window border -->
@@ -120,10 +130,9 @@
         </div>
 
         <!-- Right side -->
-        <div id="right-column" class="col-3">
-
+        <div id="right-column" class="col-xl-3 col-lg-3 col-md-3 col-sm-3 d-none d-sm-block">
             <!-- Instructions tablet -->
-            <div class="row justify-content-center">
+            <div id="row-instruction" class="row justify-content-center">
                 <div id="instruction-tablet-container">
                     <img id="instruction-tablet-background" src="/static/menu/Instruction_tablet_background.png" alt="Background">
                     <img id="instruction-tablet-border" src="/static/menu/Instruction_tablet_border.png" alt="Border">
@@ -135,20 +144,20 @@
                         <br>
                         To control your character use:
                         <br>
-                        -left/right arrow keys to move
+                        -left/right arrow keys/buttons to move
                         <br>
-                        -up arrow key to jump
+                        -up arrow key/button to jump
                         <br>
-                        -spacebar to attack
+                        -spacebar/attack button to attack
                         <br>
                         <br>
-                        Tip: Keep the spacebar pressed for longer attacks. Attack while jumping to reach high flying enemies.
+                        Hold the spacebar/attack button for longer attacks. Attack while jumping to fight in the air.
                     </div>
                 </div>
             </div>
 
             <!-- "Credits" button -->
-            <div class="row justify-content-center">
+            <div id="row-credits-button" class="row justify-content-center">
                 <div id="credits-button-container" class="d-flex align-items-center">
                     <a href="/credits">
                         <img id="credits-button" src="/static/menu/Button.png" alt="Clicked button">
@@ -156,6 +165,23 @@
                         <div id="credits-button-text">Credits</div>
                     </a>
                 </div>   
+            </div>
+
+            <!-- Mobile up button -->
+            <div id="row-mobile-up" class="row justify-content-center align-items-center">
+                <div id="arrow-up-button-container" class="d-flex align-items-center">
+                    <img id="arrow-up-button" src="/static/menu/Button_arrow_up.png" alt="Clicked button">
+                    <img id="arrow-up-button-clicked" src="/static/menu/Button_arrow_up_clicked.png" alt="Unclicked button">
+                </div>
+            </div>
+
+            
+            <!-- Mobile attack button -->
+            <div id="row-mobile-attack" class="row justify-content-center align-items-center">
+                <div id="attack-button-container" class="d-flex align-items-center">
+                    <img id="attack-button" src="/static/menu/Button_attack.png" alt="Clicked button">
+                    <img id="attack-button-clicked" src="/static/menu/Button_attack_clicked.png" alt="Unclicked button">
+                </div>
             </div>
         </div>
     </div>

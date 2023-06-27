@@ -92,13 +92,13 @@ window.addEventListener("load", function() {
     if (documentTitle.includes("Game") == true) {
 
         // Put credits button elements in an array
-        let buttons = [];
-        buttons[0] = document.getElementById("credits-button-container");
-        buttons[1] = document.getElementById("credits-button");
-        buttons[2] = document.getElementById("credits-button-clicked");
-        buttons[3] = document.getElementById("credits-button-text");
+        let buttonsCredits = [];
+        buttonsCredits[0] = document.getElementById("credits-button-container");
+        buttonsCredits[1] = document.getElementById("credits-button");
+        buttonsCredits[2] = document.getElementById("credits-button-clicked");
+        buttonsCredits[3] = document.getElementById("credits-button-text");
 
-        animateButtons(buttons);
+        animateButtons(buttonsCredits);
 
         // Check if user is unregistered
         if (conditionalParts.indexOf("index_unregistered") != -1) {
