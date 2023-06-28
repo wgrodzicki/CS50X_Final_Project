@@ -762,6 +762,12 @@ body {
     }
 }
 
+@media (max-height: 800px) {
+    #game-canvas {
+        width: 90%;
+    }
+}
+
 @media (max-width: 725px) {
     /* Index */
     #start-button-container, #score-button-container, #view-button-container,
@@ -888,10 +894,5 @@ body {
     }
     #scores-credits-back-button-text, #scores-credits-unregistered-back-button-text {
         font-size: 10px;
-    }
-}
-@media (max-height: 500px) {
-    #game-canvas {
-        width: 90%;
     }
 }
