@@ -109,7 +109,7 @@ I plan to deploy the application and make it avaiable online. In the future I wo
 
 ### **Game code basis & techniques**
 
-- Basic game code template by Frank Dvorak via FreeCodeCamp: https://t.ly/TZyr
+- Basic game code structure by Frank Dvorak via FreeCodeCamp: https://t.ly/TZyr
 
 ### **Assets**
 
