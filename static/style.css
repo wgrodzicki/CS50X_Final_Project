@@ -355,6 +355,12 @@ body {
 
 /* SCORES & CREDITS */
 
+/* Links */
+a:link, a:hover, a:active, a:visited {
+    text-decoration: underline;
+    color: white;
+}
+
 /* Main container */
 #scores-container, #credits-container {
     position: absolute;
