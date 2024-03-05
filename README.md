@@ -1,7 +1,6 @@
 # **The Eradicator**
-## Wojciech Grodzicki's CS50x Final Project
-#
-This is "The Eradicator", a 2D side-scroller game available directly in the browser. You can play it straight away or, optionally, register to set up an account and keep track of your scores! Take a look at [my video](https://youtu.be/YYejFXN4yGc) explaining the project.
+
+This is "The Eradicator", a 2D side-scroller game available directly in the browser. You can play it straight away or, optionally, register to set up an account and keep track of your scores! Take a look at [my video](https://youtu.be/YYejFXN4yGc) explaining the project. You can play the game [here](https://wgrodzicki.pythonanywhere.com/).
 
 ![Menu sample](static/images/menu_sample.png)
 
@@ -103,6 +102,8 @@ I plan to deploy the application and make it avaiable online. In the future I wo
 
 ## **Credits**
 
+Created by Wojciech Grodzicki.
+
 ### **CS50**
 
 - Harvard CS50x course by David J. Malan via [edX](https://www.edx.org/course/introduction-computer-science-harvardx-cs50x)
@@ -131,3 +132,4 @@ I plan to deploy the application and make it avaiable online. In the future I wo
 - Enemy wing sound by AntumDeluge via [OpenGameArt](https://opengameart.org/content/large-wings-flap) (CC0 1.0)
 - Explosion effect sound by qubodup via [Pixabay](https://pixabay.com/sound-effects/fire-magic-6947/)
 
+The game was made as the final project for the Harvard University's course "CS50's Introduction to Computer Science".
